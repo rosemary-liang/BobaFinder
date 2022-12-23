@@ -12,17 +12,19 @@ class SearchVC: UIViewController {
     var logoImageView       = UIImageView()
     var zipcodeTextField    = BFTextField()
     var actionButton        = BFButton(backgroundColor: .systemIndigo, title: "Find Boba")
+    
+    let padding: CGFloat = 50
 
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .systemBackground
-        configure()
+        configureLogoImageView()
+        configureZipcodeTextField()
+        configureActionButton()
     }
+
     
-    func configure() {
-        
-        let padding: CGFloat = 50
-        
+    func configureLogoImageView() {
         view.addSubview(logoImageView)
         logoImageView.translatesAutoresizingMaskIntoConstraints = false
         logoImageView.image = UIImage(named: "logo-image")
@@ -33,8 +35,10 @@ class SearchVC: UIViewController {
             logoImageView.widthAnchor.constraint(equalToConstant: 200),
             logoImageView.heightAnchor.constraint(equalToConstant: 200)
         ])
-        
-        
+    }
+    
+    
+    func configureZipcodeTextField() {
         view.addSubview(zipcodeTextField)
         
         NSLayoutConstraint.activate([
@@ -43,8 +47,10 @@ class SearchVC: UIViewController {
             zipcodeTextField.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -padding),
             zipcodeTextField.heightAnchor.constraint(equalToConstant: padding) // for a large touch target
         ])
-        
-        
+    }
+    
+    
+    func configureActionButton() {
         view.addSubview(actionButton)
         actionButton.translatesAutoresizingMaskIntoConstraints = false
         
@@ -54,10 +60,6 @@ class SearchVC: UIViewController {
             actionButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -padding),
             actionButton.heightAnchor.constraint(equalToConstant: padding)
         ])
-        
-        
-        
-        
     }
     
 
