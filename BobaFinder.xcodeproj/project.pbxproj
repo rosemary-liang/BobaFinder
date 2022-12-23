@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		C976893D29561F7300F7F14F /* SearchVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = C976893C29561F7300F7F14F /* SearchVC.swift */; };
 		C97689432956213E00F7F14F /* FavoritesListVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = C97689422956213E00F7F14F /* FavoritesListVC.swift */; };
+		C97689462956283000F7F14F /* BFButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = C97689452956283000F7F14F /* BFButton.swift */; };
 		C9D318CD2955388E0053DF1C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9D318CC2955388E0053DF1C /* AppDelegate.swift */; };
 		C9D318CF2955388E0053DF1C /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9D318CE2955388E0053DF1C /* SceneDelegate.swift */; };
 		C9D318D62955388F0053DF1C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C9D318D52955388F0053DF1C /* Assets.xcassets */; };
@@ -18,6 +19,7 @@
 /* Begin PBXFileReference section */
 		C976893C29561F7300F7F14F /* SearchVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchVC.swift; sourceTree = "<group>"; };
 		C97689422956213E00F7F14F /* FavoritesListVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesListVC.swift; sourceTree = "<group>"; };
+		C97689452956283000F7F14F /* BFButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BFButton.swift; sourceTree = "<group>"; };
 		C9D318C92955388E0053DF1C /* BobaFinder.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BobaFinder.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C9D318CC2955388E0053DF1C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		C9D318CE2955388E0053DF1C /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -37,6 +39,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		C9768944295627EB00F7F14F /* CustomViews */ = {
+			isa = PBXGroup;
+			children = (
+				C97689452956283000F7F14F /* BFButton.swift */,
+			);
+			path = CustomViews;
+			sourceTree = "<group>";
+		};
 		C9D318C02955388E0053DF1C = {
 			isa = PBXGroup;
 			children = (
@@ -56,6 +66,7 @@
 		C9D318CB2955388E0053DF1C /* BobaFinder */ = {
 			isa = PBXGroup;
 			children = (
+				C9768944295627EB00F7F14F /* CustomViews */,
 				C9D318CC2955388E0053DF1C /* AppDelegate.swift */,
 				C9D318CE2955388E0053DF1C /* SceneDelegate.swift */,
 				C976893C29561F7300F7F14F /* SearchVC.swift */,
@@ -139,6 +150,7 @@
 			files = (
 				C97689432956213E00F7F14F /* FavoritesListVC.swift in Sources */,
 				C976893D29561F7300F7F14F /* SearchVC.swift in Sources */,
+				C97689462956283000F7F14F /* BFButton.swift in Sources */,
 				C9D318CD2955388E0053DF1C /* AppDelegate.swift in Sources */,
 				C9D318CF2955388E0053DF1C /* SceneDelegate.swift in Sources */,
 			);

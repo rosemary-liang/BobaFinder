@@ -8,11 +8,16 @@
 import UIKit
 
 class SearchVC: UIViewController {
+    
+    var actionButton = BFButton(backgroundColor: .systemIndigo, title: "Find Boba")
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        view.backgroundColor = .systemPink
+        configure()
+    }
+    
+    func configure() {
+        view.addSubview(actionButton)
     }
     
 
