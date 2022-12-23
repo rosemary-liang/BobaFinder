@@ -14,6 +14,8 @@ class SearchVC: UIViewController {
     let zipcodeTextField    = BFTextField()
     let actionButton        = BFButton(backgroundColor: .systemIndigo, title: "Find Boba")
     
+    var isZipcodeEntered: Bool { return !zipcodeTextField.text!.isEmpty }
+    
     let padding: CGFloat = 50
 
     
@@ -37,6 +39,17 @@ class SearchVC: UIViewController {
     func createDismissKeyboardTapGesture() {
         let tap = UITapGestureRecognizer(target: self.view, action: #selector(UIView.endEditing(_:)))
         view.addGestureRecognizer(tap)
+    }
+    
+    @objc func pushPlacesListVC() {
+        guard isZipcodeEntered else {
+            print("no username entered")
+            return
+        }
+        let placesListVC    = PlacesListVC()
+        placesListVC.zipcode        = zipcodeTextField.text
+        placesListVC.title        = "Boba near \(zipcodeTextField.text ?? "")"
+        navigationController?.pushViewController(placesListVC, animated: true)
     }
     
     
@@ -70,6 +83,7 @@ class SearchVC: UIViewController {
         view.addSubview(zipcodeTextField)
         zipcodeTextField.tintColor = .systemTeal
         zipcodeTextField.alpha = 0.80
+        zipcodeTextField.delegate = self
         
         NSLayoutConstraint.activate([
             zipcodeTextField.topAnchor.constraint(equalTo: titleLabel.bottomAnchor),
@@ -90,5 +104,12 @@ class SearchVC: UIViewController {
             actionButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -padding),
             actionButton.heightAnchor.constraint(equalToConstant: padding)
         ])
+    }
+}
+
+extension SearchVC: UITextFieldDelegate {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        pushPlacesListVC()
+        return true
     }
 }

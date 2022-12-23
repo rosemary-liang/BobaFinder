@@ -12,6 +12,7 @@
 		C97689462956283000F7F14F /* BFButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = C97689452956283000F7F14F /* BFButton.swift */; };
 		C976894829562AD600F7F14F /* BFTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = C976894729562AD600F7F14F /* BFTextField.swift */; };
 		C976894D29564C5C00F7F14F /* BFTitleLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C976894C29564C5C00F7F14F /* BFTitleLabel.swift */; };
+		C976894F2956533000F7F14F /* PlacesListVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = C976894E2956533000F7F14F /* PlacesListVC.swift */; };
 		C9D318CD2955388E0053DF1C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9D318CC2955388E0053DF1C /* AppDelegate.swift */; };
 		C9D318CF2955388E0053DF1C /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9D318CE2955388E0053DF1C /* SceneDelegate.swift */; };
 		C9D318D62955388F0053DF1C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C9D318D52955388F0053DF1C /* Assets.xcassets */; };
@@ -24,6 +25,7 @@
 		C97689452956283000F7F14F /* BFButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BFButton.swift; sourceTree = "<group>"; };
 		C976894729562AD600F7F14F /* BFTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BFTextField.swift; sourceTree = "<group>"; };
 		C976894C29564C5C00F7F14F /* BFTitleLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BFTitleLabel.swift; sourceTree = "<group>"; };
+		C976894E2956533000F7F14F /* PlacesListVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlacesListVC.swift; sourceTree = "<group>"; };
 		C9D318C92955388E0053DF1C /* BobaFinder.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BobaFinder.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C9D318CC2955388E0053DF1C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		C9D318CE2955388E0053DF1C /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -61,6 +63,16 @@
 			path = Labels;
 			sourceTree = "<group>";
 		};
+		C97689502956534200F7F14F /* Screens */ = {
+			isa = PBXGroup;
+			children = (
+				C976893C29561F7300F7F14F /* SearchVC.swift */,
+				C976894E2956533000F7F14F /* PlacesListVC.swift */,
+				C97689422956213E00F7F14F /* FavoritesListVC.swift */,
+			);
+			path = Screens;
+			sourceTree = "<group>";
+		};
 		C9D318C02955388E0053DF1C = {
 			isa = PBXGroup;
 			children = (
@@ -81,13 +93,12 @@
 			isa = PBXGroup;
 			children = (
 				C9768944295627EB00F7F14F /* CustomViews */,
-				C9D318CC2955388E0053DF1C /* AppDelegate.swift */,
-				C9D318CE2955388E0053DF1C /* SceneDelegate.swift */,
-				C976893C29561F7300F7F14F /* SearchVC.swift */,
-				C97689422956213E00F7F14F /* FavoritesListVC.swift */,
+				C97689502956534200F7F14F /* Screens */,
 				C9D318D52955388F0053DF1C /* Assets.xcassets */,
 				C9D318D72955388F0053DF1C /* LaunchScreen.storyboard */,
 				C9D318DA2955388F0053DF1C /* Info.plist */,
+				C9D318CC2955388E0053DF1C /* AppDelegate.swift */,
+				C9D318CE2955388E0053DF1C /* SceneDelegate.swift */,
 			);
 			path = BobaFinder;
 			sourceTree = "<group>";
@@ -164,6 +175,7 @@
 			files = (
 				C976894D29564C5C00F7F14F /* BFTitleLabel.swift in Sources */,
 				C97689432956213E00F7F14F /* FavoritesListVC.swift in Sources */,
+				C976894F2956533000F7F14F /* PlacesListVC.swift in Sources */,
 				C976893D29561F7300F7F14F /* SearchVC.swift in Sources */,
 				C97689462956283000F7F14F /* BFButton.swift in Sources */,
 				C9D318CD2955388E0053DF1C /* AppDelegate.swift in Sources */,
