@@ -24,12 +24,12 @@ class BFButton: UIButton {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func configure() {
+    private func configure() {
         configuration               = .tinted()
         configuration?.cornerStyle  = .medium
     }
     
-    func set(color: UIColor, title: String) {
+    private func set(color: UIColor, title: String) {
         configuration?.baseBackgroundColor  = color
         configuration?.title                = title
     }
