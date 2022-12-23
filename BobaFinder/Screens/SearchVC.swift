@@ -97,6 +97,7 @@ class SearchVC: UIViewController {
     func configureActionButton() {
         view.addSubview(actionButton)
         actionButton.translatesAutoresizingMaskIntoConstraints = false
+        actionButton.addTarget(self, action: #selector(pushPlacesListVC()), for: .touchUpInside)
         
         NSLayoutConstraint.activate([
             actionButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -padding),
