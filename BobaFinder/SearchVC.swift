@@ -9,16 +9,19 @@ import UIKit
 
 class SearchVC: UIViewController {
     
-    var logoImageView       = UIImageView()
-    var zipcodeTextField    = BFTextField()
-    var actionButton        = BFButton(backgroundColor: .systemIndigo, title: "Find Boba")
+    let logoImageView       = UIImageView()
+    let titleLabel          = BFTitleLabel(textAlignment: .center, fontSize: 50)
+    let zipcodeTextField    = BFTextField()
+    let actionButton        = BFButton(backgroundColor: .systemIndigo, title: "Find Boba")
     
     let padding: CGFloat = 50
 
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .systemBackground
+        view.backgroundColor = .systemCyan
         configureLogoImageView()
+        configureTitleLabel()
         configureZipcodeTextField()
         configureActionButton()
     }
@@ -37,12 +40,26 @@ class SearchVC: UIViewController {
         ])
     }
     
+    func configureTitleLabel() {
+        view.addSubview(titleLabel)
+        titleLabel.text = "Boba Finder"
+        
+        NSLayoutConstraint.activate([
+            titleLabel.topAnchor.constraint(equalTo: logoImageView.bottomAnchor),
+            titleLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: padding),
+            titleLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -padding),
+            titleLabel.heightAnchor.constraint(equalToConstant: 100)
+        ])
+    }
+    
     
     func configureZipcodeTextField() {
         view.addSubview(zipcodeTextField)
+        zipcodeTextField.tintColor = .systemTeal
+        zipcodeTextField.alpha = 0.80
         
         NSLayoutConstraint.activate([
-            zipcodeTextField.topAnchor.constraint(equalTo: logoImageView.bottomAnchor, constant: padding),
+            zipcodeTextField.topAnchor.constraint(equalTo: titleLabel.bottomAnchor),
             zipcodeTextField.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: padding),
             zipcodeTextField.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -padding),
             zipcodeTextField.heightAnchor.constraint(equalToConstant: padding) // for a large touch target
@@ -55,13 +72,10 @@ class SearchVC: UIViewController {
         actionButton.translatesAutoresizingMaskIntoConstraints = false
         
         NSLayoutConstraint.activate([
-            actionButton.topAnchor.constraint(equalTo: zipcodeTextField.bottomAnchor, constant: padding),
+            actionButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -padding),
             actionButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: padding),
             actionButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -padding),
             actionButton.heightAnchor.constraint(equalToConstant: padding)
         ])
     }
-    
-
-
 }

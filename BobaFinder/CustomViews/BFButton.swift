@@ -25,7 +25,7 @@ class BFButton: UIButton {
     }
     
     private func configure() {
-        configuration               = .tinted()
+        configuration               = .filled()
         configuration?.cornerStyle  = .medium
     }
     
