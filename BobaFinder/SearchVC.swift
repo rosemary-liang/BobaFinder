@@ -24,13 +24,21 @@ class SearchVC: UIViewController {
         configureTitleLabel()
         configureZipcodeTextField()
         configureActionButton()
+        createDismissKeyboardTapGesture()
     }
+    
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.tabBarController?.tabBar.isHidden = true
     }
-
+    
+    
+    func createDismissKeyboardTapGesture() {
+        let tap = UITapGestureRecognizer(target: self.view, action: #selector(UIView.endEditing(_:)))
+        view.addGestureRecognizer(tap)
+    }
+    
     
     func configureLogoImageView() {
         view.addSubview(logoImageView)
