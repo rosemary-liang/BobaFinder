@@ -14,6 +14,7 @@ class BFButton: UIButton {
         configure()
     }
     
+    
     convenience init(backgroundColor: UIColor, title: String) {
         self.init(frame: .zero)
         set(color: backgroundColor, title: title)
@@ -24,10 +25,12 @@ class BFButton: UIButton {
         fatalError("init(coder:) has not been implemented")
     }
     
+    
     private func configure() {
         configuration               = .filled()
         configuration?.cornerStyle  = .medium
     }
+    
     
     private func set(color: UIColor, title: String) {
         configuration?.baseBackgroundColor  = color

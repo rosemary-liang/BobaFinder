@@ -41,6 +41,7 @@ class SearchVC: UIViewController {
         view.addGestureRecognizer(tap)
     }
     
+    
     @objc func pushPlacesListVC() {
         guard isZipcodeEntered else {
             print("no username entered")
@@ -65,6 +66,7 @@ class SearchVC: UIViewController {
             logoImageView.heightAnchor.constraint(equalToConstant: 200)
         ])
     }
+    
     
     func configureTitleLabel() {
         view.addSubview(titleLabel)
@@ -107,6 +109,7 @@ class SearchVC: UIViewController {
         ])
     }
 }
+
 
 extension SearchVC: UITextFieldDelegate {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
