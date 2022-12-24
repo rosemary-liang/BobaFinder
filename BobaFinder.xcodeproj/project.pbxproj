@@ -17,6 +17,9 @@
 		C976895529566BCE00F7F14F /* BFAlertContainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C976895429566BCE00F7F14F /* BFAlertContainerView.swift */; };
 		C976895829566ECF00F7F14F /* BFAlertVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = C976895729566ECF00F7F14F /* BFAlertVC.swift */; };
 		C976895D2956721800F7F14F /* UIViewController+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = C976895C2956721800F7F14F /* UIViewController+Ext.swift */; };
+		C97689602956B10D00F7F14F /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C976895F2956B10D00F7F14F /* NetworkManager.swift */; };
+		C97689632956B25800F7F14F /* PlaceDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = C97689622956B25800F7F14F /* PlaceDetail.swift */; };
+		C97689652956B7A700F7F14F /* Place.swift in Sources */ = {isa = PBXBuildFile; fileRef = C97689642956B7A700F7F14F /* Place.swift */; };
 		C9D318CD2955388E0053DF1C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9D318CC2955388E0053DF1C /* AppDelegate.swift */; };
 		C9D318CF2955388E0053DF1C /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9D318CE2955388E0053DF1C /* SceneDelegate.swift */; };
 		C9D318D62955388F0053DF1C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C9D318D52955388F0053DF1C /* Assets.xcassets */; };
@@ -34,6 +37,9 @@
 		C976895429566BCE00F7F14F /* BFAlertContainerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BFAlertContainerView.swift; sourceTree = "<group>"; };
 		C976895729566ECF00F7F14F /* BFAlertVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BFAlertVC.swift; sourceTree = "<group>"; };
 		C976895C2956721800F7F14F /* UIViewController+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Ext.swift"; sourceTree = "<group>"; };
+		C976895F2956B10D00F7F14F /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
+		C97689622956B25800F7F14F /* PlaceDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceDetail.swift; sourceTree = "<group>"; };
+		C97689642956B7A700F7F14F /* Place.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Place.swift; sourceTree = "<group>"; };
 		C9D318C92955388E0053DF1C /* BobaFinder.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BobaFinder.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C9D318CC2955388E0053DF1C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		C9D318CE2955388E0053DF1C /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -108,6 +114,23 @@
 			path = Extensions;
 			sourceTree = "<group>";
 		};
+		C976895E2956B0FA00F7F14F /* Managers */ = {
+			isa = PBXGroup;
+			children = (
+				C976895F2956B10D00F7F14F /* NetworkManager.swift */,
+			);
+			path = Managers;
+			sourceTree = "<group>";
+		};
+		C97689612956B24600F7F14F /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				C97689622956B25800F7F14F /* PlaceDetail.swift */,
+				C97689642956B7A700F7F14F /* Place.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
 		C9D318C02955388E0053DF1C = {
 			isa = PBXGroup;
 			children = (
@@ -127,6 +150,8 @@
 		C9D318CB2955388E0053DF1C /* BobaFinder */ = {
 			isa = PBXGroup;
 			children = (
+				C97689612956B24600F7F14F /* Models */,
+				C976895E2956B0FA00F7F14F /* Managers */,
 				C9768959295671F700F7F14F /* Extensions */,
 				C9768944295627EB00F7F14F /* CustomViews */,
 				C97689502956534200F7F14F /* Screens */,
@@ -212,10 +237,13 @@
 				C976894D29564C5C00F7F14F /* BFTitleLabel.swift in Sources */,
 				C97689432956213E00F7F14F /* FavoritesListVC.swift in Sources */,
 				C976895D2956721800F7F14F /* UIViewController+Ext.swift in Sources */,
+				C97689602956B10D00F7F14F /* NetworkManager.swift in Sources */,
 				C976894F2956533000F7F14F /* PlacesListVC.swift in Sources */,
+				C97689632956B25800F7F14F /* PlaceDetail.swift in Sources */,
 				C976895229566AAA00F7F14F /* BFBodyLabel.swift in Sources */,
 				C976893D29561F7300F7F14F /* SearchVC.swift in Sources */,
 				C97689462956283000F7F14F /* BFButton.swift in Sources */,
+				C97689652956B7A700F7F14F /* Place.swift in Sources */,
 				C976895829566ECF00F7F14F /* BFAlertVC.swift in Sources */,
 				C9D318CD2955388E0053DF1C /* AppDelegate.swift in Sources */,
 				C9D318CF2955388E0053DF1C /* SceneDelegate.swift in Sources */,
