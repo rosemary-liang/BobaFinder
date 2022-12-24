@@ -12,7 +12,7 @@ class BFAlertVC: UIViewController {
     let containerView   = BFAlertContainerView()
     let titleLabel      = BFTitleLabel(textAlignment: .center, fontSize: 20)
     let messageLabel    = BFBodyLabel(textAlignment: .center)
-    let actionButton    =  BFButton(backgroundColor: .systemPink, title: "Ok")
+    let actionButton    = BFButton(backgroundColor: .systemPink, title: "Ok")
 
     var alertTitle: String?
     var message: String?
@@ -76,6 +76,13 @@ class BFAlertVC: UIViewController {
         view.addSubview(actionButton)
         actionButton.setTitle(buttonTitle ?? "Ok", for: .normal)
         actionButton.addTarget(self, action: #selector(dismissVC), for: .touchUpInside)
+        
+        NSLayoutConstraint.activate([
+            actionButton.bottomAnchor.constraint(equalTo: containerView.bottomAnchor, constant: -padding),
+            actionButton.leadingAnchor.constraint(equalTo: containerView.leadingAnchor, constant: padding),
+            actionButton.trailingAnchor.constraint(equalTo: containerView.trailingAnchor, constant: -padding),
+            actionButton.heightAnchor.constraint(equalToConstant: 45)
+        ])
     }
     
     
