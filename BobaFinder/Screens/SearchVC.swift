@@ -21,7 +21,7 @@ class SearchVC: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .systemCyan
+        view.backgroundColor = .systemBackground
         configureLogoImageView()
         configureTitleLabel()
         configureZipcodeTextField()
@@ -70,7 +70,7 @@ class SearchVC: UIViewController {
     
     func configureTitleLabel() {
         view.addSubview(titleLabel)
-        titleLabel.text = "Boba Finder"
+        titleLabel.text = "boba finder"
         
         NSLayoutConstraint.activate([
             titleLabel.topAnchor.constraint(equalTo: logoImageView.bottomAnchor),
