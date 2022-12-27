@@ -10,48 +10,15 @@ import UIKit
 class PlacesListVC: UIViewController {
     
     var zipcode: String!
+    var collectionView: UICollectionView!
 
     
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .systemCyan
-        navigationController?.isNavigationBarHidden = false
-        navigationController?.navigationBar.prefersLargeTitles = true
-        
-        NetworkManager.shared.getPlaces(for: zipcode) { result in
-            switch result {
-            case .success(let places):
-                print(places)
-               
-                
-            case .failure(let error):
-                DispatchQueue.main.async {
-                    self.presentBFAlert(title: "Bad stuff happened", message: error.rawValue, buttonTitle: "Ok")
-                }
-                
-            }
-            
-        }
-        
-        
-        
-        
-//        Task {
-//            do {
-//                let places = try await NetworkManager.shared.getPlaces(for: zipcode)
-//                print(places.count)
-//                print(places)
-//            } catch {
-//                if let bfError = error as? BFError {
-//                    presentBFAlert(title: "Something bad happened", message: bfError.rawValue, buttonTitle: "Ok")
-//                } else {
-//                    presentBFAlert(title: "Something bad happened", message: "Uh Oh", buttonTitle: "Ok")
-//                }
-//
-//            }
-//
-//        }
-        
+        configureViewController()
+        configureCollectionView()
+        getPlaces()
     }
     
     
@@ -61,6 +28,31 @@ class PlacesListVC: UIViewController {
     }
     
     
+    private func configureViewController() {
+        navigationController?.isNavigationBarHidden = false
+        navigationController?.navigationBar.prefersLargeTitles = true
+    }
     
-
+    
+    private func configureCollectionView() {
+        collectionView = UICollectionView(frame: view.bounds, collectionViewLayout: UICollectionViewFlowLayout())
+        view.addSubview(collectionView)
+        collectionView.backgroundColor = .systemPink
+        collectionView.register(PlaceCell.self, forCellWithReuseIdentifier: PlaceCell.reuseID)
+    }
+    
+    
+    func getPlaces() {
+        NetworkManager.shared.getPlaces(for: zipcode) { result in
+            switch result {
+            case .success(let places):
+                print(places)
+               
+            case .failure(let error):
+                DispatchQueue.main.async {
+                    self.presentBFAlert(title: "Bad stuff happened", message: error.rawValue, buttonTitle: "Ok")
+                }
+            }
+        }
+    }
 }

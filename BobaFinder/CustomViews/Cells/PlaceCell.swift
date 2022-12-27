@@ -11,7 +11,7 @@ class PlaceCell: UICollectionViewCell {
     
     static let reuseID = "PlaceCell"
     
-    let iconImageView = UIImageView()
+    let iconImageView = BFImageView(frame: .zero)
     let nameLabel = BFTitleLabel(textAlignment: .center, fontSize: 16)
     let distanceLabel = BFBodyLabel(textAlignment: .center)
     
@@ -31,7 +31,7 @@ class PlaceCell: UICollectionViewCell {
         let distanceInMiles: Double = Double(place.distance) / 1_609.344
         distanceLabel.text = "\(String(format: "%.1f", distanceInMiles)) miles"
         
-        iconImageView.image = UIImage(named: "no-image-available")
+//        iconImageView.image = UIImage(named: "no-image-available")
         
     }
     
