@@ -35,10 +35,25 @@ class PlacesListVC: UIViewController {
     
     
     private func configureCollectionView() {
-        collectionView = UICollectionView(frame: view.bounds, collectionViewLayout: UICollectionViewFlowLayout())
+        collectionView = UICollectionView(frame: view.bounds, collectionViewLayout: createTwoColumnFlowLayout())
         view.addSubview(collectionView)
         collectionView.backgroundColor = .systemPink
         collectionView.register(PlaceCell.self, forCellWithReuseIdentifier: PlaceCell.reuseID)
+    }
+    
+    
+    func createTwoColumnFlowLayout() -> UICollectionViewFlowLayout {
+        let width                         = view.bounds.width
+        let padding: CGFloat              = 12
+        let minimumItemSpacing: CGFloat   = 10
+        let availableWidth: CGFloat       = width - (padding * 1) - (minimumItemSpacing * 1)
+        let itemWidth                     = availableWidth / 2
+        
+        let flowLayout = UICollectionViewFlowLayout()
+        flowLayout.sectionInset = UIEdgeInsets(top: padding, left: padding, bottom: padding, right: padding)
+        flowLayout.itemSize = CGSize(width: itemWidth, height: itemWidth + 50)
+        
+        return flowLayout
     }
     
     
