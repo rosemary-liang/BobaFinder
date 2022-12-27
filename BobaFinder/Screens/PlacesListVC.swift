@@ -14,6 +14,8 @@ class PlacesListVC: UIViewController {
     }
     
     var zipcode: String!
+    var places: [Place] = []
+    
     var collectionView: UICollectionView!
     var dataSource: UICollectionViewDiffableDataSource<Section, Place>!
 
@@ -43,7 +45,7 @@ class PlacesListVC: UIViewController {
     private func configureCollectionView() {
         collectionView = UICollectionView(frame: view.bounds, collectionViewLayout: createTwoColumnFlowLayout())
         view.addSubview(collectionView)
-        collectionView.backgroundColor = .systemPink
+//        collectionView.backgroundColor = .systemPink
         collectionView.register(PlaceCell.self, forCellWithReuseIdentifier: PlaceCell.reuseID)
     }
     
@@ -57,7 +59,7 @@ class PlacesListVC: UIViewController {
         
         let flowLayout = UICollectionViewFlowLayout()
         flowLayout.sectionInset = UIEdgeInsets(top: padding, left: padding, bottom: padding, right: padding)
-        flowLayout.itemSize = CGSize(width: itemWidth, height: itemWidth + 50)
+        flowLayout.itemSize = CGSize(width: itemWidth, height: itemWidth + 40)
         
         return flowLayout
     }
@@ -67,7 +69,9 @@ class PlacesListVC: UIViewController {
         NetworkManager.shared.getPlaces(for: zipcode) { result in
             switch result {
             case .success(let places):
-                print(places)
+//                print(places)
+                self.places = places
+                self.updateData()
                
             case .failure(let error):
                 DispatchQueue.main.async {
@@ -83,5 +87,16 @@ class PlacesListVC: UIViewController {
             cell.set(place: place)
             return cell
         })
+    }
+    
+    
+    func updateData() {
+        var snapshot = NSDiffableDataSourceSnapshot<Section, Place>()
+        snapshot.appendSections([.main])
+        snapshot.appendItems(places)
+        
+        DispatchQueue.main.async {
+            self.dataSource.apply(snapshot, animatingDifferences:  true)
+        }
     }
 }

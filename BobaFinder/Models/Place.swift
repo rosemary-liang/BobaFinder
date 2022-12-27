@@ -78,7 +78,7 @@ struct Place: Codable, Hashable {
     }
     
     static func == (lhs: Place, rhs: Place) -> Bool {
-        lhs.fsqID == rhs.fsqID
+        return lhs.fsqID == rhs.fsqID
     }
     
     func hash(into hasher: inout Hasher) {
