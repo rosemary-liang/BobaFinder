@@ -38,7 +38,7 @@ class PlacesListVC: UIViewController {
         
 //        Task {
 //            do {
-//                let places = try await NetworkManager.shared.getPlaces(for: zipcode, complet)
+//                let places = try await NetworkManager.shared.getPlaces(for: zipcode)
 //                print(places.count)
 //                print(places)
 //            } catch {
