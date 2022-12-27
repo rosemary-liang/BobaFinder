@@ -9,8 +9,13 @@ import UIKit
 
 class PlacesListVC: UIViewController {
     
+    enum Section {
+        case main
+    }
+    
     var zipcode: String!
     var collectionView: UICollectionView!
+    var dataSource: UICollectionViewDiffableDataSource<Section, Place>!
 
     
     override func viewDidLoad() {
@@ -19,6 +24,7 @@ class PlacesListVC: UIViewController {
         configureViewController()
         configureCollectionView()
         getPlaces()
+        configureDataSource()
     }
     
     
@@ -69,5 +75,13 @@ class PlacesListVC: UIViewController {
                 }
             }
         }
+    }
+    
+    func configureDataSource() {
+        dataSource = UICollectionViewDiffableDataSource<Section, Place>(collectionView: collectionView, cellProvider: { (collectionView, indexPath, place) -> UICollectionViewCell? in
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: PlaceCell.reuseID, for: indexPath) as! PlaceCell
+            cell.set(place: place)
+            return cell
+        })
     }
 }

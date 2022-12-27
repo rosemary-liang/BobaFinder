@@ -58,7 +58,7 @@ struct Center: Codable {
 }
 
 // MARK: - Result
-struct Place: Codable {
+struct Place: Codable, Hashable {
     let fsqID: String
     let categories: [Category]
     let chains: [JSONAny]
@@ -75,6 +75,14 @@ struct Place: Codable {
         case categories, chains, distance, geocodes, link, location, name
         case relatedPlaces = "related_places"
         case timezone
+    }
+    
+    static func == (lhs: Place, rhs: Place) -> Bool {
+        lhs.fsqID == rhs.fsqID
+    }
+    
+    func hash(into hasher: inout Hasher) {
+            hasher.combine(fsqID)
     }
 }
 
