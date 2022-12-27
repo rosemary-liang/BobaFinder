@@ -83,6 +83,10 @@ class PlacesListVC: UIViewController {
         }
     }
     
+//    func downloadImage(from urlString: String) {
+//        
+//    }
+    
     func configureDataSource() {
         dataSource = UICollectionViewDiffableDataSource<Section, Place>(collectionView: collectionView, cellProvider: { (collectionView, indexPath, place) -> UICollectionViewCell? in
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: PlaceCell.reuseID, for: indexPath) as! PlaceCell
