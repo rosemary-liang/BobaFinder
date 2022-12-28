@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		C949495C295BF72B004BCE4C /* BFEmptyStateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C949495B295BF72B004BCE4C /* BFEmptyStateView.swift */; };
+		C949495E295CB6E8004BCE4C /* PlaceInfoVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = C949495D295CB6E8004BCE4C /* PlaceInfoVC.swift */; };
 		C976893D29561F7300F7F14F /* SearchVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = C976893C29561F7300F7F14F /* SearchVC.swift */; };
 		C97689432956213E00F7F14F /* FavoritesListVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = C97689422956213E00F7F14F /* FavoritesListVC.swift */; };
 		C97689462956283000F7F14F /* BFButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = C97689452956283000F7F14F /* BFButton.swift */; };
@@ -33,6 +34,7 @@
 
 /* Begin PBXFileReference section */
 		C949495B295BF72B004BCE4C /* BFEmptyStateView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BFEmptyStateView.swift; sourceTree = "<group>"; };
+		C949495D295CB6E8004BCE4C /* PlaceInfoVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceInfoVC.swift; sourceTree = "<group>"; };
 		C976893C29561F7300F7F14F /* SearchVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchVC.swift; sourceTree = "<group>"; };
 		C97689422956213E00F7F14F /* FavoritesListVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesListVC.swift; sourceTree = "<group>"; };
 		C97689452956283000F7F14F /* BFButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BFButton.swift; sourceTree = "<group>"; };
@@ -96,6 +98,7 @@
 			children = (
 				C976893C29561F7300F7F14F /* SearchVC.swift */,
 				C976894E2956533000F7F14F /* PlacesListVC.swift */,
+				C949495D295CB6E8004BCE4C /* PlaceInfoVC.swift */,
 				C97689422956213E00F7F14F /* FavoritesListVC.swift */,
 			);
 			path = Screens;
@@ -277,6 +280,7 @@
 				C976893D29561F7300F7F14F /* SearchVC.swift in Sources */,
 				C97689462956283000F7F14F /* BFButton.swift in Sources */,
 				C97689652956B7A700F7F14F /* Place.swift in Sources */,
+				C949495E295CB6E8004BCE4C /* PlaceInfoVC.swift in Sources */,
 				C97689682956B8E400F7F14F /* BFError.swift in Sources */,
 				C976895829566ECF00F7F14F /* BFAlertVC.swift in Sources */,
 				C9768973295BA41D00F7F14F /* BFImageView.swift in Sources */,

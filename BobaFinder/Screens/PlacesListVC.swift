@@ -16,6 +16,7 @@ class PlacesListVC: UIViewController {
     var zipcode: String!
     var places: [Place]         = []
     var filteredPlaces: [Place] = []
+    var isSearching             = false
     
     var collectionView: UICollectionView!
     var dataSource: UICollectionViewDiffableDataSource<Section, Place>!
@@ -47,6 +48,7 @@ class PlacesListVC: UIViewController {
     private func configureCollectionView() {
         collectionView = UICollectionView(frame: view.bounds, collectionViewLayout: createTwoColumnFlowLayout())
         view.addSubview(collectionView)
+        collectionView.delegate = self
         collectionView.register(PlaceCell.self, forCellWithReuseIdentifier: PlaceCell.reuseID)
     }
     
@@ -128,8 +130,21 @@ class PlacesListVC: UIViewController {
     }
 }
 
+
+extension PlacesListVC: UICollectionViewDelegate {
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let activeArray = isSearching ? filteredPlaces : places
+        let place = activeArray[indexPath.item]
+        
+        let destVC = PlaceInfoVC()
+        present(destVC, animated: true)
+    }
+}
+
+
 extension PlacesListVC: UISearchResultsUpdating {
     func updateSearchResults(for searchController: UISearchController) {
+        isSearching = true
         guard let filter = searchController.searchBar.text, !filter.isEmpty else {
             filteredPlaces.removeAll()
             updateData(on: places)
@@ -138,5 +153,11 @@ extension PlacesListVC: UISearchResultsUpdating {
         
         filteredPlaces = places.filter { $0.name.lowercased().contains(filter.lowercased()) }
         updateData(on: filteredPlaces)
+        isSearching = false
+    }
+    
+    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
+        updateData(on: places)
+        isSearching = false
     }
 }
