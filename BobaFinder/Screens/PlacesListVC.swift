@@ -137,7 +137,8 @@ extension PlacesListVC: UICollectionViewDelegate {
         let place = activeArray[indexPath.item]
         
         let destVC = PlaceInfoVC()
-        present(destVC, animated: true)
+        let navController = UINavigationController(rootViewController: destVC)
+        present(navController, animated: true)
     }
 }
 
