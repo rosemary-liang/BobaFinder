@@ -29,6 +29,7 @@ class BFButton: UIButton {
     private func configure() {
         configuration               = .filled()
         configuration?.cornerStyle  = .medium
+        translatesAutoresizingMaskIntoConstraints = false
     }
     
     

@@ -21,7 +21,7 @@ class SearchVC: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .systemCyan
+        view.backgroundColor = .systemBackground
         configureLogoImageView()
         configureTitleLabel()
         configureZipcodeTextField()
@@ -44,7 +44,7 @@ class SearchVC: UIViewController {
     
     @objc func pushPlacesListVC() {
         guard isZipcodeEntered else {
-            print("no username entered")
+            presentBFAlert(title: "Empty zipcode", message: "Please enter a zipcode so we can search for nearby boba places.", buttonTitle: "Ok")
             return
         }
         let placesListVC    = PlacesListVC()
@@ -70,7 +70,7 @@ class SearchVC: UIViewController {
     
     func configureTitleLabel() {
         view.addSubview(titleLabel)
-        titleLabel.text = "Boba Finder"
+        titleLabel.text = "boba finder"
         
         NSLayoutConstraint.activate([
             titleLabel.topAnchor.constraint(equalTo: logoImageView.bottomAnchor),
@@ -98,7 +98,6 @@ class SearchVC: UIViewController {
     
     func configureActionButton() {
         view.addSubview(actionButton)
-        actionButton.translatesAutoresizingMaskIntoConstraints = false
         actionButton.addTarget(self, action: #selector(pushPlacesListVC), for: .touchUpInside)
         
         NSLayoutConstraint.activate([
