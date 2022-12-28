@@ -133,11 +133,12 @@ class PlacesListVC: UIViewController {
 
 extension PlacesListVC: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let activeArray = isSearching ? filteredPlaces : places
-        let place = activeArray[indexPath.item]
+        let activeArray     = isSearching ? filteredPlaces : places
+        let place           = activeArray[indexPath.item]
         
-        let destVC = PlaceInfoVC()
-        let navController = UINavigationController(rootViewController: destVC)
+        let destVC          = PlaceInfoVC()
+        destVC.place        = place
+        let navController   = UINavigationController(rootViewController: destVC)
         present(navController, animated: true)
     }
 }
