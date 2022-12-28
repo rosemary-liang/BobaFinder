@@ -14,7 +14,8 @@ class PlacesListVC: UIViewController {
     }
     
     var zipcode: String!
-    var places: [Place] = []
+    var places: [Place]         = []
+    var filteredPlaces: [Place] = []
     
     var collectionView: UICollectionView!
     var dataSource: UICollectionViewDiffableDataSource<Section, Place>!
@@ -24,6 +25,7 @@ class PlacesListVC: UIViewController {
         super.viewDidLoad()
         view.backgroundColor = .systemCyan
         configureViewController()
+        configureSearchController()
         configureCollectionView()
         getPlaces()
         configureDataSource()
@@ -46,6 +48,13 @@ class PlacesListVC: UIViewController {
         collectionView = UICollectionView(frame: view.bounds, collectionViewLayout: createTwoColumnFlowLayout())
         view.addSubview(collectionView)
         collectionView.register(PlaceCell.self, forCellWithReuseIdentifier: PlaceCell.reuseID)
+    }
+    
+    private func configureSearchController() {
+        let searchController                    = UISearchController()
+        searchController.searchResultsUpdater   = self
+        searchController.searchBar.placeholder  = "Search for a boba place name"
+        navigationItem.searchController         = searchController
     }
     
     
@@ -76,7 +85,7 @@ class PlacesListVC: UIViewController {
             case .success(let places):
                 
                 self.places = places
-                self.updateData()
+                self.updateData(on: self.places)
                 self.updateUI(with: self.places)
                
             case .failure(let error):
@@ -107,7 +116,7 @@ class PlacesListVC: UIViewController {
     }
     
     
-    func updateData() {
+    func updateData(on places: [Place]) {
         var snapshot = NSDiffableDataSourceSnapshot<Section, Place>()
         snapshot.appendSections([.main])
         snapshot.appendItems(places)
@@ -115,5 +124,18 @@ class PlacesListVC: UIViewController {
         DispatchQueue.main.async {
             self.dataSource.apply(snapshot, animatingDifferences:  true)
         }
+    }
+}
+
+extension PlacesListVC: UISearchResultsUpdating {
+    func updateSearchResults(for searchController: UISearchController) {
+        guard let filter = searchController.searchBar.text, !filter.isEmpty else {
+            filteredPlaces.removeAll()
+            updateData(on: places)
+            return
+        }
+        
+        filteredPlaces = places.filter { $0.name.lowercased().contains(filter.lowercased()) }
+        updateData(on: filteredPlaces)
     }
 }
