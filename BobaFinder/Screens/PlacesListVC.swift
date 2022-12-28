@@ -67,7 +67,11 @@ class PlacesListVC: UIViewController {
     
     
     func getPlaces() {
-        NetworkManager.shared.getPlaces(for: zipcode) { result in
+        showLoadingView()
+        NetworkManager.shared.getPlaces(for: zipcode) { [weak self] result in
+            guard let self else { return }
+            self.dismissLoadingView()
+            
             switch result {
             case .success(let places):
                 
