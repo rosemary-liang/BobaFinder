@@ -12,5 +12,5 @@ enum BFError: String, Error {
     case unableToComplete   = "Unable to complete request. Please check your internet connection."
     case invalidResponse = "Invalid response from the server. Please try again."
     case invalidData = "The data received from the server was invalid. Please try again."
-//    case invalidData2 = "Blargh bad data"
+
 }

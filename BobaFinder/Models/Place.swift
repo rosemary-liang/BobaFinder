@@ -4,26 +4,6 @@
 //
 //  Created by Eric Liang on 12/23/22.
 //
-
-
-//struct PlacesRoot: Codable {
-//    let results: [Place]
-//    let context: String
-//}
-//
-//struct Place: Codable, Hashable {
-//    let distance: Int
-//    let name: String
-//    let link: String
-//}
-
-
-// This file was generated from JSON Schema using quicktype, do not modify it directly.
-// To parse the JSON, add this file to your project and do:
-//
-//   let root = try? newJSONDecoder().decode(Root.self, from: jsonData)
-
-
 import UIKit
 
 // MARK: - Root

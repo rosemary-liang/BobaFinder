@@ -22,13 +22,11 @@ class PlaceCell: UICollectionViewCell {
         configure()
     }
     
- 
-    
-    
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
+    
     
     func set(place: Place) {
         nameLabel.text = place.name
@@ -53,9 +51,6 @@ class PlaceCell: UICollectionViewCell {
                 #warning("revisit error handling in .failure")
             }
         }
-        
-//        iconImageView.image = UIImage(named: "no-image-available")
-        
     }
     
     

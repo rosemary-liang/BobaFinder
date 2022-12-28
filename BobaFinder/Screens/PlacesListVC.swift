@@ -45,7 +45,6 @@ class PlacesListVC: UIViewController {
     private func configureCollectionView() {
         collectionView = UICollectionView(frame: view.bounds, collectionViewLayout: createTwoColumnFlowLayout())
         view.addSubview(collectionView)
-//        collectionView.backgroundColor = .systemPink
         collectionView.register(PlaceCell.self, forCellWithReuseIdentifier: PlaceCell.reuseID)
     }
     

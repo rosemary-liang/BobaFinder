@@ -29,8 +29,4 @@ class BFImageView: UIImageView {
         translatesAutoresizingMaskIntoConstraints = false
     }
     
-    func downloadImage(from urlString: String) {
-        
-    }
-    
 }
