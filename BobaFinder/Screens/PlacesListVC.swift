@@ -14,7 +14,8 @@ class PlacesListVC: UIViewController {
     }
     
     var zipcode: String!
-    var places: [Place] = []
+    var places: [Place]         = []
+    var filteredPlaces: [Place] = []
     
     var collectionView: UICollectionView!
     var dataSource: UICollectionViewDiffableDataSource<Section, Place>!
@@ -24,6 +25,7 @@ class PlacesListVC: UIViewController {
         super.viewDidLoad()
         view.backgroundColor = .systemCyan
         configureViewController()
+        configureSearchController()
         configureCollectionView()
         getPlaces()
         configureDataSource()
@@ -48,6 +50,14 @@ class PlacesListVC: UIViewController {
         collectionView.register(PlaceCell.self, forCellWithReuseIdentifier: PlaceCell.reuseID)
     }
     
+    private func configureSearchController() {
+        let searchController                                    = UISearchController()
+        searchController.searchResultsUpdater                   = self
+        searchController.searchBar.placeholder                  = "Search for a boba place name"
+        searchController.obscuresBackgroundDuringPresentation   = false
+        navigationItem.searchController                         = searchController
+    }
+    
     
     func createTwoColumnFlowLayout() -> UICollectionViewFlowLayout {
         let width                         = view.bounds.width
@@ -67,12 +77,17 @@ class PlacesListVC: UIViewController {
     
     
     func getPlaces() {
-        NetworkManager.shared.getPlaces(for: zipcode) { result in
+        showLoadingView()
+        NetworkManager.shared.getPlaces(for: zipcode) { [weak self] result in
+            guard let self else { return }
+            self.dismissLoadingView()
+            
             switch result {
             case .success(let places):
                 
                 self.places = places
-                self.updateData()
+                self.updateData(on: self.places)
+                self.updateUI(with: self.places)
                
             case .failure(let error):
                 DispatchQueue.main.async {
@@ -83,6 +98,15 @@ class PlacesListVC: UIViewController {
     }
     
 
+    func updateUI(with places: [Place]) {
+        if self.places.isEmpty {
+            let message = "No boba places found. Please try another zipcode."
+            DispatchQueue.main.async {
+                self.showEmptyStateView(with: message, in: self.view)
+            }
+        }
+    }
+    
     
     func configureDataSource() {
         dataSource = UICollectionViewDiffableDataSource<Section, Place>(collectionView: collectionView, cellProvider: { (collectionView, indexPath, place) -> UICollectionViewCell? in
@@ -93,7 +117,7 @@ class PlacesListVC: UIViewController {
     }
     
     
-    func updateData() {
+    func updateData(on places: [Place]) {
         var snapshot = NSDiffableDataSourceSnapshot<Section, Place>()
         snapshot.appendSections([.main])
         snapshot.appendItems(places)
@@ -101,5 +125,18 @@ class PlacesListVC: UIViewController {
         DispatchQueue.main.async {
             self.dataSource.apply(snapshot, animatingDifferences:  true)
         }
+    }
+}
+
+extension PlacesListVC: UISearchResultsUpdating {
+    func updateSearchResults(for searchController: UISearchController) {
+        guard let filter = searchController.searchBar.text, !filter.isEmpty else {
+            filteredPlaces.removeAll()
+            updateData(on: places)
+            return
+        }
+        
+        filteredPlaces = places.filter { $0.name.lowercased().contains(filter.lowercased()) }
+        updateData(on: filteredPlaces)
     }
 }

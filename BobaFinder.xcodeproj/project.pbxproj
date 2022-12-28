@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		C949495C295BF72B004BCE4C /* BFEmptyStateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C949495B295BF72B004BCE4C /* BFEmptyStateView.swift */; };
 		C976893D29561F7300F7F14F /* SearchVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = C976893C29561F7300F7F14F /* SearchVC.swift */; };
 		C97689432956213E00F7F14F /* FavoritesListVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = C97689422956213E00F7F14F /* FavoritesListVC.swift */; };
 		C97689462956283000F7F14F /* BFButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = C97689452956283000F7F14F /* BFButton.swift */; };
@@ -31,6 +32,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		C949495B295BF72B004BCE4C /* BFEmptyStateView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BFEmptyStateView.swift; sourceTree = "<group>"; };
 		C976893C29561F7300F7F14F /* SearchVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchVC.swift; sourceTree = "<group>"; };
 		C97689422956213E00F7F14F /* FavoritesListVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesListVC.swift; sourceTree = "<group>"; };
 		C97689452956283000F7F14F /* BFButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BFButton.swift; sourceTree = "<group>"; };
@@ -77,6 +79,7 @@
 				C976895329566BA900F7F14F /* Views */,
 				C976896D295B924300F7F14F /* Cells */,
 				C9768972295BA41D00F7F14F /* BFImageView.swift */,
+				C949495B295BF72B004BCE4C /* BFEmptyStateView.swift */,
 			);
 			path = CustomViews;
 			sourceTree = "<group>";
@@ -270,6 +273,7 @@
 				C97689602956B10D00F7F14F /* NetworkManager.swift in Sources */,
 				C976894F2956533000F7F14F /* PlacesListVC.swift in Sources */,
 				C976895229566AAA00F7F14F /* BFBodyLabel.swift in Sources */,
+				C949495C295BF72B004BCE4C /* BFEmptyStateView.swift in Sources */,
 				C976893D29561F7300F7F14F /* SearchVC.swift in Sources */,
 				C97689462956283000F7F14F /* BFButton.swift in Sources */,
 				C97689652956B7A700F7F14F /* Place.swift in Sources */,
