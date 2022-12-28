@@ -11,7 +11,7 @@ class PlaceCell: UICollectionViewCell {
     
     static let reuseID = "PlaceCell"
     
-    var iconImageView = BFImageView(frame: .zero)
+    var iconImageView: BFImageView!
     var photos: [Photo] = []
     let nameLabel = BFTitleLabel(textAlignment: .center, fontSize: 16)
     let distanceLabel = BFBodyLabel(textAlignment: .center)
@@ -27,11 +27,16 @@ class PlaceCell: UICollectionViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
+    init(image: BFImageView) {
+        super.init(frame: .zero)
+        self.iconImageView.image = image
+    
     
     func set(place: Place) {
         nameLabel.text = place.name
         let distanceInMiles: Double = Double(place.distance) / 1_609.344
         distanceLabel.text = "\(String(format: "%.1f", distanceInMiles)) miles"
+        
         NetworkManager.shared.getPhotoURL(for: place.fsqID) { result in
             switch result {
             case .success(let photoJSON):
@@ -39,13 +44,13 @@ class PlaceCell: UICollectionViewCell {
 
                 guard let photo = self.photos.first else { return }
                 let photoURL = photo.rootPrefix + "original" + photo.suffix
-                
+
                 NetworkManager.shared.downloadImage(from: photoURL) { image in
                     DispatchQueue.main.async {
                         self.iconImageView.image = image
                     }
                 }
-                
+
             case .failure(_):
                 break
                 #warning("revisit error handling in .failure")

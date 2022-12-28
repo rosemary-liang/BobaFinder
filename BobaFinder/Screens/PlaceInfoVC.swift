@@ -12,6 +12,7 @@ class PlaceInfoVC: UIViewController {
     let headerView = UIView()
     let tipsView = UIView()
     var place: Place!
+    var placeImage = BFImageView(frame: .zero)
     var tips: [Tip] = []
     
     
@@ -35,7 +36,7 @@ class PlaceInfoVC: UIViewController {
     
     
     func configureUIElements(with place: Place) {
-        self.add(childVC: BFTipsVC(place: place), to: self.tipsView)
+        self.add(childVC: BFTipsVC(place: place, image: image), to: self.tipsView)
     }
     
     

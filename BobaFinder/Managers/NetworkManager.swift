@@ -61,8 +61,9 @@ class NetworkManager {
     }
     
     
-    func getPhotoURL(for fsqId: String, completed: @escaping (Result<[Photo], BFError>) -> Void) {
-        let request = NSMutableURLRequest(url: NSURL(string: "https://api.foursquare.com/v3/places/\(fsqId)/photos?limit=1&sort=POPULAR")! as URL,
+    func getPhotoURLs(for fsqId: String, completed: @escaping (Result<[Photo], BFError>) -> Void) {
+      
+        let request = NSMutableURLRequest(url: NSURL(string: "https://api.foursquare.com/v3/places/\(fsqId)/photos?sort=POPULAR")! as URL,
                                                 cachePolicy: .useProtocolCachePolicy,
                                             timeoutInterval: 10.0)
         request.httpMethod = "GET"
