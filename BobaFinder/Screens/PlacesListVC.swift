@@ -51,10 +51,11 @@ class PlacesListVC: UIViewController {
     }
     
     private func configureSearchController() {
-        let searchController                    = UISearchController()
-        searchController.searchResultsUpdater   = self
-        searchController.searchBar.placeholder  = "Search for a boba place name"
-        navigationItem.searchController         = searchController
+        let searchController                                    = UISearchController()
+        searchController.searchResultsUpdater                   = self
+        searchController.searchBar.placeholder                  = "Search for a boba place name"
+        searchController.obscuresBackgroundDuringPresentation   = false
+        navigationItem.searchController                         = searchController
     }
     
     
