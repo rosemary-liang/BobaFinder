@@ -10,6 +10,7 @@ import UIKit
 class BFImageView: UIImageView {
     
     let placeholderImage = UIImage(named: "no-image-available")
+   
 
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -26,6 +27,10 @@ class BFImageView: UIImageView {
         clipsToBounds       = true
         image               = placeholderImage
         translatesAutoresizingMaskIntoConstraints = false
+    }
+    
+    func downloadImage(from urlString: String) {
+        
     }
     
 }

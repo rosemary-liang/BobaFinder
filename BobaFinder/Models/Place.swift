@@ -5,7 +5,6 @@
 //  Created by Eric Liang on 12/23/22.
 //
 
-import Foundation
 
 //struct PlacesRoot: Codable {
 //    let results: [Place]
@@ -24,7 +23,8 @@ import Foundation
 //
 //   let root = try? newJSONDecoder().decode(Root.self, from: jsonData)
 
-import Foundation
+
+import UIKit
 
 // MARK: - Root
 struct Root: Codable {
@@ -69,6 +69,7 @@ struct Place: Codable, Hashable {
     let name: String
     let relatedPlaces: RelatedPlaces
     let timezone: String?
+    var photo: UIImageView?
 
     enum CodingKeys: String, CodingKey {
         case fsqID = "fsq_id"

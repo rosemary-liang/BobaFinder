@@ -71,7 +71,7 @@ class PlacesListVC: UIViewController {
         NetworkManager.shared.getPlaces(for: zipcode) { result in
             switch result {
             case .success(let places):
-//                print(places)
+                
                 self.places = places
                 self.updateData()
                
@@ -83,9 +83,7 @@ class PlacesListVC: UIViewController {
         }
     }
     
-//    func downloadImage(from urlString: String) {
-//        
-//    }
+
     
     func configureDataSource() {
         dataSource = UICollectionViewDiffableDataSource<Section, Place>(collectionView: collectionView, cellProvider: { (collectionView, indexPath, place) -> UICollectionViewCell? in

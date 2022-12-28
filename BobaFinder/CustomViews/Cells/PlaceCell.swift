@@ -11,7 +11,8 @@ class PlaceCell: UICollectionViewCell {
     
     static let reuseID = "PlaceCell"
     
-    let iconImageView = BFImageView(frame: .zero)
+    var iconImageView = BFImageView(frame: .zero)
+    var photos: [Photo] = []
     let nameLabel = BFTitleLabel(textAlignment: .center, fontSize: 16)
     let distanceLabel = BFBodyLabel(textAlignment: .center)
     
@@ -20,6 +21,9 @@ class PlaceCell: UICollectionViewCell {
         super.init(frame: frame)
         configure()
     }
+    
+ 
+    
     
     
     required init?(coder: NSCoder) {
@@ -30,6 +34,25 @@ class PlaceCell: UICollectionViewCell {
         nameLabel.text = place.name
         let distanceInMiles: Double = Double(place.distance) / 1_609.344
         distanceLabel.text = "\(String(format: "%.1f", distanceInMiles)) miles"
+        NetworkManager.shared.getPhotoURL(for: place.fsqID) { result in
+            switch result {
+            case .success(let photoJSON):
+                self.photos = photoJSON
+
+                guard let photo = self.photos.first else { return }
+                let photoURL = photo.rootPrefix + "original" + photo.suffix
+                
+                NetworkManager.shared.downloadImage(from: photoURL) { image in
+                    DispatchQueue.main.async {
+                        self.iconImageView.image = image
+                    }
+                }
+                
+            case .failure(_):
+                break
+                #warning("revisit error handling in .failure")
+            }
+        }
         
 //        iconImageView.image = UIImage(named: "no-image-available")
         
