@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		C949495C295BF72B004BCE4C /* BFEmptyStateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C949495B295BF72B004BCE4C /* BFEmptyStateView.swift */; };
 		C949495E295CB6E8004BCE4C /* PlaceInfoVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = C949495D295CB6E8004BCE4C /* PlaceInfoVC.swift */; };
+		C9494962295CBD82004BCE4C /* Tip.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9494961295CBD82004BCE4C /* Tip.swift */; };
 		C976893D29561F7300F7F14F /* SearchVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = C976893C29561F7300F7F14F /* SearchVC.swift */; };
 		C97689432956213E00F7F14F /* FavoritesListVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = C97689422956213E00F7F14F /* FavoritesListVC.swift */; };
 		C97689462956283000F7F14F /* BFButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = C97689452956283000F7F14F /* BFButton.swift */; };
@@ -35,6 +36,7 @@
 /* Begin PBXFileReference section */
 		C949495B295BF72B004BCE4C /* BFEmptyStateView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BFEmptyStateView.swift; sourceTree = "<group>"; };
 		C949495D295CB6E8004BCE4C /* PlaceInfoVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceInfoVC.swift; sourceTree = "<group>"; };
+		C9494961295CBD82004BCE4C /* Tip.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tip.swift; sourceTree = "<group>"; };
 		C976893C29561F7300F7F14F /* SearchVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchVC.swift; sourceTree = "<group>"; };
 		C97689422956213E00F7F14F /* FavoritesListVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesListVC.swift; sourceTree = "<group>"; };
 		C97689452956283000F7F14F /* BFButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BFButton.swift; sourceTree = "<group>"; };
@@ -143,6 +145,7 @@
 			isa = PBXGroup;
 			children = (
 				C97689642956B7A700F7F14F /* Place.swift */,
+				C9494961295CBD82004BCE4C /* Tip.swift */,
 				C9768974295BB08700F7F14F /* Photo.swift */,
 			);
 			path = Models;
@@ -269,6 +272,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				C976894D29564C5C00F7F14F /* BFTitleLabel.swift in Sources */,
+				C9494962295CBD82004BCE4C /* Tip.swift in Sources */,
 				C97689432956213E00F7F14F /* FavoritesListVC.swift in Sources */,
 				C976895D2956721800F7F14F /* UIViewController+Ext.swift in Sources */,
 				C976896C295B6FA900F7F14F /* String+Ext.swift in Sources */,

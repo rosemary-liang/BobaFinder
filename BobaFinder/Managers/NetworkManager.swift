@@ -126,4 +126,47 @@ class NetworkManager {
         }
         task.resume()
     }
+    
+    func getPlaceTips(for fsqId: String, completed: @escaping (Result<[Tip], BFError>) -> Void) {
+        let headers = [
+          "accept": "application/json",
+          "Authorization": " fsq3/vG10P9E7CJrfEW2r0kHgYFSzOyw0fl0ni5mKhnrx1Y="
+        ]
+
+        let request = NSMutableURLRequest(url: NSURL(string: "https://api.foursquare.com/v3/places/\(fsqId)/tips?sort=POPULAR")! as URL,
+                                                cachePolicy: .useProtocolCachePolicy,
+                                            timeoutInterval: 10.0)
+        request.httpMethod = "GET"
+        request.allHTTPHeaderFields = headers
+
+        let session = URLSession.shared
+        let task = session.dataTask(with: request as URLRequest, completionHandler: { (data, response, error) -> Void in
+            if let _ = error {
+                completed(.failure(.unableToComplete))
+                return
+            }
+
+            guard let response = response as? HTTPURLResponse, response.statusCode == 200 else {
+                completed(.failure(.invalidResponse))
+                return
+            }
+
+            guard let data = data else {
+                completed(.failure(.invalidData))
+                return
+            }
+
+
+            do {
+                let dataString = String(data: data, encoding: .utf8)
+                let jsonData = dataString?.data(using: .utf8)
+                let tips = try JSONDecoder().decode([Tip].self, from: jsonData!)
+                completed(.success(tips))
+            } catch {
+                completed(.failure(.invalidData))
+            }
+        })
+
+        task.resume()
+    }
 }
