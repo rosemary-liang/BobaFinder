@@ -77,6 +77,7 @@ class PlacesListVC: UIViewController {
                 
                 self.places = places
                 self.updateData()
+                self.updateUI(with: self.places)
                
             case .failure(let error):
                 DispatchQueue.main.async {
@@ -87,6 +88,15 @@ class PlacesListVC: UIViewController {
     }
     
 
+    func updateUI(with places: [Place]) {
+        if self.places.isEmpty {
+            let message = "No boba places found. Please try another zipcode."
+            DispatchQueue.main.async {
+                self.showEmptyStateView(with: message, in: self.view)
+            }
+        }
+    }
+    
     
     func configureDataSource() {
         dataSource = UICollectionViewDiffableDataSource<Section, Place>(collectionView: collectionView, cellProvider: { (collectionView, indexPath, place) -> UICollectionViewCell? in
