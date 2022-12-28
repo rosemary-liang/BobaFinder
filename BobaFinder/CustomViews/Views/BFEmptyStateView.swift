@@ -50,13 +50,7 @@ class BFEmptyStateView: UIView {
             messageLabel.topAnchor.constraint(equalTo: logoImageView.bottomAnchor, constant: -10),
             messageLabel.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 50),
             messageLabel.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -50),
-            messageLabel.heightAnchor.constraint(equalToConstant: 200),
-            
-//            logoImageView.topAnchor.constraint(equalTo: messageLabel.bottomAnchor, constant: 10),
-//            logoImageView.widthAnchor.constraint(equalToConstant: 150),
-//            logoImageView.heightAnchor.constraint(equalToConstant: 150),
-//            logoImageView.centerXAnchor.constraint(equalTo: self.centerXAnchor),
-            
+            messageLabel.heightAnchor.constraint(equalToConstant: 200)
         ])
     }
 }

@@ -83,9 +83,10 @@ class SearchVC: UIViewController {
     
     func configureZipcodeTextField() {
         view.addSubview(zipcodeTextField)
-        zipcodeTextField.tintColor = .systemTeal
-        zipcodeTextField.alpha = 0.80
-        zipcodeTextField.delegate = self
+        zipcodeTextField.tintColor      = .systemTeal
+        zipcodeTextField.alpha          = 0.80
+        zipcodeTextField.delegate       = self
+        zipcodeTextField.keyboardType   = .numberPad
         
         NSLayoutConstraint.activate([
             zipcodeTextField.topAnchor.constraint(equalTo: titleLabel.bottomAnchor),
