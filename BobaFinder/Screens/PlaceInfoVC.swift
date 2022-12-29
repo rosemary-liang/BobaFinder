@@ -11,15 +11,13 @@ class PlaceInfoVC: UIViewController {
     
     let headerView = UIView()
     let tipsView = UIView()
-    let tipsTitleLabel = BFTitleLabel(textAlignment: .left, fontSize: 30)
+    let tipsTitleLabel = BFTitleLabel(textAlignment: .left, fontSize: 28)
     var place: Place!
     var placeImage = BFImageView(frame: .zero)
-    var tips: [Tip] = []
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        getPlaceTips()
         configureViewController()
         layoutUI()
         configureUIElements(with: place)
@@ -54,7 +52,7 @@ class PlaceInfoVC: UIViewController {
         tipsTitleLabel.text = "Tips"
         let padding: CGFloat = 20
         NSLayoutConstraint.activate([
-            tipsTitleLabel.topAnchor.constraint(equalTo: headerView.bottomAnchor, constant: padding),
+            tipsTitleLabel.topAnchor.constraint(equalTo: headerView.bottomAnchor, constant: padding + 20),
             tipsTitleLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: padding),
             tipsTitleLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -padding),
             tipsTitleLabel.heightAnchor.constraint(equalToConstant: 35)
@@ -86,17 +84,4 @@ class PlaceInfoVC: UIViewController {
         childVC.didMove(toParent: self)
     }
     
-    func getPlaceTips() {
-        NetworkManager.shared.getPlaceTips(for: place.fsqID) { [weak self] result in
-            guard let self else { return }
-
-            switch result {
-            case.success(let tips):
-                self.tips = tips
-
-            case .failure(let error):
-                self.presentBFAlert(title: "Something bad happened", message: error.rawValue, buttonTitle: "Ok")
-            }
-        }
-    }
 }

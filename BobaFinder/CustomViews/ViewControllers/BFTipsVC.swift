@@ -109,6 +109,7 @@ class BFTipsVC: UIViewController {
     }
     
     func getPlaceTips() {
+        showLoadingView()
         NetworkManager.shared.getPlaceTips(for: place.fsqID) { [weak self] result in
             guard let self else { return }
 
@@ -116,9 +117,25 @@ class BFTipsVC: UIViewController {
             case.success(let tips):
                 self.tips = tips
                 self.updateData()
+                self.updateUI(with: self.tips)
+                self.dismissLoadingView()
 
-            case .failure(let error):
-                self.presentBFAlert(title: "Something bad happened", message: error.rawValue, buttonTitle: "Ok")
+            case .failure(_):
+                DispatchQueue.main.async {
+//                    self.presentBFAlert(title: "Something bad happened", message: error.rawValue, buttonTitle: "Ok")
+                    self.dismissLoadingView()
+                }
+                
+            }
+        }
+    }
+    
+    func updateUI(with tips: [Tip]) {
+        if self.tips.isEmpty {
+            let message = "No tips added for this boba place."
+            DispatchQueue.main.async {
+                self.showEmptyStateView(with: message, in: self.view, scaleX: 0.75, scaleY: 0.75)
+                
             }
         }
     }

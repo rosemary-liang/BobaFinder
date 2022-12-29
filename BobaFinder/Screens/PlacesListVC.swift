@@ -104,7 +104,7 @@ class PlacesListVC: UIViewController {
         if self.places.isEmpty {
             let message = "No boba places found. Please try another zipcode."
             DispatchQueue.main.async {
-                self.showEmptyStateView(with: message, in: self.view)
+                self.showEmptyStateView(with: message, in: self.view, scaleX: 1, scaleY: 1)
             }
         }
     }

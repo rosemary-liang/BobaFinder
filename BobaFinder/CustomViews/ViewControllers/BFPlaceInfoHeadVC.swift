@@ -10,7 +10,7 @@ import UIKit
 class BFPlaceInfoHeadVC: UIViewController {
     
     let placeImageView = BFImageView(frame: .zero)
-    let placeNameLabel = BFTitleLabel(textAlignment: .left, fontSize: 30)
+    let placeNameLabel = BFTitleLabel(textAlignment: .left, fontSize: 35)
     let distanceLabel = BFBodyLabel(textAlignment: .left)
     let locationLabel = BFSecondaryTitleLabel(textAlignment: .left, fontSize: 18)
     
@@ -74,7 +74,7 @@ class BFPlaceInfoHeadVC: UIViewController {
         placeNameLabel.text         = place.name
         
         let distanceInMiles: Double = Double(place.distance) / 1_609.344
-        distanceLabel.text = "\(String(format: "%.1f", distanceInMiles)) miles"
+        distanceLabel.text = "\(String(format: "%.1f", distanceInMiles)) miles away"
         
         locationLabel.text          = "\(place.location.address)\n\(place.location.locality), \(place.location.region)"
         locationLabel.numberOfLines = 3
@@ -95,8 +95,8 @@ class BFPlaceInfoHeadVC: UIViewController {
             
             placeImageView.topAnchor.constraint(equalTo: placeNameLabel.bottomAnchor, constant: padding),
             placeImageView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: padding),
-            placeImageView.widthAnchor.constraint(equalToConstant: 120),
-            placeImageView.heightAnchor.constraint(equalToConstant: 120),
+            placeImageView.widthAnchor.constraint(equalToConstant: 140),
+            placeImageView.heightAnchor.constraint(equalToConstant: 140),
             
 
             locationLabel.topAnchor.constraint(equalTo: placeNameLabel.bottomAnchor, constant: padding + 10),
