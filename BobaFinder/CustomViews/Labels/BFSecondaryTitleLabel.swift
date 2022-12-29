@@ -20,9 +20,10 @@ class BFSecondaryTitleLabel: UILabel {
     }
     
     
-    init(fontSize: CGFloat) {
+    init(textAlignment: NSTextAlignment, fontSize: CGFloat) {
         super.init(frame: .zero)
-        font = UIFont.systemFont(ofSize: fontSize, weight: .medium)
+        self.textAlignment = textAlignment
+        self.font = UIFont.systemFont(ofSize: fontSize, weight: .medium)
         configure()
     }
     
