@@ -17,6 +17,7 @@ class BFTipsVC: UIViewController {
     var place: Place!
     var tips: [Tip] = []
     var collectionView: UICollectionView!
+   
     
     var dataSource: UICollectionViewDiffableDataSource<Section, Tip>!
     
@@ -29,10 +30,10 @@ class BFTipsVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         getPlaceTips()
+//        configureViewController()
         configureCollectionView()
         configureDataSource()
-//        updateData()
-        //        configureDataSource()
+
     }
     
     
@@ -40,27 +41,48 @@ class BFTipsVC: UIViewController {
         fatalError("init(coder:) has not been implemented")
     }
     
+//    private func configureViewController() {
+//        view.addSubview(tipsTitleLabel)
+//        tipsTitleLabel.text = "Tips"
+//
+//        NSLayoutConstraint.activate([
+//            tipsTitleLabel.topAnchor.constraint(equalTo: view.topAnchor),
+//            tipsTitleLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+//            tipsTitleLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+//            tipsTitleLabel.heightAnchor.constraint(equalToConstant: 30)
+//        ])
+//
+//    }
     
     private func configureCollectionView() {
-        let collectionFrame = CGRect(x: 0, y: 60, width: view.frame.width, height: 200)
-        collectionView = UICollectionView(frame: collectionFrame, collectionViewLayout: createSingleColumnFlowLayout())
+//        let collectionFrame = CGRect(x: 0, y: 60, width: view.frame.width, height: 200)
+        collectionView = UICollectionView(frame: view.bounds, collectionViewLayout: createSingleColumnFlowLayout())
         view.addSubview(collectionView)
+        
+//        NSLayoutConstraint.activate([
+//            collectionView.topAnchor.constraint(equalTo: tipsTitleLabel.bottomAnchor, constant: 15),
+//            collectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+//            collectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+//            collectionView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
+//        ])
+        
         collectionView.register(TipCell.self, forCellWithReuseIdentifier: TipCell.reuseId)
+//        collectionView.register(HeaderCollectionReusableView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: HeaderCollectionReusableView.reuseId)
+//
+//        let header = collectionView.dequeueReusableSupplementaryView(ofKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: HeaderCollectionReusableView.reuseId, for: indexPath) as! HeaderCollectionReusableView
+//        header.configure()
+//        return header
     }
     
     
     func createSingleColumnFlowLayout() -> UICollectionViewFlowLayout {
-//        let width                         = view.bounds.width
-        let padding: CGFloat              = 12
-//        let minimumItemSpacing: CGFloat   = 8
-        //        let availableWidth: CGFloat       = width - (padding * 2) - (minimumItemSpacing * 2)
+        let padding: CGFloat              = 20
         let itemWidth                     = view.bounds.width - (padding * 2)
         
         let flowLayout = UICollectionViewFlowLayout()
-        flowLayout.minimumLineSpacing = 8
-//        flowLayout.minimumInteritemSpacing = minimumItemSpacing
+        flowLayout.minimumLineSpacing = 12
         flowLayout.sectionInset = UIEdgeInsets(top: padding, left: padding, bottom: padding, right: padding)
-        flowLayout.itemSize = CGSize(width: itemWidth, height: 170)
+        flowLayout.itemSize = CGSize(width: itemWidth, height: 140)
         
         return flowLayout
     }
@@ -69,6 +91,9 @@ class BFTipsVC: UIViewController {
         dataSource = UICollectionViewDiffableDataSource<Section, Tip>(collectionView: collectionView, cellProvider: { collectionView, indexPath, tip in
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: TipCell.reuseId, for: indexPath) as! TipCell
             cell.set(tip: tip)
+            cell.backgroundColor = .systemGray5
+            cell.layer.cornerRadius = 10
+            cell.alpha = 0.5
             return cell
         })
     }
@@ -97,4 +122,6 @@ class BFTipsVC: UIViewController {
             }
         }
     }
+    
+    
 }

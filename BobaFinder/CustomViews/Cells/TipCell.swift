@@ -27,20 +27,42 @@ class TipCell: UICollectionViewCell {
     
     func set(tip: Tip) {
         tipLabel.text = tip.text
-        timestampLabel.text = tip.createdAt
+        tipLabel.lineBreakMode = .byWordWrapping
+        tipLabel.numberOfLines = 3
+        let dateString = String(tip.createdAt)
+        timestampLabel.text = formatDate(dateString: dateString)
+    }
+    
+    func formatDate(dateString: String) -> String {
+        let date = dateString
+          
+        let formatter1 = DateFormatter()
+        formatter1.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSZZZZZ"
+        formatter1.locale = Locale(identifier: "en_US_POSIX")
+          
+        if let date2 = formatter1.date(from: date) {
+            let formatter2 = DateFormatter()
+            formatter2.dateFormat = "MMM yyyy"
+            formatter2.locale = Locale(identifier: "en_US_POSIX")
+            
+            let newDateString = formatter2.string(from: date2)
+            return newDateString
+        }
+        
+        return ""
     }
     
     private func configure() {
         addSubview(tipLabel)
         addSubview(timestampLabel)
         
-        let padding: CGFloat = 8
+        let padding: CGFloat = 15
         
         NSLayoutConstraint.activate([
             tipLabel.topAnchor.constraint(equalTo: topAnchor, constant: padding),
-            tipLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: padding),
-            tipLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -padding),
-            tipLabel.heightAnchor.constraint(equalToConstant: 90),
+            tipLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: padding + 15),
+            tipLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -padding - 15),
+            tipLabel.heightAnchor.constraint(equalToConstant: 80),
             
             timestampLabel.topAnchor.constraint(equalTo: tipLabel.bottomAnchor, constant: padding),
             timestampLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: padding),

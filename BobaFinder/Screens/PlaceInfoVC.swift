@@ -11,6 +11,7 @@ class PlaceInfoVC: UIViewController {
     
     let headerView = UIView()
     let tipsView = UIView()
+    let tipsTitleLabel = BFTitleLabel(textAlignment: .left, fontSize: 30)
     var place: Place!
     var placeImage = BFImageView(frame: .zero)
     var tips: [Tip] = []
@@ -49,13 +50,22 @@ class PlaceInfoVC: UIViewController {
             headerView.heightAnchor.constraint(equalToConstant: 200)
         ])
         
+        view.addSubview(tipsTitleLabel)
+        tipsTitleLabel.text = "Tips"
+        let padding: CGFloat = 20
+        NSLayoutConstraint.activate([
+            tipsTitleLabel.topAnchor.constraint(equalTo: headerView.bottomAnchor, constant: padding),
+            tipsTitleLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: padding),
+            tipsTitleLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -padding),
+            tipsTitleLabel.heightAnchor.constraint(equalToConstant: 35)
+        ])
+        
         
         view.addSubview(tipsView)
-        tipsView.backgroundColor = .systemPink
         tipsView.translatesAutoresizingMaskIntoConstraints = false
         
         NSLayoutConstraint.activate([
-            tipsView.topAnchor.constraint(equalTo: headerView.bottomAnchor),
+            tipsView.topAnchor.constraint(equalTo: tipsTitleLabel.bottomAnchor),
             tipsView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             tipsView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
             tipsView.bottomAnchor.constraint(equalTo: view.bottomAnchor)

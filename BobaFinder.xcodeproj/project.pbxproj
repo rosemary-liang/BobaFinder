@@ -15,6 +15,7 @@
 		C949496A295CC43A004BCE4C /* BFTipsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9494969295CC439004BCE4C /* BFTipsVC.swift */; };
 		C949496C295CDAED004BCE4C /* BFPlaceInfoHeadVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = C949496B295CDAED004BCE4C /* BFPlaceInfoHeadVC.swift */; };
 		C949496E295CDBC6004BCE4C /* BFSecondaryTitleLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C949496D295CDBC6004BCE4C /* BFSecondaryTitleLabel.swift */; };
+		C9494970295E18D0004BCE4C /* HeaderCollectionReusableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C949496F295E18D0004BCE4C /* HeaderCollectionReusableView.swift */; };
 		C976893D29561F7300F7F14F /* SearchVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = C976893C29561F7300F7F14F /* SearchVC.swift */; };
 		C97689432956213E00F7F14F /* FavoritesListVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = C97689422956213E00F7F14F /* FavoritesListVC.swift */; };
 		C97689462956283000F7F14F /* BFButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = C97689452956283000F7F14F /* BFButton.swift */; };
@@ -47,6 +48,7 @@
 		C9494969295CC439004BCE4C /* BFTipsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BFTipsVC.swift; sourceTree = "<group>"; };
 		C949496B295CDAED004BCE4C /* BFPlaceInfoHeadVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BFPlaceInfoHeadVC.swift; sourceTree = "<group>"; };
 		C949496D295CDBC6004BCE4C /* BFSecondaryTitleLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BFSecondaryTitleLabel.swift; sourceTree = "<group>"; };
+		C949496F295E18D0004BCE4C /* HeaderCollectionReusableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderCollectionReusableView.swift; sourceTree = "<group>"; };
 		C976893C29561F7300F7F14F /* SearchVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchVC.swift; sourceTree = "<group>"; };
 		C97689422956213E00F7F14F /* FavoritesListVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesListVC.swift; sourceTree = "<group>"; };
 		C97689452956283000F7F14F /* BFButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BFButton.swift; sourceTree = "<group>"; };
@@ -92,6 +94,7 @@
 				C976895629566EA000F7F14F /* ViewControllers */,
 				C976895329566BA900F7F14F /* Views */,
 				C976896D295B924300F7F14F /* Cells */,
+				C949496F295E18D0004BCE4C /* HeaderCollectionReusableView.swift */,
 			);
 			path = CustomViews;
 			sourceTree = "<group>";
@@ -286,6 +289,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C9494970295E18D0004BCE4C /* HeaderCollectionReusableView.swift in Sources */,
 				C976894D29564C5C00F7F14F /* BFTitleLabel.swift in Sources */,
 				C9494962295CBD82004BCE4C /* Tip.swift in Sources */,
 				C97689432956213E00F7F14F /* FavoritesListVC.swift in Sources */,

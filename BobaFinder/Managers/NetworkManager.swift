@@ -161,7 +161,9 @@ class NetworkManager {
             do {
                 let dataString = String(data: data, encoding: .utf8)
                 let jsonData = dataString?.data(using: .utf8)
-                let tips = try JSONDecoder().decode([Tip].self, from: jsonData!)
+                let decoder = JSONDecoder()
+                decoder.dateDecodingStrategy = .iso8601
+                let tips = try decoder.decode([Tip].self, from: jsonData!)
                 completed(.success(tips))
             } catch {
                 completed(.failure(.invalidData))
