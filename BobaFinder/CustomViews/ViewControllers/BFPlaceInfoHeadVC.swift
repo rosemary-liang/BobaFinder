@@ -11,7 +11,7 @@ class BFPlaceInfoHeadVC: UIViewController {
     
     let placeImageView = BFImageView(frame: .zero)
     let placeNameLabel = BFTitleLabel(textAlignment: .left, fontSize: 30)
-    let locationIcon = UIImageView()
+    let distanceLabel = BFBodyLabel(textAlignment: .left)
     let locationLabel = BFSecondaryTitleLabel(fontSize: 18)
     
     var place: Place!
@@ -61,52 +61,52 @@ class BFPlaceInfoHeadVC: UIViewController {
     func addSubviews() {
         view.addSubview(placeImageView)
         view.addSubview(placeNameLabel)
-        view.addSubview(locationIcon)
+        view.addSubview(distanceLabel)
         view.addSubview(locationLabel)
     }
     
     
     func configureUIElements() {
         setPhoto()
-        placeNameLabel.text     = place.name
-        locationLabel.text      = "\(place.location.formattedAddress)"
-        locationIcon.image      = UIImage(systemName: "mappin.and.ellipse")
-        locationIcon.tintColor  = .secondaryLabel
+        
+        placeNameLabel.text         = place.name
+        
+        let distanceInMiles: Double = Double(place.distance) / 1_609.344
+        distanceLabel.text = "\(String(format: "%.1f", distanceInMiles)) miles"
+        
+        locationLabel.text          = "\(place.location.address)\n\(place.location.locality), \(place.location.region)"
+        locationLabel.numberOfLines = 3
     }
     
     
     func layoutUI() {
-        let padding: CGFloat        = 5
-        let imagePadding: CGFloat   = 5
+        let padding: CGFloat        = 25
+        let imagePadding: CGFloat   = 14
         placeImageView.translatesAutoresizingMaskIntoConstraints = false
-        locationIcon.translatesAutoresizingMaskIntoConstraints = false
-        locationLabel.translatesAutoresizingMaskIntoConstraints = false
         
+        #warning("trailing anchors have issue - revisit later")
         NSLayoutConstraint.activate([
-            placeImageView.topAnchor.constraint(equalTo: view.topAnchor, constant: padding),
+            placeNameLabel.topAnchor.constraint(equalTo: view.topAnchor, constant: padding),
+            placeNameLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: padding), //this?
+//            placeNameLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            placeNameLabel.heightAnchor.constraint(equalToConstant: 30),
+            
+            placeImageView.topAnchor.constraint(equalTo: placeNameLabel.bottomAnchor, constant: padding),
             placeImageView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: padding),
-            placeImageView.widthAnchor.constraint(equalToConstant: 100),
-            placeImageView.heightAnchor.constraint(equalToConstant: 100),
+            placeImageView.widthAnchor.constraint(equalToConstant: 120),
+            placeImageView.heightAnchor.constraint(equalToConstant: 120),
             
-            placeNameLabel.topAnchor.constraint(equalTo: placeImageView.topAnchor),
-            placeNameLabel.leadingAnchor.constraint(equalTo: placeImageView.trailingAnchor, constant: imagePadding),
-            placeNameLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -padding),
-            placeNameLabel.heightAnchor.constraint(equalToConstant: 40),
+
+            locationLabel.topAnchor.constraint(equalTo: placeNameLabel.bottomAnchor, constant: padding + 10),
+            locationLabel.leadingAnchor.constraint(equalTo: placeImageView.trailingAnchor, constant: imagePadding),
+//            locationLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -5),
+            locationLabel.heightAnchor.constraint(equalToConstant: 60),
             
-            locationIcon.bottomAnchor.constraint(equalTo: placeImageView.bottomAnchor),
-            locationIcon.leadingAnchor.constraint(equalTo: placeImageView.trailingAnchor, constant: imagePadding),
-            locationIcon.widthAnchor.constraint(equalToConstant: 20), // this
-            locationIcon.heightAnchor.constraint(equalToConstant: 20),
-            
-            locationLabel.centerYAnchor.constraint(equalTo: locationIcon.centerYAnchor),
-            locationLabel.leadingAnchor.constraint(equalTo: locationIcon.trailingAnchor, constant: 5),
-            locationLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor), // this
-            locationLabel.heightAnchor.constraint(equalToConstant: 40)
-        
+            distanceLabel.topAnchor.constraint(equalTo: locationLabel.bottomAnchor, constant: -padding),
+            distanceLabel.leadingAnchor.constraint(equalTo: placeImageView.trailingAnchor, constant: imagePadding),
+//            distanceLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -5),
+            distanceLabel.bottomAnchor.constraint(equalTo: placeImageView.bottomAnchor),
         ])
     }
-    
-    
-
-
 }
+

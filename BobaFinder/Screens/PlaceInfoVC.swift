@@ -39,7 +39,7 @@ class PlaceInfoVC: UIViewController {
     
     func layoutUI() {
         view.addSubview(headerView)
-        headerView.backgroundColor = .systemPink
+        headerView.backgroundColor = .systemBackground
         headerView.translatesAutoresizingMaskIntoConstraints = false
         
         NSLayoutConstraint.activate([
