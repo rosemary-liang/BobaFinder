@@ -21,7 +21,6 @@ class PlaceInfoVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         configureViewController()
-        layoutUI()
         configureUIElements(with: place)
     }
     
@@ -30,56 +29,45 @@ class PlaceInfoVC: UIViewController {
         view.backgroundColor = .systemBackground
         let doneButton = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(dismissVC))
         navigationItem.rightBarButtonItem = doneButton
-    }
-    
-    
-    @objc func dismissVC() {
-        dismiss(animated: true)
-    }
-    
-    
-    func layoutUI() {
+        
         let padding: CGFloat = 20
         
         view.addSubview(headerView)
-        headerView.backgroundColor = .systemBackground
+        view.addSubview(actionButton)
+        view.addSubview(tipsTitleLabel)
+        view.addSubview(tipsView)
+        
+        tipsTitleLabel.text         = "Tips"
+        headerView.backgroundColor  = .systemBackground
         headerView.translatesAutoresizingMaskIntoConstraints = false
+        tipsView.translatesAutoresizingMaskIntoConstraints = false
         
         NSLayoutConstraint.activate([
             headerView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
             headerView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             headerView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            headerView.heightAnchor.constraint(equalToConstant: 200)
-        ])
+            headerView.heightAnchor.constraint(equalToConstant: 200),
         
-        view.addSubview(actionButton)
-        NSLayoutConstraint.activate([
             actionButton.topAnchor.constraint(equalTo: headerView.bottomAnchor, constant: padding + 30),
             actionButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: padding),
             actionButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -padding),
-            actionButton.heightAnchor.constraint(equalToConstant: 50)
-        ])
-        
-        view.addSubview(tipsTitleLabel)
-        tipsTitleLabel.text = "Tips"
-        
-        NSLayoutConstraint.activate([
+            actionButton.heightAnchor.constraint(equalToConstant: 50),
+  
             tipsTitleLabel.topAnchor.constraint(equalTo: actionButton.bottomAnchor, constant: padding + 10),
             tipsTitleLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: padding),
             tipsTitleLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -padding),
-            tipsTitleLabel.heightAnchor.constraint(equalToConstant: 35)
-        ])
-        
-        
-        view.addSubview(tipsView)
-        tipsView.translatesAutoresizingMaskIntoConstraints = false
-        
-        NSLayoutConstraint.activate([
+            tipsTitleLabel.heightAnchor.constraint(equalToConstant: 35),
+
             tipsView.topAnchor.constraint(equalTo: tipsTitleLabel.bottomAnchor),
             tipsView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             tipsView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
             tipsView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
         ])
+    }
+    
+    
+    @objc func dismissVC() {
+        dismiss(animated: true)
     }
     
     
@@ -95,5 +83,4 @@ class PlaceInfoVC: UIViewController {
         childVC.view.frame = containerView.bounds
         childVC.didMove(toParent: self)
     }
-    
 }
