@@ -91,7 +91,7 @@ class BFPlaceInfoHeadVC: UIViewController {
             placeNameLabel.topAnchor.constraint(equalTo: view.topAnchor, constant: padding),
             placeNameLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: padding), //this?
             placeNameLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -padding),
-            placeNameLabel.heightAnchor.constraint(equalToConstant: 30),
+            placeNameLabel.heightAnchor.constraint(equalToConstant: 45),
             
             placeImageView.topAnchor.constraint(equalTo: placeNameLabel.bottomAnchor, constant: padding),
             placeImageView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: padding),

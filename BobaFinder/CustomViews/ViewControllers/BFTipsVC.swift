@@ -30,7 +30,7 @@ class BFTipsVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         getPlaceTips()
-//        configureViewController()
+        configureViewController()
         configureCollectionView()
         configureDataSource()
 
@@ -41,48 +41,30 @@ class BFTipsVC: UIViewController {
         fatalError("init(coder:) has not been implemented")
     }
     
-//    private func configureViewController() {
-//        view.addSubview(tipsTitleLabel)
-//        tipsTitleLabel.text = "Tips"
-//
-//        NSLayoutConstraint.activate([
-//            tipsTitleLabel.topAnchor.constraint(equalTo: view.topAnchor),
-//            tipsTitleLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-//            tipsTitleLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-//            tipsTitleLabel.heightAnchor.constraint(equalToConstant: 30)
-//        ])
-//
-//    }
+    private func configureViewController() {
+       
+
+    }
     
     private func configureCollectionView() {
 //        let collectionFrame = CGRect(x: 0, y: 60, width: view.frame.width, height: 200)
         collectionView = UICollectionView(frame: view.bounds, collectionViewLayout: createSingleColumnFlowLayout())
         view.addSubview(collectionView)
-        
-//        NSLayoutConstraint.activate([
-//            collectionView.topAnchor.constraint(equalTo: tipsTitleLabel.bottomAnchor, constant: 15),
-//            collectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-//            collectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-//            collectionView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
-//        ])
-        
         collectionView.register(TipCell.self, forCellWithReuseIdentifier: TipCell.reuseId)
-//        collectionView.register(HeaderCollectionReusableView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: HeaderCollectionReusableView.reuseId)
-//
-//        let header = collectionView.dequeueReusableSupplementaryView(ofKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: HeaderCollectionReusableView.reuseId, for: indexPath) as! HeaderCollectionReusableView
-//        header.configure()
-//        return header
+
     }
     
     
     func createSingleColumnFlowLayout() -> UICollectionViewFlowLayout {
         let padding: CGFloat              = 20
+//        let minimumItemSpacing: CGFloat   = 12
         let itemWidth                     = view.bounds.width - (padding * 2)
         
         let flowLayout = UICollectionViewFlowLayout()
-        flowLayout.minimumLineSpacing = 12
+        flowLayout.minimumLineSpacing = 20
         flowLayout.sectionInset = UIEdgeInsets(top: padding, left: padding, bottom: padding, right: padding)
         flowLayout.itemSize = CGSize(width: itemWidth, height: 140)
+//        flowLayout.scrollDirection = .vertical
         
         return flowLayout
     }

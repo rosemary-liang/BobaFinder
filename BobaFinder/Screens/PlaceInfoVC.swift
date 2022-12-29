@@ -9,11 +9,13 @@ import UIKit
 
 class PlaceInfoVC: UIViewController {
     
-    let headerView = UIView()
-    let tipsView = UIView()
-    let tipsTitleLabel = BFTitleLabel(textAlignment: .left, fontSize: 28)
+    let headerView      = UIView()
+    let tipsView        = UIView()
+    let actionButton    = BFButton(backgroundColor: .systemIndigo, title: "Add to Favorites")
+    let tipsTitleLabel  = BFTitleLabel(textAlignment: .left, fontSize: 28)
+    let placeImage      = BFImageView(frame: .zero)
+    
     var place: Place!
-    var placeImage = BFImageView(frame: .zero)
     
     
     override func viewDidLoad() {
@@ -37,6 +39,8 @@ class PlaceInfoVC: UIViewController {
     
     
     func layoutUI() {
+        let padding: CGFloat = 20
+        
         view.addSubview(headerView)
         headerView.backgroundColor = .systemBackground
         headerView.translatesAutoresizingMaskIntoConstraints = false
@@ -48,11 +52,19 @@ class PlaceInfoVC: UIViewController {
             headerView.heightAnchor.constraint(equalToConstant: 200)
         ])
         
+        view.addSubview(actionButton)
+        NSLayoutConstraint.activate([
+            actionButton.topAnchor.constraint(equalTo: headerView.bottomAnchor, constant: padding + 30),
+            actionButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: padding),
+            actionButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -padding),
+            actionButton.heightAnchor.constraint(equalToConstant: 50)
+        ])
+        
         view.addSubview(tipsTitleLabel)
         tipsTitleLabel.text = "Tips"
-        let padding: CGFloat = 20
+        
         NSLayoutConstraint.activate([
-            tipsTitleLabel.topAnchor.constraint(equalTo: headerView.bottomAnchor, constant: padding + 20),
+            tipsTitleLabel.topAnchor.constraint(equalTo: actionButton.bottomAnchor, constant: padding + 10),
             tipsTitleLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: padding),
             tipsTitleLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -padding),
             tipsTitleLabel.heightAnchor.constraint(equalToConstant: 35)
