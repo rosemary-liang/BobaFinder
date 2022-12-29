@@ -7,6 +7,10 @@
 
 import UIKit
 
+//protocol PlaceInfoVCDelegate: AnyObject {
+//    func didTapAddToFavorites(for place: Place)
+//}
+
 class PlaceInfoVC: UIViewController {
     
     let headerView      = UIView()
@@ -16,12 +20,14 @@ class PlaceInfoVC: UIViewController {
     let placeImage      = BFImageView(frame: .zero)
     
     var place: Place!
-    
+//    weak var delegate: PlaceInfoVCDelegate!
+
     
     override func viewDidLoad() {
         super.viewDidLoad()
         configureViewController()
         configureUIElements(with: place)
+        configureActionButton()
     }
     
     
@@ -83,4 +89,22 @@ class PlaceInfoVC: UIViewController {
         childVC.view.frame = containerView.bounds
         childVC.didMove(toParent: self)
     }
+    
+    
+    func configureActionButton() {
+        actionButton.addTarget(self, action: #selector(actionButtonTapped), for: .touchUpInside)
+        
+    }
+    
+    @objc func actionButtonTapped() {
+        print("add to favorites button tapped")
+    }
+    
+    
 }
+
+//extension PlaceInfoVC: PlaceInfoVCDelegate {
+//    func didTapAddToFavorites(for place: Place) {
+//        guard
+//    }
+//}
