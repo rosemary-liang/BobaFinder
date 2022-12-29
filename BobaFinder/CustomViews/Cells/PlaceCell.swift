@@ -52,7 +52,7 @@ class PlaceCell: UICollectionViewCell {
                 
             case .failure(_):
                 break
-#warning("revisit error handling in .failure")
+                #warning("revisit error handling in .failure")
             }
         }
     }

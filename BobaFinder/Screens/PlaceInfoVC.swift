@@ -10,7 +10,7 @@ import UIKit
 class PlaceInfoVC: UIViewController {
     
     let headerView = UIView()
-//    let tipsView = UIView()
+    let tipsView = UIView()
     var place: Place!
     var placeImage = BFImageView(frame: .zero)
     var tips: [Tip] = []
@@ -18,10 +18,10 @@ class PlaceInfoVC: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        getPlaceTips()
         configureViewController()
         layoutUI()
-        configureUIElements(with: place)
-//        getPlaceTips()
+        configureUIElements(with: place, tips: tips)
     }
     
     
@@ -48,11 +48,24 @@ class PlaceInfoVC: UIViewController {
             headerView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
             headerView.heightAnchor.constraint(equalToConstant: 200)
         ])
+        
+        
+        view.addSubview(tipsView)
+        tipsView.backgroundColor = .systemPink
+        tipsView.translatesAutoresizingMaskIntoConstraints = false
+        
+        NSLayoutConstraint.activate([
+            tipsView.topAnchor.constraint(equalTo: headerView.bottomAnchor),
+            tipsView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            tipsView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            tipsView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
+        ])
     }
     
     
-    func configureUIElements(with place: Place) {
+    func configureUIElements(with place: Place, tips: [Tip]) {
         self.add(childVC: BFPlaceInfoHeadVC(place: place), to: self.headerView)
+        self.add(childVC: BFTipsVC(place: place, tips: tips), to: self.tipsView)
     }
 
 
@@ -63,17 +76,17 @@ class PlaceInfoVC: UIViewController {
         childVC.didMove(toParent: self)
     }
     
-//    func getPlaceTips() {
-//        NetworkManager.shared.getPlaceTips(for: place.fsqID) { [weak self] result in
-//            guard let self else { return }
-//
-//            switch result {
-//            case.success(let tips):
-//                self.tips = tips
-//                print(self.tips)
-//            case .failure(let error):
-//                self.presentBFAlert(title: "Something bad happened", message: error.rawValue, buttonTitle: "Ok")
-//            }
-//        }
-//    }
+    func getPlaceTips() {
+        NetworkManager.shared.getPlaceTips(for: place.fsqID) { [weak self] result in
+            guard let self else { return }
+
+            switch result {
+            case.success(let tips):
+                self.tips = tips
+                print(self.tips)
+            case .failure(let error):
+                self.presentBFAlert(title: "Something bad happened", message: error.rawValue, buttonTitle: "Ok")
+            }
+        }
+    }
 }

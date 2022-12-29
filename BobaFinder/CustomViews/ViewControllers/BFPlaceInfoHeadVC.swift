@@ -36,8 +36,9 @@ class BFPlaceInfoHeadVC: UIViewController {
     }
     
     func setPhoto() {
-        // dupe function from PlaceCell.. try to refactor later
-        NetworkManager.shared.getPhotoURLs(for: place.fsqID) { result in
+        #warning("dupe function from PlaceCell.. try to refactor later")
+        NetworkManager.shared.getPhotoURLs(for: place.fsqID) { [weak self] result in
+            guard let self else { return }
             switch result {
             case .success(let photos):
 
@@ -50,9 +51,10 @@ class BFPlaceInfoHeadVC: UIViewController {
                     }
                 }
 
-            case .failure(_):
-                break
-                #warning("revisit error handling in .failure")
+            case .failure(let error):
+                DispatchQueue.main.async {
+                    self.presentBFAlert(title: "Something went wrong", message: error.rawValue, buttonTitle: "Ok")
+                }
             }
         }
     }
@@ -85,7 +87,6 @@ class BFPlaceInfoHeadVC: UIViewController {
         placeImageView.translatesAutoresizingMaskIntoConstraints = false
         view.translatesAutoresizingMaskIntoConstraints = false
         
-        #warning("trailing anchors have issue - revisit later")
         NSLayoutConstraint.activate([
             placeNameLabel.topAnchor.constraint(equalTo: view.topAnchor, constant: padding),
             placeNameLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: padding), //this?

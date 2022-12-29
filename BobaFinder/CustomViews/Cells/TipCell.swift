@@ -20,17 +20,33 @@ class TipCell: UICollectionViewCell {
         configure()
     }
     
-//    init(tip: Tip) {
-//        super.init(frame: .zero)
-//        self.tip = tip
-//    }
-    
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
+    func set(tip: Tip) {
+        tipLabel.text = tip.text
+        timestampLabel.text = tip.createdAt
+    }
+    
     private func configure() {
+        addSubview(tipLabel)
+        addSubview(timestampLabel)
+        
+        let padding: CGFloat = 8
+        
+        NSLayoutConstraint.activate([
+            tipLabel.topAnchor.constraint(equalTo: topAnchor, constant: padding),
+            tipLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: padding),
+            tipLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -padding),
+            tipLabel.heightAnchor.constraint(equalToConstant: 90),
+            
+            timestampLabel.topAnchor.constraint(equalTo: tipLabel.bottomAnchor, constant: padding),
+            timestampLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: padding),
+            timestampLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -padding),
+            timestampLabel.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -padding)
+        ])
         
     }
 }
