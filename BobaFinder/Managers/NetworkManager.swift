@@ -61,8 +61,9 @@ class NetworkManager {
     }
     
     
-    func getPhotoURL(for fsqId: String, completed: @escaping (Result<[Photo], BFError>) -> Void) {
-        let request = NSMutableURLRequest(url: NSURL(string: "https://api.foursquare.com/v3/places/\(fsqId)/photos?limit=1&sort=POPULAR")! as URL,
+    func getPhotoURLs(for fsqId: String, completed: @escaping (Result<[Photo], BFError>) -> Void) {
+      
+        let request = NSMutableURLRequest(url: NSURL(string: "https://api.foursquare.com/v3/places/\(fsqId)/photos?sort=POPULAR")! as URL,
                                                 cachePolicy: .useProtocolCachePolicy,
                                             timeoutInterval: 10.0)
         request.httpMethod = "GET"
@@ -90,8 +91,8 @@ class NetworkManager {
             do {
                 let dataString = String(data: data, encoding: .utf8)
                 let jsonData = dataString?.data(using: .utf8)
-                let photo = try JSONDecoder().decode([Photo].self, from: jsonData!)
-                completed(.success(photo))
+                let photos = try JSONDecoder().decode([Photo].self, from: jsonData!)
+                completed(.success(photos))
             } catch {
                 completed(.failure(.invalidData))
             }
@@ -124,6 +125,51 @@ class NetworkManager {
             self.cache.setObject(image, forKey: cacheKey)
             completed(image)
         }
+        task.resume()
+    }
+    
+    func getPlaceTips(for fsqId: String, completed: @escaping (Result<[Tip], BFError>) -> Void) {
+        let headers = [
+          "accept": "application/json",
+          "Authorization": " fsq3/vG10P9E7CJrfEW2r0kHgYFSzOyw0fl0ni5mKhnrx1Y="
+        ]
+
+        let request = NSMutableURLRequest(url: NSURL(string: "https://api.foursquare.com/v3/places/\(fsqId)/tips?limit=2&sort=POPULAR")! as URL,
+                                                cachePolicy: .useProtocolCachePolicy,
+                                            timeoutInterval: 10.0)
+        request.httpMethod = "GET"
+        request.allHTTPHeaderFields = headers
+
+        let session = URLSession.shared
+        let task = session.dataTask(with: request as URLRequest, completionHandler: { (data, response, error) -> Void in
+            if let _ = error {
+                completed(.failure(.unableToComplete))
+                return
+            }
+
+            guard let response = response as? HTTPURLResponse, response.statusCode == 200 else {
+                completed(.failure(.invalidResponse))
+                return
+            }
+
+            guard let data = data else {
+                completed(.failure(.invalidData))
+                return
+            }
+
+
+            do {
+                let dataString = String(data: data, encoding: .utf8)
+                let jsonData = dataString?.data(using: .utf8)
+                let decoder = JSONDecoder()
+                decoder.dateDecodingStrategy = .iso8601
+                let tips = try decoder.decode([Tip].self, from: jsonData!)
+                completed(.success(tips))
+            } catch {
+                completed(.failure(.invalidData))
+            }
+        })
+
         task.resume()
     }
 }

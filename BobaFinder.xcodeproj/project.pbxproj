@@ -8,6 +8,13 @@
 
 /* Begin PBXBuildFile section */
 		C949495C295BF72B004BCE4C /* BFEmptyStateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C949495B295BF72B004BCE4C /* BFEmptyStateView.swift */; };
+		C949495E295CB6E8004BCE4C /* PlaceInfoVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = C949495D295CB6E8004BCE4C /* PlaceInfoVC.swift */; };
+		C9494962295CBD82004BCE4C /* Tip.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9494961295CBD82004BCE4C /* Tip.swift */; };
+		C9494966295CC0C8004BCE4C /* TipCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9494965295CC0C8004BCE4C /* TipCell.swift */; };
+		C9494968295CC1DF004BCE4C /* BFTipLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9494967295CC1DF004BCE4C /* BFTipLabel.swift */; };
+		C949496A295CC43A004BCE4C /* BFTipsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9494969295CC439004BCE4C /* BFTipsVC.swift */; };
+		C949496C295CDAED004BCE4C /* BFPlaceInfoHeadVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = C949496B295CDAED004BCE4C /* BFPlaceInfoHeadVC.swift */; };
+		C949496E295CDBC6004BCE4C /* BFSecondaryTitleLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C949496D295CDBC6004BCE4C /* BFSecondaryTitleLabel.swift */; };
 		C976893D29561F7300F7F14F /* SearchVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = C976893C29561F7300F7F14F /* SearchVC.swift */; };
 		C97689432956213E00F7F14F /* FavoritesListVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = C97689422956213E00F7F14F /* FavoritesListVC.swift */; };
 		C97689462956283000F7F14F /* BFButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = C97689452956283000F7F14F /* BFButton.swift */; };
@@ -33,6 +40,13 @@
 
 /* Begin PBXFileReference section */
 		C949495B295BF72B004BCE4C /* BFEmptyStateView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BFEmptyStateView.swift; sourceTree = "<group>"; };
+		C949495D295CB6E8004BCE4C /* PlaceInfoVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceInfoVC.swift; sourceTree = "<group>"; };
+		C9494961295CBD82004BCE4C /* Tip.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tip.swift; sourceTree = "<group>"; };
+		C9494965295CC0C8004BCE4C /* TipCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TipCell.swift; sourceTree = "<group>"; };
+		C9494967295CC1DF004BCE4C /* BFTipLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BFTipLabel.swift; sourceTree = "<group>"; };
+		C9494969295CC439004BCE4C /* BFTipsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BFTipsVC.swift; sourceTree = "<group>"; };
+		C949496B295CDAED004BCE4C /* BFPlaceInfoHeadVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BFPlaceInfoHeadVC.swift; sourceTree = "<group>"; };
+		C949496D295CDBC6004BCE4C /* BFSecondaryTitleLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BFSecondaryTitleLabel.swift; sourceTree = "<group>"; };
 		C976893C29561F7300F7F14F /* SearchVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchVC.swift; sourceTree = "<group>"; };
 		C97689422956213E00F7F14F /* FavoritesListVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesListVC.swift; sourceTree = "<group>"; };
 		C97689452956283000F7F14F /* BFButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BFButton.swift; sourceTree = "<group>"; };
@@ -72,14 +86,12 @@
 		C9768944295627EB00F7F14F /* CustomViews */ = {
 			isa = PBXGroup;
 			children = (
-				C976894B29563C1D00F7F14F /* Labels */,
 				C97689452956283000F7F14F /* BFButton.swift */,
 				C976894729562AD600F7F14F /* BFTextField.swift */,
+				C976894B29563C1D00F7F14F /* Labels */,
 				C976895629566EA000F7F14F /* ViewControllers */,
 				C976895329566BA900F7F14F /* Views */,
 				C976896D295B924300F7F14F /* Cells */,
-				C9768972295BA41D00F7F14F /* BFImageView.swift */,
-				C949495B295BF72B004BCE4C /* BFEmptyStateView.swift */,
 			);
 			path = CustomViews;
 			sourceTree = "<group>";
@@ -88,6 +100,8 @@
 			isa = PBXGroup;
 			children = (
 				C976894C29564C5C00F7F14F /* BFTitleLabel.swift */,
+				C949496D295CDBC6004BCE4C /* BFSecondaryTitleLabel.swift */,
+				C9494967295CC1DF004BCE4C /* BFTipLabel.swift */,
 				C976895129566AAA00F7F14F /* BFBodyLabel.swift */,
 			);
 			path = Labels;
@@ -98,6 +112,7 @@
 			children = (
 				C976893C29561F7300F7F14F /* SearchVC.swift */,
 				C976894E2956533000F7F14F /* PlacesListVC.swift */,
+				C949495D295CB6E8004BCE4C /* PlaceInfoVC.swift */,
 				C97689422956213E00F7F14F /* FavoritesListVC.swift */,
 			);
 			path = Screens;
@@ -107,6 +122,8 @@
 			isa = PBXGroup;
 			children = (
 				C976895429566BCE00F7F14F /* BFAlertContainerView.swift */,
+				C949495B295BF72B004BCE4C /* BFEmptyStateView.swift */,
+				C9768972295BA41D00F7F14F /* BFImageView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -115,6 +132,8 @@
 			isa = PBXGroup;
 			children = (
 				C976895729566ECF00F7F14F /* BFAlertVC.swift */,
+				C949496B295CDAED004BCE4C /* BFPlaceInfoHeadVC.swift */,
+				C9494969295CC439004BCE4C /* BFTipsVC.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -140,6 +159,7 @@
 			isa = PBXGroup;
 			children = (
 				C97689642956B7A700F7F14F /* Place.swift */,
+				C9494961295CBD82004BCE4C /* Tip.swift */,
 				C9768974295BB08700F7F14F /* Photo.swift */,
 			);
 			path = Models;
@@ -157,6 +177,7 @@
 			isa = PBXGroup;
 			children = (
 				C976896E295B927C00F7F14F /* PlaceCell.swift */,
+				C9494965295CC0C8004BCE4C /* TipCell.swift */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -266,6 +287,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				C976894D29564C5C00F7F14F /* BFTitleLabel.swift in Sources */,
+				C9494962295CBD82004BCE4C /* Tip.swift in Sources */,
 				C97689432956213E00F7F14F /* FavoritesListVC.swift in Sources */,
 				C976895D2956721800F7F14F /* UIViewController+Ext.swift in Sources */,
 				C976896C295B6FA900F7F14F /* String+Ext.swift in Sources */,
@@ -275,14 +297,20 @@
 				C976895229566AAA00F7F14F /* BFBodyLabel.swift in Sources */,
 				C949495C295BF72B004BCE4C /* BFEmptyStateView.swift in Sources */,
 				C976893D29561F7300F7F14F /* SearchVC.swift in Sources */,
+				C949496A295CC43A004BCE4C /* BFTipsVC.swift in Sources */,
 				C97689462956283000F7F14F /* BFButton.swift in Sources */,
 				C97689652956B7A700F7F14F /* Place.swift in Sources */,
+				C949496C295CDAED004BCE4C /* BFPlaceInfoHeadVC.swift in Sources */,
+				C949495E295CB6E8004BCE4C /* PlaceInfoVC.swift in Sources */,
 				C97689682956B8E400F7F14F /* BFError.swift in Sources */,
 				C976895829566ECF00F7F14F /* BFAlertVC.swift in Sources */,
+				C9494968295CC1DF004BCE4C /* BFTipLabel.swift in Sources */,
 				C9768973295BA41D00F7F14F /* BFImageView.swift in Sources */,
 				C9D318CD2955388E0053DF1C /* AppDelegate.swift in Sources */,
 				C9D318CF2955388E0053DF1C /* SceneDelegate.swift in Sources */,
 				C976894829562AD600F7F14F /* BFTextField.swift in Sources */,
+				C9494966295CC0C8004BCE4C /* TipCell.swift in Sources */,
+				C949496E295CDBC6004BCE4C /* BFSecondaryTitleLabel.swift in Sources */,
 				C976895529566BCE00F7F14F /* BFAlertContainerView.swift in Sources */,
 				C976896F295B927C00F7F14F /* PlaceCell.swift in Sources */,
 			);
