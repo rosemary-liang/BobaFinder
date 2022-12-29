@@ -21,7 +21,7 @@ class PlaceInfoVC: UIViewController {
         getPlaceTips()
         configureViewController()
         layoutUI()
-        configureUIElements(with: place, tips: tips)
+        configureUIElements(with: place)
     }
     
     
@@ -63,9 +63,9 @@ class PlaceInfoVC: UIViewController {
     }
     
     
-    func configureUIElements(with place: Place, tips: [Tip]) {
+    func configureUIElements(with place: Place) {
         self.add(childVC: BFPlaceInfoHeadVC(place: place), to: self.headerView)
-        self.add(childVC: BFTipsVC(place: place, tips: tips), to: self.tipsView)
+        self.add(childVC: BFTipsVC(place: place), to: self.tipsView)
     }
 
 
@@ -83,7 +83,7 @@ class PlaceInfoVC: UIViewController {
             switch result {
             case.success(let tips):
                 self.tips = tips
-                print(self.tips)
+
             case .failure(let error):
                 self.presentBFAlert(title: "Something bad happened", message: error.rawValue, buttonTitle: "Ok")
             }
