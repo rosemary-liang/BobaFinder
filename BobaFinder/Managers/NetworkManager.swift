@@ -91,8 +91,8 @@ class NetworkManager {
             do {
                 let dataString = String(data: data, encoding: .utf8)
                 let jsonData = dataString?.data(using: .utf8)
-                let photo = try JSONDecoder().decode([Photo].self, from: jsonData!)
-                completed(.success(photo))
+                let photos = try JSONDecoder().decode([Photo].self, from: jsonData!)
+                completed(.success(photos))
             } catch {
                 completed(.failure(.invalidData))
             }

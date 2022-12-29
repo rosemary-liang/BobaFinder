@@ -10,8 +10,7 @@ import UIKit
 class TipCell: UICollectionViewCell {
     
     static let reuseId = "TipCell"
-    
-    var tip: Tip
+
     let tipLabel = BFTipLabel(textAlignment: .center)
     let timestampLabel = BFBodyLabel(textAlignment: .left)
     
@@ -21,10 +20,10 @@ class TipCell: UICollectionViewCell {
         configure()
     }
     
-    init(tip: Tip) {
-        super.init(frame: .zero)
-        self.tip = tip
-    }
+//    init(tip: Tip) {
+//        super.init(frame: .zero)
+//        self.tip = tip
+//    }
     
     
     required init?(coder: NSCoder) {

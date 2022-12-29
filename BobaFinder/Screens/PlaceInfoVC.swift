@@ -10,7 +10,7 @@ import UIKit
 class PlaceInfoVC: UIViewController {
     
     let headerView = UIView()
-    let tipsView = UIView()
+//    let tipsView = UIView()
     var place: Place!
     var placeImage = BFImageView(frame: .zero)
     var tips: [Tip] = []
@@ -19,6 +19,8 @@ class PlaceInfoVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         configureViewController()
+        layoutUI()
+        configureUIElements(with: place)
 //        getPlaceTips()
     }
     
@@ -35,11 +37,25 @@ class PlaceInfoVC: UIViewController {
     }
     
     
-    func configureUIElements(with place: Place) {
-        self.add(childVC: BFTipsVC(place: place, image: image), to: self.tipsView)
+    func layoutUI() {
+        view.addSubview(headerView)
+        headerView.backgroundColor = .systemPink
+        headerView.translatesAutoresizingMaskIntoConstraints = false
+        
+        NSLayoutConstraint.activate([
+            headerView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
+            headerView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            headerView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            headerView.heightAnchor.constraint(equalToConstant: 200)
+        ])
     }
     
     
+    func configureUIElements(with place: Place) {
+        self.add(childVC: BFPlaceInfoHeadVC(place: place), to: self.headerView)
+    }
+
+
     func add(childVC: UIViewController, to containerView: UIView) {
         addChild(childVC)
         containerView.addSubview(childVC.view)

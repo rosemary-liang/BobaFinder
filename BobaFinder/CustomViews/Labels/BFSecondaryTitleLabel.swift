@@ -31,7 +31,8 @@ class BFSecondaryTitleLabel: UILabel {
         textColor                   = .secondaryLabel
         adjustsFontSizeToFitWidth   = true
         minimumScaleFactor          = 0.90
-        lineBreakMode               = .byTruncatingTail
+        lineBreakMode               = .byWordWrapping
+        numberOfLines               = 3
         translatesAutoresizingMaskIntoConstraints = false
     }
     
