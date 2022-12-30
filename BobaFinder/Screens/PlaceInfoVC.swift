@@ -67,7 +67,7 @@ class PlaceInfoVC: UIViewController {
             tipsView.topAnchor.constraint(equalTo: tipsTitleLabel.bottomAnchor),
             tipsView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             tipsView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            tipsView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
+            tipsView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor)
         ])
     }
     
