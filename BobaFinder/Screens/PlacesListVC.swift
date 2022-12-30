@@ -138,9 +138,9 @@ extension PlacesListVC: UICollectionViewDelegate {
         
         let destVC          = PlaceInfoVC()
         destVC.place        = place
-//        navigationController?.pushViewController(destVC, animated: true)
-        let navController   = UINavigationController(rootViewController: destVC)
-        present(navController, animated: true)
+        navigationController?.pushViewController(destVC, animated: true)
+//        let navController   = UINavigationController(rootViewController: destVC)
+//        present(navController, animated: true)
     }
 }
 

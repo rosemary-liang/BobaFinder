@@ -20,7 +20,6 @@ class PlaceInfoVC: UIViewController {
     let placeImage      = BFImageView(frame: .zero)
     
     var place: Place!
-//    weak var delegate: PlaceInfoVCDelegate!
 
     
     override func viewDidLoad() {
@@ -33,9 +32,6 @@ class PlaceInfoVC: UIViewController {
     
     func configureViewController() {
         view.backgroundColor = .systemBackground
-        let doneButton = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(dismissVC))
-        navigationItem.rightBarButtonItem = doneButton
-        
         let padding: CGFloat = 20
         
         view.addSubview(headerView)
@@ -49,7 +45,7 @@ class PlaceInfoVC: UIViewController {
         tipsView.translatesAutoresizingMaskIntoConstraints = false
         
         NSLayoutConstraint.activate([
-            headerView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
+            headerView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: -70),
             headerView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             headerView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
             headerView.heightAnchor.constraint(equalToConstant: 200),
@@ -69,11 +65,6 @@ class PlaceInfoVC: UIViewController {
             tipsView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
             tipsView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor)
         ])
-    }
-    
-    
-    @objc func dismissVC() {
-        dismiss(animated: true)
     }
     
     
