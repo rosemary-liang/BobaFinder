@@ -16,6 +16,7 @@ class FavoritesListVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         configureViewController()
+        configureTableView()
 
     }
     
@@ -29,6 +30,17 @@ class FavoritesListVC: UIViewController {
         view.backgroundColor    = .systemBackground
         title                   = "Favorites"
         navigationController?.navigationBar.prefersLargeTitles = true
+    }
+    
+    
+    private func configureTableView() {
+        view.addSubview(tableView)
+        tableView.frame = view.bounds
+        tableView.rowHeight = 90
+        tableView.delegate = self
+        tableView.dataSource = self
+        
+        tableView.register(FavoriteCell.self, forCellReuseIdentifier: FavoriteCell.reuseID)
     }
     
     
@@ -57,6 +69,19 @@ class FavoritesListVC: UIViewController {
             }
         }
     }
-    
+}
 
+extension FavoritesListVC: UITableViewDataSource, UITableViewDelegate {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return favorites.count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: FavoriteCell.reuseID) as! FavoriteCell
+        let favorite = favorites[indexPath.row]
+        cell.set(favorite: favorite)
+        return cell
+    }
+    
+    
 }
