@@ -27,10 +27,11 @@ class BFTitleLabel: UILabel {
     
     
     private func configure() {
-        textColor = .label
-        adjustsFontSizeToFitWidth = true
-        minimumScaleFactor = 0.90
-        lineBreakMode = .byTruncatingTail
-        translatesAutoresizingMaskIntoConstraints = false
+        translatesAutoresizingMaskIntoConstraints   = false
+        textColor                                   = .label
+        adjustsFontSizeToFitWidth                   = true
+        minimumScaleFactor                          = 0.90
+        lineBreakMode                               = .byTruncatingTail
+        
     }
 }

@@ -70,12 +70,9 @@ class BFPlaceInfoHeadVC: UIViewController {
     
     func configureUIElements() {
         setPhoto()
-        
         placeNameLabel.text         = place.name
-        
-        let distanceInMiles: Double = Double(place.distance) / 1_609.344
-        distanceLabel.text = "\(String(format: "%.1f", distanceInMiles)) miles away"
-        
+        let distanceInMiles         = Double(place.distance) / 1_609.344
+        distanceLabel.text          = "\(String(format: "%.1f", distanceInMiles)) miles away"
         locationLabel.text          = "\(place.location.address)\n\(place.location.locality), \(place.location.region)"
         locationLabel.numberOfLines = 3
     }

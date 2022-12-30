@@ -36,68 +36,56 @@ class BFAlertVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = UIColor.black.withAlphaComponent(0.75)
-        configureContainerView()
-        configureTitleLabel()
-        configureActionButton()
-        configureMessageLabel()
+        addSubviews()
+        configureUIElements()
+        layoutUI()
     }
     
     
-    func configureContainerView() {
+    func addSubviews() {
         view.addSubview(containerView)
-        
+        view.addSubview(titleLabel)
+        view.addSubview(actionButton)
+        view.addSubview(messageLabel)
+    }
+    
+    
+    func configureUIElements() {
+        titleLabel.text = alertTitle ?? "Something went wrong"
+        actionButton.setTitle(buttonTitle ?? "Ok", for: .normal)
+        actionButton.addTarget(self, action: #selector(dismissVC), for: .touchUpInside)
+        messageLabel.text = message ?? "Unable to complete request"
+        messageLabel.numberOfLines = 4
+    }
+    
+    
+    func layoutUI() {
         NSLayoutConstraint.activate([
             containerView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             containerView.centerYAnchor.constraint(equalTo: view.centerYAnchor),
-            containerView.widthAnchor.constraint(equalToConstant: 280), // iphone SE is 275
-            containerView.heightAnchor.constraint(equalToConstant: 220)
-        ])
-    }
-    
-    
-    func configureTitleLabel() {
-        view.addSubview(titleLabel)
-        titleLabel.text = alertTitle ?? "Something went wrong"
-        
-        NSLayoutConstraint.activate([
+            containerView.widthAnchor.constraint(equalToConstant: 280), 
+            containerView.heightAnchor.constraint(equalToConstant: 220),
+            
             titleLabel.topAnchor.constraint(equalTo: containerView.topAnchor, constant: padding),
             titleLabel.leadingAnchor.constraint(equalTo: containerView.leadingAnchor, constant: padding),
             titleLabel.trailingAnchor.constraint(equalTo: containerView.trailingAnchor, constant: -padding),
-            titleLabel.heightAnchor.constraint(equalToConstant: 26)
-        ])
-    }
-    
-    
-    func configureActionButton() {
-        view.addSubview(actionButton)
-        actionButton.setTitle(buttonTitle ?? "Ok", for: .normal)
-        actionButton.addTarget(self, action: #selector(dismissVC), for: .touchUpInside)
-        
-        NSLayoutConstraint.activate([
+            titleLabel.heightAnchor.constraint(equalToConstant: 26),
+            
             actionButton.bottomAnchor.constraint(equalTo: containerView.bottomAnchor, constant: -padding),
             actionButton.leadingAnchor.constraint(equalTo: containerView.leadingAnchor, constant: padding),
             actionButton.trailingAnchor.constraint(equalTo: containerView.trailingAnchor, constant: -padding),
-            actionButton.heightAnchor.constraint(equalToConstant: 45)
+            actionButton.heightAnchor.constraint(equalToConstant: 45),
+            
+            messageLabel.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: padding),
+            messageLabel.leadingAnchor.constraint(equalTo: containerView.leadingAnchor, constant: padding),
+            messageLabel.trailingAnchor.constraint(equalTo: containerView.trailingAnchor, constant: -padding),
+            messageLabel.bottomAnchor.constraint(equalTo: actionButton.topAnchor, constant: -padding)
         ])
     }
     
     
     @objc func dismissVC() {
         dismiss(animated: true)
-    }
-    
-    
-    func configureMessageLabel() {
-        view.addSubview(messageLabel)
-        messageLabel.text = message ?? "Unable to complete request"
-        messageLabel.numberOfLines = 4
-        
-        NSLayoutConstraint.activate([
-            messageLabel.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: padding),
-            messageLabel.leadingAnchor.constraint(equalTo: containerView.leadingAnchor, constant: padding),
-            messageLabel.trailingAnchor.constraint(equalTo: containerView.trailingAnchor, constant: -padding),
-            messageLabel.bottomAnchor.constraint(equalTo: actionButton.topAnchor, constant: -padding)
-        ])
     }
     
 }

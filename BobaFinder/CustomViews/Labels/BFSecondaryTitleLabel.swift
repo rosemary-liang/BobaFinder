@@ -28,11 +28,11 @@ class BFSecondaryTitleLabel: UILabel {
     
     
     func configure() {
-        textColor                   = .secondaryLabel
-        adjustsFontSizeToFitWidth   = true
-        minimumScaleFactor          = 0.90
-        lineBreakMode               = .byWordWrapping
-        translatesAutoresizingMaskIntoConstraints = false
+        translatesAutoresizingMaskIntoConstraints   = false
+        textColor                                   = .secondaryLabel
+        adjustsFontSizeToFitWidth                   = true
+        minimumScaleFactor                          = 0.90
+        lineBreakMode                               = .byWordWrapping
     }
     
 }

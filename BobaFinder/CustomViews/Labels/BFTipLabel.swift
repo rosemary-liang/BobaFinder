@@ -26,13 +26,13 @@ class BFTipLabel: UILabel {
     
     
     private func configure() {
-        textColor                           = .secondaryLabel
-        font                                = UIFont.preferredFont(forTextStyle: .subheadline)
-        adjustsFontForContentSizeCategory   = true
-        adjustsFontSizeToFitWidth           = true
-        minimumScaleFactor                  = 0.75
-        lineBreakMode                       = .byWordWrapping
-        translatesAutoresizingMaskIntoConstraints = false
+        translatesAutoresizingMaskIntoConstraints   = false
+        textColor                                   = .secondaryLabel
+        font                                        = UIFont.preferredFont(forTextStyle: .subheadline)
+        adjustsFontForContentSizeCategory           = true
+        adjustsFontSizeToFitWidth                   = true
+        minimumScaleFactor                          = 0.75
+        lineBreakMode                               = .byWordWrapping
     }
     
     
