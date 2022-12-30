@@ -19,11 +19,12 @@ class BFAlertContainerView: UIView {
     }
     
     private func configure() {
-        backgroundColor    = .systemBackground
-        layer.cornerRadius = 14
-        layer.borderWidth  = 1
-        layer.borderColor  = UIColor.white.cgColor
         translatesAutoresizingMaskIntoConstraints = false
+        backgroundColor                           = .systemBackground
+        layer.cornerRadius                        = 14
+        layer.borderWidth                         = 1
+        layer.borderColor                         = UIColor.white.cgColor
+
     }
 }
 

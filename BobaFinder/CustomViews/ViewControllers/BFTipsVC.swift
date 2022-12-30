@@ -44,7 +44,7 @@ class BFTipsVC: UIViewController {
         collectionView = UICollectionView(frame: view.bounds, collectionViewLayout: createSingleColumnFlowLayout())
         view.addSubview(collectionView)
         collectionView.register(TipCell.self, forCellWithReuseIdentifier: TipCell.reuseId)
-        let numberOfRows = Int(self.tips.count)
+//        let numberOfRows = Int(self.tips.count)
 //        collectionView.contentSize = CGSizeMake(self.view.frame.size.width, CGFloat(numberOfRows))
     
 //        collectionView.dataSource = self
@@ -67,6 +67,7 @@ class BFTipsVC: UIViewController {
         return flowLayout
     }
     
+    
     func configureDataSource() {
         dataSource = UICollectionViewDiffableDataSource<Section, Tip>(collectionView: collectionView, cellProvider: { collectionView, indexPath, tip in
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: TipCell.reuseId, for: indexPath) as! TipCell
@@ -78,6 +79,7 @@ class BFTipsVC: UIViewController {
         })
     }
     
+    
     func updateData() {
         var snapshot = NSDiffableDataSourceSnapshot<Section, Tip>()
         snapshot.appendSections([.main])
@@ -87,6 +89,7 @@ class BFTipsVC: UIViewController {
             self.dataSource.apply(snapshot, animatingDifferences: true)
         }
     }
+    
     
     func getPlaceTips() {
         showLoadingView()
@@ -109,6 +112,7 @@ class BFTipsVC: UIViewController {
             }
         }
     }
+    
     
     func updateUI(with tips: [Tip]) {
         if self.tips.isEmpty {
