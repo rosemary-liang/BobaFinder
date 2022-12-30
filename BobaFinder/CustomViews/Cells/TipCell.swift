@@ -25,6 +25,7 @@ class TipCell: UICollectionViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
+    
     func set(tip: Tip) {
         tipLabel.text = tip.text
         tipLabel.lineBreakMode = .byWordWrapping
@@ -32,6 +33,7 @@ class TipCell: UICollectionViewCell {
         let dateString = String(tip.createdAt)
         timestampLabel.text = formatDate(dateString: dateString)
     }
+    
     
     func formatDate(dateString: String) -> String {
         let date = dateString
@@ -48,9 +50,9 @@ class TipCell: UICollectionViewCell {
             let newDateString = formatter2.string(from: date2)
             return newDateString
         }
-        
         return ""
     }
+    
     
     private func configure() {
         addSubview(tipLabel)

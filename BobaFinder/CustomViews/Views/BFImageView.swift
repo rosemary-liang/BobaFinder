@@ -22,6 +22,7 @@ class BFImageView: UIImageView {
         fatalError("init(coder:) has not been implemented")
     }
     
+    
     private func configure() {
         layer.cornerRadius  = 10
         clipsToBounds       = true

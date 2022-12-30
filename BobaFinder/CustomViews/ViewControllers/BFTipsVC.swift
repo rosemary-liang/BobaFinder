@@ -13,7 +13,6 @@ class BFTipsVC: UIViewController {
         case main
     }
     
-    // how to pass place and tips to this?
     var place: Place!
     var tips: [Tip] = []
     var collectionView: UICollectionView!
@@ -24,13 +23,11 @@ class BFTipsVC: UIViewController {
     init(place: Place ) {
         super.init(nibName: nil, bundle: nil)
         self.place = place
-//        self.tips = tips
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         getPlaceTips()
-//        configureViewController()
         configureCollectionView()
         configureDataSource()
 
@@ -41,10 +38,6 @@ class BFTipsVC: UIViewController {
         fatalError("init(coder:) has not been implemented")
     }
     
-//    private func configureViewController() {
-//
-//
-//    }
     
     private func configureCollectionView() {
 //        let collectionFrame = CGRect(x: 0, y: 60, width: view.frame.width, height: 200)
