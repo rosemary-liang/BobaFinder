@@ -17,7 +17,8 @@ class TipCell: UICollectionViewCell {
 
     override init(frame: CGRect) {
         super.init(frame: frame)
-        configure()
+        addSubviews()
+        layoutUI()
     }
     
     
@@ -54,10 +55,14 @@ class TipCell: UICollectionViewCell {
     }
     
     
-    private func configure() {
+    func addSubviews() {
         addSubview(tipLabel)
         addSubview(timestampLabel)
-        
+    }
+    
+    
+    private func layoutUI() {
+
         let padding: CGFloat = 15
         
         NSLayoutConstraint.activate([
