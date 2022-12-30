@@ -80,23 +80,42 @@ class PlacesListVC: UIViewController {
     
     func getPlaces() {
         showLoadingView()
-        NetworkManager.shared.getPlaces(for: zipcode) { [weak self] result in
-            guard let self else { return }
-            self.dismissLoadingView()
-            
-            switch result {
-            case .success(let places):
-                
+        
+        Task {
+            do {
+                let places = try await NetworkManager.shared.getPlaces(for: zipcode)
                 self.places = places
-                self.updateData(on: self.places)
-                self.updateUI(with: self.places)
-               
-            case .failure(let error):
-                DispatchQueue.main.async {
-                    self.presentBFAlert(title: "Bad stuff happened", message: error.rawValue, buttonTitle: "Ok")
+                updateData(on: places)
+                updateUI(with: places)
+                dismissLoadingView()
+            } catch {
+                if let bfError = error as? BFError {
+                    presentBFAlert(title: "Bad stuff happened", message: bfError.rawValue, buttonTitle: "Ok")
+                } else {
+                    //present default error
                 }
+                dismissLoadingView()
             }
         }
+        
+        
+//        NetworkManager.shared.getPlaces(for: zipcode) { [weak self] result in
+//            guard let self else { return }
+//            self.dismissLoadingView()
+//
+//            switch result {
+//            case .success(let places):
+//
+//                self.places = places
+//                self.updateData(on: self.places)
+//                self.updateUI(with: self.places)
+//
+//            case .failure(let error):
+//                DispatchQueue.main.async {
+//                    self.presentBFAlert(title: "Bad stuff happened", message: error.rawValue, buttonTitle: "Ok")
+//                }
+//            }
+//        }
     }
     
 

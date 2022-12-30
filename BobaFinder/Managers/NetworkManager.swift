@@ -13,13 +13,14 @@ class NetworkManager {
     private let baseURL = "https://api.foursquare.com/v3/places/search"
     
     let cache = NSCache<NSString, UIImage>()
+    let decoder = JSONDecoder()
     let headers = [
       "accept": "application/json",
       "Authorization": "fsq3/vG10P9E7CJrfEW2r0kHgYFSzOyw0fl0ni5mKhnrx1Y="
     ]
     
     
-    func getPlaces(for zipcode: String, completed: @escaping (Result<[Place], BFError>) -> Void) {
+    func getPlaces(for zipcode: String) async throws -> [Place] {
 
         let request = NSMutableURLRequest(url: NSURL(string: baseURL + "?categories=13033&near=\(zipcode)")! as URL,
                                                 cachePolicy: .useProtocolCachePolicy,
@@ -27,38 +28,62 @@ class NetworkManager {
         request.httpMethod = "GET"
         request.allHTTPHeaderFields = headers
 
-        let session = URLSession.shared
-        let task = session.dataTask(with: request as URLRequest,
-                                        completionHandler: { (data, response, error) -> Void in
-            if let _ = error {
-                completed(.failure(.unableToComplete))
-                return
-            }
-
-            guard let response = response as? HTTPURLResponse, response.statusCode == 200 else {
-                completed(.failure(.invalidResponse))
-                return
-            }
-
-            guard let data = data else {
-                completed(.failure(.invalidData))
-                return
-            }
-
-
-            do {
-                let dataString = String(data: data, encoding: .utf8)
-                let jsonData = dataString?.data(using: .utf8)
-                let root = try JSONDecoder().decode(Root.self, from: jsonData!)
-                let places = root.results
-                completed(.success(places))
-            } catch {
-                completed(.failure(.invalidData))
-            }
-        })
-
-        task.resume()
+        let (data, response) = try await URLSession.shared.data(for: request as URLRequest)
+        
+        guard let response = response as? HTTPURLResponse, response.statusCode == 200 else {
+            throw BFError.invalidResponse
+        }
+        
+        do {
+            let root = try decoder.decode(Root.self, from: data)
+            let places = root.results
+            return places
+        } catch {
+            throw BFError.invalidData
+        }
+       
     }
+    
+//    func getPlaces(for zipcode: String, completed: @escaping (Result<[Place], BFError>) -> Void) {
+//
+//        let request = NSMutableURLRequest(url: NSURL(string: baseURL + "?categories=13033&near=\(zipcode)")! as URL,
+//                                                cachePolicy: .useProtocolCachePolicy,
+//                                            timeoutInterval: 10.0)
+//        request.httpMethod = "GET"
+//        request.allHTTPHeaderFields = headers
+//
+//        let session = URLSession.shared
+//        let task = session.dataTask(with: request as URLRequest,
+//                                        completionHandler: { (data, response, error) -> Void in
+//            if let _ = error {
+//                completed(.failure(.unableToComplete))
+//                return
+//            }
+//
+//            guard let response = response as? HTTPURLResponse, response.statusCode == 200 else {
+//                completed(.failure(.invalidResponse))
+//                return
+//            }
+//
+//            guard let data = data else {
+//                completed(.failure(.invalidData))
+//                return
+//            }
+//
+//
+//            do {
+//                let dataString = String(data: data, encoding: .utf8)
+//                let jsonData = dataString?.data(using: .utf8)
+//                let root = try JSONDecoder().decode(Root.self, from: jsonData!)
+//                let places = root.results
+//                completed(.success(places))
+//            } catch {
+//                completed(.failure(.invalidData))
+//            }
+//        })
+//
+//        task.resume()
+//    }
     
     
     func getPhotoURLs(for fsqId: String, completed: @escaping (Result<[Photo], BFError>) -> Void) {
