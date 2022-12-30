@@ -96,15 +96,17 @@ class PlaceInfoVC: UIViewController {
         
     }
     
+    
     @objc func actionButtonTapped() {
-        print("add to favorites button tapped")
+        let favorite = place!
+        
+        PersistenceManager.updateWith(favorite: favorite, actionType: .add) { [weak self] error in
+            guard let self else { return }
+            guard let error else {
+                self.presentBFAlert(title: "Success!", message: "Place has been successfully favorited.", buttonTitle: "Ok")
+                return
+            }
+            self.presentBFAlert(title: "Something went wrong", message: error.rawValue, buttonTitle: "Ok")
+        }
     }
-    
-    
 }
-
-//extension PlaceInfoVC: PlaceInfoVCDelegate {
-//    func didTapAddToFavorites(for place: Place) {
-//        guard
-//    }
-//}

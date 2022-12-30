@@ -33,10 +33,12 @@ enum PersistenceManager {
                         return
                     }
                     favorites.append(favorite)
+                    
                 case .remove:
                     favorites.removeAll { $0.fsqID == favorite.fsqID }
-                    completed(save(favorites: favorites))
                 }
+                completed(save(favorites: favorites))
+                
             case .failure(let error):
                 completed(error)
             }
