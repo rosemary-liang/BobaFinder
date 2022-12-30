@@ -17,15 +17,14 @@ class SearchVC: UIViewController {
     var isZipcodeEntered: Bool { return !zipcodeTextField.text!.isEmpty }
     
     let padding: CGFloat = 50
-
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .systemBackground
-        configureLogoImageView()
-        configureTitleLabel()
-        configureZipcodeTextField()
-        configureActionButton()
+        addSubviews()
+        configureUIElements()
+        layoutUI()
         createDismissKeyboardTapGesture()
     }
     
@@ -33,12 +32,6 @@ class SearchVC: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.tabBarController?.tabBar.isHidden = true
-    }
-    
-    
-    func createDismissKeyboardTapGesture() {
-        let tap = UITapGestureRecognizer(target: self.view, action: #selector(UIView.endEditing(_:)))
-        view.addGestureRecognizer(tap)
     }
     
     
@@ -54,59 +47,56 @@ class SearchVC: UIViewController {
     }
     
     
-    func configureLogoImageView() {
+    func addSubviews() {
         view.addSubview(logoImageView)
+        view.addSubview(titleLabel)
+        view.addSubview(zipcodeTextField)
+        view.addSubview(actionButton)
+    }
+    
+    
+    func configureUIElements() {
         logoImageView.translatesAutoresizingMaskIntoConstraints = false
         logoImageView.image = UIImage(named: "logo-image")
         
+        titleLabel.text = "boba finder"
+        
+        zipcodeTextField.tintColor      = .systemTeal
+        zipcodeTextField.alpha          = 0.80
+        zipcodeTextField.delegate       = self
+        
+        actionButton.addTarget(self, action: #selector(pushPlacesListVC), for: .touchUpInside)
+    }
+    
+    
+    func layoutUI() {
         NSLayoutConstraint.activate([
             logoImageView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 80),
             logoImageView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             logoImageView.widthAnchor.constraint(equalToConstant: 200),
-            logoImageView.heightAnchor.constraint(equalToConstant: 200)
-        ])
-    }
-    
-    
-    func configureTitleLabel() {
-        view.addSubview(titleLabel)
-        titleLabel.text = "boba finder"
-        
-        NSLayoutConstraint.activate([
+            logoImageView.heightAnchor.constraint(equalToConstant: 200),
+            
             titleLabel.topAnchor.constraint(equalTo: logoImageView.bottomAnchor),
             titleLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: padding),
             titleLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -padding),
-            titleLabel.heightAnchor.constraint(equalToConstant: 100)
-        ])
-    }
-    
-    
-    func configureZipcodeTextField() {
-        view.addSubview(zipcodeTextField)
-        zipcodeTextField.tintColor      = .systemTeal
-        zipcodeTextField.alpha          = 0.80
-        zipcodeTextField.delegate       = self
-//        zipcodeTextField.keyboardType   = .numberPad
-        
-        NSLayoutConstraint.activate([
+            titleLabel.heightAnchor.constraint(equalToConstant: 100),
+            
             zipcodeTextField.topAnchor.constraint(equalTo: titleLabel.bottomAnchor),
             zipcodeTextField.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: padding),
             zipcodeTextField.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -padding),
-            zipcodeTextField.heightAnchor.constraint(equalToConstant: padding) // for a large touch target
-        ])
-    }
-    
-    
-    func configureActionButton() {
-        view.addSubview(actionButton)
-        actionButton.addTarget(self, action: #selector(pushPlacesListVC), for: .touchUpInside)
-        
-        NSLayoutConstraint.activate([
+            zipcodeTextField.heightAnchor.constraint(equalToConstant: padding), // for a large touch target
+            
             actionButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -padding),
             actionButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: padding),
             actionButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -padding),
             actionButton.heightAnchor.constraint(equalToConstant: padding)
         ])
+    }
+    
+    
+    func createDismissKeyboardTapGesture() {
+        let tap = UITapGestureRecognizer(target: self.view, action: #selector(UIView.endEditing(_:)))
+        view.addGestureRecognizer(tap)
     }
 }
 
