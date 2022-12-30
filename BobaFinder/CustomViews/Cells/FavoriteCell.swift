@@ -16,7 +16,8 @@ class FavoriteCell: UITableViewCell {
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
-        configure()
+        addSubviews()
+        layoutUI()
     }
     
     
@@ -24,10 +25,14 @@ class FavoriteCell: UITableViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
-    private func configure() {
+    
+    func addSubviews() {
         addSubview(placeImageView)
         addSubview(placeNameLabel)
-        
+    }
+    
+    
+    private func layoutUI() {
         accessoryType                = .disclosureIndicator // tappable to present new content
         let padding: CGFloat         = 12
         
