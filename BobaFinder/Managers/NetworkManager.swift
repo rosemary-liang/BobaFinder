@@ -21,7 +21,6 @@ class NetworkManager {
     
     
     func getPlaces(for zipcode: String) async throws -> [Place] {
-
         let request = NSMutableURLRequest(url: NSURL(string: baseURL + "?categories=13033&near=\(zipcode)")! as URL,
                                                 cachePolicy: .useProtocolCachePolicy,
                                             timeoutInterval: 10.0)
@@ -41,7 +40,6 @@ class NetworkManager {
         } catch {
             throw BFError.invalidData
         }
-       
     }
     
 //    func getPlaces(for zipcode: String, completed: @escaping (Result<[Place], BFError>) -> Void) {

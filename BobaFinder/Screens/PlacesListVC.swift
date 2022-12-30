@@ -92,12 +92,11 @@ class PlacesListVC: UIViewController {
                 if let bfError = error as? BFError {
                     presentBFAlert(title: "Bad stuff happened", message: bfError.rawValue, buttonTitle: "Ok")
                 } else {
-                    //present default error
+                    presentDefaultError()
                 }
                 dismissLoadingView()
             }
         }
-        
         
 //        NetworkManager.shared.getPlaces(for: zipcode) { [weak self] result in
 //            guard let self else { return }
