@@ -121,9 +121,10 @@ class PlacesListVC: UIViewController {
     func updateUI(with places: [Place]) {
         if self.places.isEmpty {
             let message = "No boba places found. Please try another zipcode."
-            DispatchQueue.main.async {
-                self.showEmptyStateView(with: message, in: self.view, scaleX: 1, scaleY: 1)
-            }
+            self.showEmptyStateView(with: message, in: self.view, scaleX: 1, scaleY: 1)
+//            DispatchQueue.main.async {
+//                self.showEmptyStateView(with: message, in: self.view, scaleX: 1, scaleY: 1)
+//            }
         }
     }
     
@@ -141,10 +142,11 @@ class PlacesListVC: UIViewController {
         var snapshot = NSDiffableDataSourceSnapshot<Section, Place>()
         snapshot.appendSections([.main])
         snapshot.appendItems(places)
+        self.dataSource.apply(snapshot, animatingDifferences:  true)
         
-        DispatchQueue.main.async {
-            self.dataSource.apply(snapshot, animatingDifferences:  true)
-        }
+//        DispatchQueue.main.async {
+//            self.dataSource.apply(snapshot, animatingDifferences:  true)
+//        }
     }
 }
 
@@ -157,8 +159,6 @@ extension PlacesListVC: UICollectionViewDelegate {
         let destVC          = PlaceInfoVC()
         destVC.place        = place
         navigationController?.pushViewController(destVC, animated: true)
-//        let navController   = UINavigationController(rootViewController: destVC)
-//        present(navController, animated: true)
     }
 }
 
