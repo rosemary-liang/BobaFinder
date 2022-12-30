@@ -35,6 +35,7 @@ class BFAlertVC: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        view.backgroundColor = UIColor.black.withAlphaComponent(0.75)
         configureContainerView()
         configureTitleLabel()
         configureActionButton()
@@ -44,11 +45,6 @@ class BFAlertVC: UIViewController {
     
     func configureContainerView() {
         view.addSubview(containerView)
-        containerView.backgroundColor    = .systemBackground
-        containerView.layer.cornerRadius = 14
-        containerView.layer.borderWidth  = 2
-        containerView.layer.borderColor  = UIColor.white.cgColor
-        containerView.translatesAutoresizingMaskIntoConstraints = false
         
         NSLayoutConstraint.activate([
             containerView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
