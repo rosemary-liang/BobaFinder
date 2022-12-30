@@ -1,0 +1,75 @@
+//
+//  FavoriteCell.swift
+//  BobaFinder
+//
+//  Created by Eric Liang on 12/30/22.
+//
+
+import UIKit
+
+class FavoriteCell: UITableViewCell {
+
+    static let reuseID = "FavoriteCell"
+    let placeImageView = BFImageView(frame: .zero)
+    let placeNameLabel = BFTitleLabel(textAlignment: .left, fontSize: 26)
+    
+    
+    override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
+        super.init(style: style, reuseIdentifier: reuseIdentifier)
+        configure()
+    }
+    
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    private func configure() {
+        addSubview(placeImageView)
+        addSubview(placeNameLabel)
+        
+        accessoryType                = .disclosureIndicator // tappable to present new content
+        let padding: CGFloat         = 12
+        
+        NSLayoutConstraint.activate([
+            placeImageView.centerYAnchor.constraint(equalTo: centerYAnchor),
+            placeImageView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: padding),
+            placeImageView.heightAnchor.constraint(equalToConstant: 70),
+            placeImageView.widthAnchor.constraint(equalToConstant: 70),
+            
+            placeNameLabel.centerYAnchor.constraint(equalTo: centerYAnchor),
+            placeNameLabel.leadingAnchor.constraint(equalTo: placeImageView.trailingAnchor, constant: padding),
+            placeNameLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -padding),
+            placeNameLabel.heightAnchor.constraint(equalToConstant: 50)
+        ])
+    }
+    
+    
+    func set(favorite: Place) {
+        placeNameLabel.text = favorite.name
+        
+        #warning("dupe function")
+        NetworkManager.shared.getPhotoURLs(for: favorite.fsqID) { [weak self] result in
+            guard let self else { return }
+            switch result {
+            case .success(let photos):
+
+                guard let photo = photos.first else { return }
+                let photoURL = photo.rootPrefix + "original" + photo.suffix
+
+                NetworkManager.shared.downloadImage(from: photoURL) { image in
+                    DispatchQueue.main.async {
+                        self.placeImageView.image = image
+                    }
+                }
+
+            case .failure(_):
+                break
+            }
+        }
+    }
+    
+    
+ 
+    
+}

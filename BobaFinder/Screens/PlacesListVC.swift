@@ -24,7 +24,7 @@ class PlacesListVC: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .systemCyan
+
         configureViewController()
         configureSearchController()
         configureCollectionView()
@@ -35,12 +35,12 @@ class PlacesListVC: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        navigationController?.setNavigationBarHidden(false, animated: true)
+        tabBarController?.tabBar.isHidden = false
     }
     
     
     private func configureViewController() {
-        navigationController?.isNavigationBarHidden = false
+        view.backgroundColor = .systemCyan
         navigationController?.navigationBar.prefersLargeTitles = true
     }
     
@@ -138,9 +138,9 @@ extension PlacesListVC: UICollectionViewDelegate {
         
         let destVC          = PlaceInfoVC()
         destVC.place        = place
-//        navigationController?.pushViewController(destVC, animated: true)
-        let navController   = UINavigationController(rootViewController: destVC)
-        present(navController, animated: true)
+        navigationController?.pushViewController(destVC, animated: true)
+//        let navController   = UINavigationController(rootViewController: destVC)
+//        present(navController, animated: true)
     }
 }
 

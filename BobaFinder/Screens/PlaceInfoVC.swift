@@ -7,6 +7,10 @@
 
 import UIKit
 
+//protocol PlaceInfoVCDelegate: AnyObject {
+//    func didTapAddToFavorites(for place: Place)
+//}
+
 class PlaceInfoVC: UIViewController {
     
     let headerView      = UIView()
@@ -16,69 +20,50 @@ class PlaceInfoVC: UIViewController {
     let placeImage      = BFImageView(frame: .zero)
     
     var place: Place!
-    
+
     
     override func viewDidLoad() {
         super.viewDidLoad()
         configureViewController()
-        layoutUI()
         configureUIElements(with: place)
+        configureActionButton()
     }
     
     
     func configureViewController() {
         view.backgroundColor = .systemBackground
-        let doneButton = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(dismissVC))
-        navigationItem.rightBarButtonItem = doneButton
-    }
-    
-    
-    @objc func dismissVC() {
-        dismiss(animated: true)
-    }
-    
-    
-    func layoutUI() {
         let padding: CGFloat = 20
         
         view.addSubview(headerView)
-        headerView.backgroundColor = .systemBackground
-        headerView.translatesAutoresizingMaskIntoConstraints = false
-        
-        NSLayoutConstraint.activate([
-            headerView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
-            headerView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-            headerView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            headerView.heightAnchor.constraint(equalToConstant: 200)
-        ])
-        
         view.addSubview(actionButton)
-        NSLayoutConstraint.activate([
-            actionButton.topAnchor.constraint(equalTo: headerView.bottomAnchor, constant: padding + 30),
-            actionButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: padding),
-            actionButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -padding),
-            actionButton.heightAnchor.constraint(equalToConstant: 50)
-        ])
-        
         view.addSubview(tipsTitleLabel)
-        tipsTitleLabel.text = "Tips"
-        
-        NSLayoutConstraint.activate([
-            tipsTitleLabel.topAnchor.constraint(equalTo: actionButton.bottomAnchor, constant: padding + 10),
-            tipsTitleLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: padding),
-            tipsTitleLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -padding),
-            tipsTitleLabel.heightAnchor.constraint(equalToConstant: 35)
-        ])
-        
-        
         view.addSubview(tipsView)
+        
+        tipsTitleLabel.text         = "Tips"
+        headerView.backgroundColor  = .systemBackground
+        headerView.translatesAutoresizingMaskIntoConstraints = false
         tipsView.translatesAutoresizingMaskIntoConstraints = false
         
         NSLayoutConstraint.activate([
+            headerView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: -70),
+            headerView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            headerView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            headerView.heightAnchor.constraint(equalToConstant: 200),
+        
+            actionButton.topAnchor.constraint(equalTo: headerView.bottomAnchor, constant: padding + 30),
+            actionButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: padding),
+            actionButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -padding),
+            actionButton.heightAnchor.constraint(equalToConstant: 50),
+  
+            tipsTitleLabel.topAnchor.constraint(equalTo: actionButton.bottomAnchor, constant: padding + 10),
+            tipsTitleLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: padding),
+            tipsTitleLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -padding),
+            tipsTitleLabel.heightAnchor.constraint(equalToConstant: 35),
+
             tipsView.topAnchor.constraint(equalTo: tipsTitleLabel.bottomAnchor),
             tipsView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             tipsView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            tipsView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
+            tipsView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor)
         ])
     }
     
@@ -96,4 +81,23 @@ class PlaceInfoVC: UIViewController {
         childVC.didMove(toParent: self)
     }
     
+    
+    func configureActionButton() {
+        actionButton.addTarget(self, action: #selector(actionButtonTapped), for: .touchUpInside)
+        
+    }
+    
+    
+    @objc func actionButtonTapped() {
+        let favorite = place!
+        
+        PersistenceManager.updateWith(favorite: favorite, actionType: .add) { [weak self] error in
+            guard let self else { return }
+            guard let error else {
+                self.presentBFAlert(title: "Success!", message: "Place has been successfully favorited.", buttonTitle: "Ok")
+                return
+            }
+            self.presentBFAlert(title: "Something went wrong", message: error.rawValue, buttonTitle: "Ok")
+        }
+    }
 }
