@@ -19,7 +19,8 @@ class PlaceCell: UICollectionViewCell {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        configure()
+        addSubviews()
+        layoutUI()
     }
     
     
@@ -28,7 +29,6 @@ class PlaceCell: UICollectionViewCell {
     }
     
    
-    
     func set(place: Place) {
         nameLabel.text = place.name
         let distanceInMiles: Double = Double(place.distance) / 1_609.344
@@ -56,31 +56,32 @@ class PlaceCell: UICollectionViewCell {
             }
         }
     }
-        
-        
-        private func configure() {
-            addSubview(iconImageView)
-            addSubview(nameLabel)
-            addSubview(distanceLabel)
-            
-            let padding: CGFloat = 8
-            
-            NSLayoutConstraint.activate([
-                iconImageView.topAnchor.constraint(equalTo: topAnchor, constant: padding),
-                iconImageView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: padding),
-                iconImageView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -padding),
-                iconImageView.heightAnchor.constraint(equalTo: iconImageView.widthAnchor),
-                
-                nameLabel.topAnchor.constraint(equalTo: iconImageView.bottomAnchor, constant: 12),
-                nameLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: padding),
-                nameLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -padding),
-                nameLabel.heightAnchor.constraint(equalToConstant: 20),
-                
-                distanceLabel.topAnchor.constraint(equalTo: nameLabel.bottomAnchor, constant: 2),
-                distanceLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: padding),
-                distanceLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -padding),
-                distanceLabel.heightAnchor.constraint(equalToConstant: 10)
-            ])
-        }
+    
+    func addSubviews() {
+        addSubview(iconImageView)
+        addSubview(nameLabel)
+        addSubview(distanceLabel)
     }
+    
+    func layoutUI() {
+        let padding: CGFloat = 8
+        
+        NSLayoutConstraint.activate([
+            iconImageView.topAnchor.constraint(equalTo: topAnchor, constant: padding),
+            iconImageView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: padding),
+            iconImageView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -padding),
+            iconImageView.heightAnchor.constraint(equalTo: iconImageView.widthAnchor),
+            
+            nameLabel.topAnchor.constraint(equalTo: iconImageView.bottomAnchor, constant: 12),
+            nameLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: padding),
+            nameLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -padding),
+            nameLabel.heightAnchor.constraint(equalToConstant: 20),
+            
+            distanceLabel.topAnchor.constraint(equalTo: nameLabel.bottomAnchor, constant: 2),
+            distanceLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: padding),
+            distanceLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -padding),
+            distanceLabel.heightAnchor.constraint(equalToConstant: 10)
+        ])
+    }
+}
     
