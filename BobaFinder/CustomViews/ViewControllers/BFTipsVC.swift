@@ -30,7 +30,7 @@ class BFTipsVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         getPlaceTips()
-        configureViewController()
+//        configureViewController()
         configureCollectionView()
         configureDataSource()
 
@@ -41,16 +41,20 @@ class BFTipsVC: UIViewController {
         fatalError("init(coder:) has not been implemented")
     }
     
-    private func configureViewController() {
-       
-
-    }
+//    private func configureViewController() {
+//
+//
+//    }
     
     private func configureCollectionView() {
 //        let collectionFrame = CGRect(x: 0, y: 60, width: view.frame.width, height: 200)
         collectionView = UICollectionView(frame: view.bounds, collectionViewLayout: createSingleColumnFlowLayout())
         view.addSubview(collectionView)
         collectionView.register(TipCell.self, forCellWithReuseIdentifier: TipCell.reuseId)
+        let numberOfRows = Int(self.tips.count)
+//        collectionView.contentSize = CGSizeMake(self.view.frame.size.width, CGFloat(numberOfRows))
+    
+//        collectionView.dataSource = self
 
     }
     
@@ -65,6 +69,7 @@ class BFTipsVC: UIViewController {
         flowLayout.sectionInset = UIEdgeInsets(top: padding, left: padding, bottom: padding, right: padding)
         flowLayout.itemSize = CGSize(width: itemWidth, height: 140)
 //        flowLayout.scrollDirection = .vertical
+
         
         return flowLayout
     }
@@ -121,6 +126,12 @@ class BFTipsVC: UIViewController {
             }
         }
     }
-    
-    
 }
+
+//extension BFTipsVC: UICollectionViewDataSource {
+//    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+//        <#code#>
+//    }
+//    
+//    
+//}

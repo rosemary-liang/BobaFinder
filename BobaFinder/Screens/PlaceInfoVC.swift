@@ -14,6 +14,7 @@ import UIKit
 class PlaceInfoVC: UIViewController {
     
     let headerView      = UIView()
+    let tipsScrollView  = UIScrollView()
     let tipsView        = UIView()
     let actionButton    = BFButton(backgroundColor: .systemIndigo, title: "Add to Favorites")
     let tipsTitleLabel  = BFTitleLabel(textAlignment: .left, fontSize: 28)
@@ -37,12 +38,16 @@ class PlaceInfoVC: UIViewController {
         view.addSubview(headerView)
         view.addSubview(actionButton)
         view.addSubview(tipsTitleLabel)
-        view.addSubview(tipsView)
+        view.addSubview(tipsScrollView)
+        tipsScrollView.addSubview(tipsView)
+//        view.addSubview(tipsView)
         
-        tipsTitleLabel.text         = "Tips"
-        headerView.backgroundColor  = .systemBackground
-        headerView.translatesAutoresizingMaskIntoConstraints = false
-        tipsView.translatesAutoresizingMaskIntoConstraints = false
+        tipsTitleLabel.text                                         = "Tips"
+        headerView.backgroundColor                                  = .systemBackground
+//        tipsScrollView.contentSize                                  = CGSize(width: tipsView.bounds.width, height: tipsView.bounds.height + 100)
+        headerView.translatesAutoresizingMaskIntoConstraints        = false
+        tipsScrollView.translatesAutoresizingMaskIntoConstraints    = false
+        tipsView.translatesAutoresizingMaskIntoConstraints          = false
         
         NSLayoutConstraint.activate([
             headerView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: -70),
@@ -60,10 +65,20 @@ class PlaceInfoVC: UIViewController {
             tipsTitleLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -padding),
             tipsTitleLabel.heightAnchor.constraint(equalToConstant: 35),
 
-            tipsView.topAnchor.constraint(equalTo: tipsTitleLabel.bottomAnchor),
-            tipsView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-            tipsView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            tipsView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor)
+            tipsScrollView.topAnchor.constraint(equalTo: tipsTitleLabel.bottomAnchor),
+            tipsScrollView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            tipsScrollView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            tipsScrollView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
+            
+            tipsView.topAnchor.constraint(equalTo: tipsScrollView.topAnchor),
+            tipsView.leadingAnchor.constraint(equalTo: tipsScrollView.leadingAnchor),
+            tipsView.trailingAnchor.constraint(equalTo: tipsScrollView.trailingAnchor),
+            tipsView.bottomAnchor.constraint(equalTo: tipsScrollView.bottomAnchor)
+            
+//            tipsView.topAnchor.constraint(equalTo: tipsTitleLabel.bottomAnchor),
+//            tipsView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+//            tipsView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+//            tipsView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -padding - 30)
         ])
     }
     
