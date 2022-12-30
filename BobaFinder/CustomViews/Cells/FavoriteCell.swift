@@ -11,7 +11,7 @@ class FavoriteCell: UITableViewCell {
 
     static let reuseID = "FavoriteCell"
     let placeImageView = BFImageView(frame: .zero)
-    let placeNameLabel = BFTitleLabel(textAlignment: .left, fontSize: 30)
+    let placeNameLabel = BFTitleLabel(textAlignment: .left, fontSize: 26)
     
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
@@ -28,8 +28,8 @@ class FavoriteCell: UITableViewCell {
         addSubview(placeImageView)
         addSubview(placeNameLabel)
         
-        accessoryType           = .disclosureIndicator // tappable to present new content
-        let padding: CGFloat    = 15
+        accessoryType                = .disclosureIndicator // tappable to present new content
+        let padding: CGFloat         = 12
         
         NSLayoutConstraint.activate([
             placeImageView.centerYAnchor.constraint(equalTo: centerYAnchor),
