@@ -97,24 +97,6 @@ class PlacesListVC: UIViewController {
                 dismissLoadingView()
             }
         }
-        
-//        NetworkManager.shared.getPlaces(for: zipcode) { [weak self] result in
-//            guard let self else { return }
-//            self.dismissLoadingView()
-//
-//            switch result {
-//            case .success(let places):
-//
-//                self.places = places
-//                self.updateData(on: self.places)
-//                self.updateUI(with: self.places)
-//
-//            case .failure(let error):
-//                DispatchQueue.main.async {
-//                    self.presentBFAlert(title: "Bad stuff happened", message: error.rawValue, buttonTitle: "Ok")
-//                }
-//            }
-//        }
     }
     
 
@@ -122,9 +104,6 @@ class PlacesListVC: UIViewController {
         if self.places.isEmpty {
             let message = "No boba places found. Please try another zipcode."
             self.showEmptyStateView(with: message, in: self.view, scaleX: 1, scaleY: 1)
-//            DispatchQueue.main.async {
-//                self.showEmptyStateView(with: message, in: self.view, scaleX: 1, scaleY: 1)
-//            }
         }
     }
     
@@ -143,10 +122,6 @@ class PlacesListVC: UIViewController {
         snapshot.appendSections([.main])
         snapshot.appendItems(places)
         self.dataSource.apply(snapshot, animatingDifferences:  true)
-        
-//        DispatchQueue.main.async {
-//            self.dataSource.apply(snapshot, animatingDifferences:  true)
-//        }
     }
 }
 

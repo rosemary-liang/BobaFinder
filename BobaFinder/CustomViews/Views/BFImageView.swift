@@ -48,16 +48,4 @@ class BFImageView: UIImageView {
             }
         }
     }
-    
-//    func downloadImageFromPhotoURL() {
-//        guard let photoURL else {
-//            image = placeholderImage
-//            return
-//        }
-//
-//        Task {
-//            image = await NetworkManager.shared.downloadImage(from: photoURL) ?? placeholderImage
-//        }
-//    }
-    
 }

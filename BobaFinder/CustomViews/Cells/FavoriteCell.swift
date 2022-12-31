@@ -56,26 +56,6 @@ class FavoriteCell: UITableViewCell {
         Task {
             placeImageView.getPhotoURLAndSetImage(fsqId: favorite.fsqID)
         }
-        
-//        #warning("dupe function")
-//        NetworkManager.shared.getPhotoURLs(for: favorite.fsqID) { [weak self] result in
-//            guard let self else { return }
-//            switch result {
-//            case .success(let photos):
-//
-//                guard let photo = photos.first else { return }
-//                let photoURL = photo.rootPrefix + "original" + photo.suffix
-//
-//                NetworkManager.shared.downloadImage(from: photoURL) { image in
-//                    DispatchQueue.main.async {
-//                        self.placeImageView.image = image
-//                    }
-//                }
-//
-//            case .failure(_):
-//                break
-//            }
-//        }
     }
     
     

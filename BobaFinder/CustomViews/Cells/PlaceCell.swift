@@ -38,27 +38,6 @@ class PlaceCell: UICollectionViewCell {
         Task {
             placeImageView.getPhotoURLAndSetImage(fsqId: place.fsqID)
         }
-//        NetworkManager.shared.getPhotoURLs(for: place.fsqID) { [weak self] result in
-//            guard let self else { return }
-//
-//            switch result {
-//            case .success(let photos):
-//                self.photos = photos
-//
-//                guard let photo = self.photos.first else { return }
-//                let photoURL = photo.rootPrefix + "original" + photo.suffix
-//
-//                NetworkManager.shared.downloadImage(from: photoURL) { image in
-//                    DispatchQueue.main.async {
-//                        self.iconImageView.image = image
-//                    }
-//                }
-//
-//            case .failure(_):
-//                break
-//                #warning("revisit error handling in .failure")
-//            }
-//        }
     }
     
     func addSubviews() {
