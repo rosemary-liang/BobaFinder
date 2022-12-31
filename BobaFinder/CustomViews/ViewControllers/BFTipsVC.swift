@@ -93,24 +93,42 @@ class BFTipsVC: UIViewController {
     
     func getPlaceTips() {
         showLoadingView()
-        NetworkManager.shared.getPlaceTips(for: place.fsqID) { [weak self] result in
-            guard let self else { return }
-
-            switch result {
-            case.success(let tips):
-                self.tips = tips
-                self.updateData()
-                self.updateUI(with: self.tips)
-                self.dismissLoadingView()
-
-            case .failure(_):
-                DispatchQueue.main.async {
-//                    self.presentBFAlert(title: "Something bad happened", message: error.rawValue, buttonTitle: "Ok")
-                    self.dismissLoadingView()
+        
+        Task {
+            do {
+                tips = try await NetworkManager.shared.getPlaceTips(for: place.fsqID)
+                updateData()
+                updateUI(with: tips)
+                dismissLoadingView()
+            } catch {
+                if let bfError = error as? BFError {
+                    presentBFAlert(title: "Something bad happened", message: bfError.rawValue, buttonTitle: "Ok")
+                } else {
+                    presentDefaultError()
                 }
-                
+                dismissLoadingView()
             }
         }
+        
+        
+//        NetworkManager.shared.getPlaceTips(for: place.fsqID) { [weak self] result in
+//            guard let self else { return }
+//
+//            switch result {
+//            case.success(let tips):
+//                self.tips = tips
+//                self.updateData()
+//                self.updateUI(with: self.tips)
+//                self.dismissLoadingView()
+//
+//            case .failure(_):
+//                DispatchQueue.main.async {
+////                    self.presentBFAlert(title: "Something bad happened", message: error.rawValue, buttonTitle: "Ok")
+//                    self.dismissLoadingView()
+//                }
+//
+//            }
+//        }
     }
     
     
