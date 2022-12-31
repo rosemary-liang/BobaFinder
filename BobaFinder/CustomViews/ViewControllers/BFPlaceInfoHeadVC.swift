@@ -36,28 +36,34 @@ class BFPlaceInfoHeadVC: UIViewController {
     }
     
     func setPhoto() {
-        #warning("dupe function from PlaceCell.. try to refactor later")
-        NetworkManager.shared.getPhotoURLs(for: place.fsqID) { [weak self] result in
-            guard let self else { return }
-            switch result {
-            case .success(let photos):
-
-                guard let photo = photos.first else { return }
-                let photoURL = photo.rootPrefix + "original" + photo.suffix
-
-                NetworkManager.shared.downloadImage(from: photoURL) { image in
-                    DispatchQueue.main.async {
-                        self.placeImageView.image = image
-                    }
-                }
-
-            case .failure(let error):
-                DispatchQueue.main.async {
-                    self.presentBFAlert(title: "Something went wrong", message: error.rawValue, buttonTitle: "Ok")
-                }
-            }
+        Task {
+            placeImageView.getPhotoURLAndSetImage(fsqId: place.fsqID)
         }
     }
+    
+//    func setPhotoOld() {
+//        #warning("dupe function from PlaceCell.. try to refactor later")
+//        NetworkManager.shared.getPhotoURLs(for: place.fsqID) { [weak self] result in
+//            guard let self else { return }
+//            switch result {
+//            case .success(let photos):
+//
+//                guard let photo = photos.first else { return }
+//                let photoURL = photo.rootPrefix + "original" + photo.suffix
+//
+//                NetworkManager.shared.downloadImage(from: photoURL) { image in
+//                    DispatchQueue.main.async {
+//                        self.placeImageView.image = image
+//                    }
+//                }
+//
+//            case .failure(let error):
+//                DispatchQueue.main.async {
+//                    self.presentBFAlert(title: "Something went wrong", message: error.rawValue, buttonTitle: "Ok")
+//                }
+//            }
+//        }
+//    }
     
     
     func addSubviews() {
@@ -70,9 +76,12 @@ class BFPlaceInfoHeadVC: UIViewController {
     
     func configureUIElements() {
         setPhoto()
+        
         placeNameLabel.text         = place.name
+        
         let distanceInMiles         = Double(place.distance) / 1_609.344
         distanceLabel.text          = "\(String(format: "%.1f", distanceInMiles)) miles away"
+        
         locationLabel.text          = "\(place.location.address)\n\(place.location.locality), \(place.location.region)"
         locationLabel.numberOfLines = 3
     }

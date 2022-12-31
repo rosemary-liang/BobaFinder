@@ -11,6 +11,7 @@ class BFImageView: UIImageView {
     
     let placeholderImage = UIImage(named: "no-image-available")
    
+    var photoURL: String? = nil
 
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -29,5 +30,34 @@ class BFImageView: UIImageView {
         image               = placeholderImage
         translatesAutoresizingMaskIntoConstraints = false
     }
+    
+    func getPhotoURLAndSetImage(fsqId: String) {
+        Task {
+            let photos = try await NetworkManager.shared.getPhotoURLs(for: fsqId)
+            guard let photo = photos.first else { return }
+            let photoURL = photo.rootPrefix + "original" + photo.suffix
+            self.photoURL = photoURL
+            
+            guard let _ = self.photoURL else {
+                image = placeholderImage
+                return
+            }
+            
+            Task {
+                image = await NetworkManager.shared.downloadImage(from: photoURL) ?? placeholderImage
+            }
+        }
+    }
+    
+//    func downloadImageFromPhotoURL() {
+//        guard let photoURL else {
+//            image = placeholderImage
+//            return
+//        }
+//
+//        Task {
+//            image = await NetworkManager.shared.downloadImage(from: photoURL) ?? placeholderImage
+//        }
+//    }
     
 }
