@@ -98,7 +98,7 @@ class BFTipsVC: UIViewController {
             do {
                 tips = try await NetworkManager.shared.getPlaceTips(for: place.fsqID)
                 updateData()
-                updateUI(with: tips)
+                updateUI()
                 dismissLoadingView()
             } catch {
                 if let bfError = error as? BFError {
@@ -112,13 +112,10 @@ class BFTipsVC: UIViewController {
     }
     
     
-    func updateUI(with tips: [Tip]) {
-        if self.tips.isEmpty {
+    func updateUI() {
+        if tips.isEmpty {
             let message = "No tips added for this boba place."
-            DispatchQueue.main.async {
-                self.showEmptyStateView(with: message, in: self.view, scaleX: 0.75, scaleY: 0.75)
-                
-            }
+            showEmptyStateView(with: message, in: self.view, scaleX: 0.75, scaleY: 0.75)
         }
     }
 }

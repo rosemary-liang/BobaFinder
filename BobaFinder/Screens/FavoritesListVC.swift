@@ -108,6 +108,8 @@ extension FavoritesListVC: UITableViewDataSource, UITableViewDelegate {
                 self.presentBFAlert(title: "Unable to remove", message: error.rawValue, buttonTitle: "Ok")
             }
         }
+        
+        getFavorites()
     }
     
 }

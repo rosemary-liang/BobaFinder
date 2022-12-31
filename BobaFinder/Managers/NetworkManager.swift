@@ -109,4 +109,5 @@ class NetworkManager {
             throw BFError.invalidData
         }
     }
+
 }

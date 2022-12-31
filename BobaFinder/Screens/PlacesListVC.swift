@@ -85,8 +85,8 @@ class PlacesListVC: UIViewController {
             do {
                 let places = try await NetworkManager.shared.getPlaces(for: zipcode)
                 self.places = places
-                updateData(on: places)
-                updateUI(with: places)
+                updateData(on: self.places)
+                updateUI(with: self.places)
                 dismissLoadingView()
             } catch {
                 if let bfError = error as? BFError {
