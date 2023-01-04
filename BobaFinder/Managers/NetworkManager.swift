@@ -98,7 +98,21 @@ class NetworkManager {
         let (data, response) = try await URLSession.shared.data(for: request as URLRequest)
         
         guard let response = response as? HTTPURLResponse, response.statusCode == 200 else {
-            throw BFError.invalidResponse
+            // Some valid Place fsqIds do not have any tips but return invalid response.
+            // Did a second request to validate the Place fsqId.
+            // If Place is valid, return empty Tips array rather than throw invalid response error.
+            let requestValidatePlace = NSMutableURLRequest(url: NSURL(string: "https://api.foursquare.com/v3/places/\(fsqId)")! as URL,
+                                                    cachePolicy: .useProtocolCachePolicy,
+                                                timeoutInterval: 10.0)
+            requestValidatePlace.httpMethod = "GET"
+            requestValidatePlace.allHTTPHeaderFields = headers
+            
+            let (_, responseValidatePlace) = try await URLSession.shared.data(for: requestValidatePlace as URLRequest)
+            guard let responseValidatePlace = responseValidatePlace as? HTTPURLResponse, responseValidatePlace.statusCode == 200 else {
+                throw BFError.invalidResponse
+            }
+            
+            return [] // return empty Tips array if place was validated
         }
         
         do {
