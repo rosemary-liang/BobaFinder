@@ -11,7 +11,7 @@ class FavoriteCell: UITableViewCell {
 
     static let reuseID = "FavoriteCell"
     let placeImageView = BFImageView(frame: .zero)
-    let placeNameLabel = BFTitleLabel(textAlignment: .left, fontSize: 26)
+    let placeNameLabel = BFTitleLabel(textAlignment: .left, fontSize: 24)
     
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
