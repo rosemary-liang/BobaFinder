@@ -71,6 +71,7 @@ class FavoritesListVC: UIViewController {
     }
 }
 
+
 extension FavoritesListVC: UITableViewDataSource, UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
