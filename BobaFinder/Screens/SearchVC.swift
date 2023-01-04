@@ -36,10 +36,17 @@ class SearchVC: UIViewController {
     
     
     @objc func pushPlacesListVC() {
-        guard isZipcodeEntered else {
+        guard isZipcodeEntered  else {
             presentBFAlert(title: "Empty zipcode", message: "Please enter a zipcode so we can search for nearby boba places.", buttonTitle: "Ok")
             return
         }
+        
+        guard zipcodeTextField.text!.isValidFiveDigitZipcode else {
+            presentBFAlert(title: "Invalid zipcode", message: "Please enter a valid 5-digit zipcode so we can search for nearby boba places.", buttonTitle: "Ok")
+            return
+        }
+    
+        
         let placesListVC    = PlacesListVC()
         placesListVC.zipcode        = zipcodeTextField.text
         placesListVC.title        = "Boba near \(zipcodeTextField.text ?? "")"
