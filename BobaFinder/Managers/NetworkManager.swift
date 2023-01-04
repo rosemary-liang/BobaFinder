@@ -12,9 +12,9 @@ class NetworkManager {
     static let shared = NetworkManager()
     private let baseURL = "https://api.foursquare.com/v3/places"
     
-    let cache = NSCache<NSString, UIImage>()
-    let decoder = JSONDecoder()
-    let headers = [
+    private let cache = NSCache<NSString, UIImage>()
+    private let decoder = JSONDecoder()
+    private let headers = [
       "accept": "application/json",
       "Authorization": "fsq3/vG10P9E7CJrfEW2r0kHgYFSzOyw0fl0ni5mKhnrx1Y="
     ]

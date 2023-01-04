@@ -94,13 +94,13 @@
 		C9768944295627EB00F7F14F /* CustomViews */ = {
 			isa = PBXGroup;
 			children = (
+				C9494975295F94D2004BCE4C /* BFTabBarController.swift */,
 				C97689452956283000F7F14F /* BFButton.swift */,
 				C976894729562AD600F7F14F /* BFTextField.swift */,
 				C976894B29563C1D00F7F14F /* Labels */,
 				C976895629566EA000F7F14F /* ViewControllers */,
 				C976895329566BA900F7F14F /* Views */,
 				C976896D295B924300F7F14F /* Cells */,
-				C9494975295F94D2004BCE4C /* BFTabBarController.swift */,
 			);
 			path = CustomViews;
 			sourceTree = "<group>";
