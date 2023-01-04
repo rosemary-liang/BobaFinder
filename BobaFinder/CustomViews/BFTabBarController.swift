@@ -13,8 +13,9 @@ class BFTabBarController: UITabBarController {
         super.viewDidLoad()
         UITabBar.appearance().tintColor         = .systemIndigo
         UINavigationBar.appearance().tintColor  = .systemIndigo
-        viewControllers                  = [createSearchNC(), createFavoritesNC()]
+        viewControllers                         = [createSearchNC(), createFavoritesNC()]
     }
+    
     
     func createSearchNC() -> UINavigationController {
         let searchVC        = SearchVC()
@@ -28,15 +29,4 @@ class BFTabBarController: UITabBarController {
         favoritesVC.tabBarItem  = UITabBarItem(tabBarSystemItem: .favorites, tag: 1)
         return UINavigationController(rootViewController: favoritesVC)
     }
-    
-    
-//    func createTabbar() -> UITabBarController {
-//        let tabbar = UITabBarController()
-//
-//        return tabbar
-//    }
-//
-
- 
-
 }

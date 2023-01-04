@@ -37,13 +37,11 @@ class BFPlaceInfoHeadVC: UIViewController {
     
     func setPhoto() {
         Task {
-            placeImageView.getPhotoURLAndSetImage(name: place.name, fsqId: place.fsqID)
-//            placeImageView.getPhotoURLAndSetImage(fsqId: place.fsqID)
-        }
+            placeImageView.getPhotoURLAndSetImage(name: place.name, fsqId: place.fsqID)        }
     }
 
     
-    func addSubviews() {
+    private func addSubviews() {
         view.addSubview(placeImageView)
         view.addSubview(placeNameLabel)
         view.addSubview(distanceLabel)
@@ -51,7 +49,7 @@ class BFPlaceInfoHeadVC: UIViewController {
     }
     
     
-    func configureUIElements() {
+    private func configureUIElements() {
         setPhoto()
         
         placeNameLabel.text         = place.name
@@ -64,7 +62,7 @@ class BFPlaceInfoHeadVC: UIViewController {
     }
     
     
-    func layoutUI() {
+    private func layoutUI() {
         let padding: CGFloat        = 20
         let imagePadding: CGFloat   = 16
         placeImageView.translatesAutoresizingMaskIntoConstraints = false

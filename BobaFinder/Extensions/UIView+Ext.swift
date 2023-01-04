@@ -8,6 +8,7 @@
 import UIKit
 
 extension UIView {
+    // to find parent VC
     func findViewController() -> UIViewController? {
         if let nextResponder = self.next as? UIViewController {
             return nextResponder

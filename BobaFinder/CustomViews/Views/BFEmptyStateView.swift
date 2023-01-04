@@ -31,13 +31,13 @@ class BFEmptyStateView: UIView {
     }
     
     
-    func addSubviews() {
+    private func addSubviews() {
         addSubview(messageLabel)
         addSubview(logoImageView)
     }
     
     
-    func configureUIElements() {
+    private func configureUIElements() {
         messageLabel.numberOfLines  = 3
         messageLabel.textColor      = .secondaryLabel
         logoImageView.image         = UIImage(named: "empty-state-image")
@@ -46,7 +46,7 @@ class BFEmptyStateView: UIView {
     }
     
     
-    func layoutUI() {
+    private func layoutUI() {
         NSLayoutConstraint.activate([
             logoImageView.centerYAnchor.constraint(equalTo: self.centerYAnchor, constant: -100),
             logoImageView.widthAnchor.constraint(equalToConstant: 200),

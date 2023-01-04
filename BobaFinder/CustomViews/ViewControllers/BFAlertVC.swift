@@ -18,7 +18,7 @@ class BFAlertVC: UIViewController {
     var message: String?
     var buttonTitle:String?
     
-    let padding: CGFloat = 20
+    private let padding: CGFloat = 20
     
     init(title: String, message: String, buttonTitle: String) {
         super.init(nibName: nil, bundle: nil)
@@ -42,7 +42,7 @@ class BFAlertVC: UIViewController {
     }
     
     
-    func addSubviews() {
+    private func addSubviews() {
         view.addSubview(containerView)
         view.addSubview(titleLabel)
         view.addSubview(actionButton)
@@ -50,7 +50,7 @@ class BFAlertVC: UIViewController {
     }
     
     
-    func configureUIElements() {
+    private func configureUIElements() {
         titleLabel.text = alertTitle ?? "Something went wrong"
         actionButton.setTitle(buttonTitle ?? "Ok", for: .normal)
         actionButton.addTarget(self, action: #selector(dismissVC), for: .touchUpInside)
@@ -59,7 +59,7 @@ class BFAlertVC: UIViewController {
     }
     
     
-    func layoutUI() {
+    private func layoutUI() {
         NSLayoutConstraint.activate([
             containerView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             containerView.centerYAnchor.constraint(equalTo: view.centerYAnchor),

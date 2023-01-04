@@ -61,7 +61,7 @@ class PlacesListVC: UIViewController {
     }
     
     
-    func createTwoColumnFlowLayout() -> UICollectionViewFlowLayout {
+    private func createTwoColumnFlowLayout() -> UICollectionViewFlowLayout {
         let width                         = view.bounds.width
         let padding: CGFloat              = 12
         let minimumItemSpacing: CGFloat   = 10
@@ -78,7 +78,7 @@ class PlacesListVC: UIViewController {
     }
     
     
-    func getPlaces() {
+    private func getPlaces() {
         showLoadingView()
         
         Task {
@@ -100,7 +100,7 @@ class PlacesListVC: UIViewController {
     }
     
 
-    func updateUI(with places: [Place]) {
+    private func updateUI(with places: [Place]) {
         if self.places.isEmpty {
             let message = "No boba places found. Please try another zipcode."
             self.showEmptyStateView(with: message, in: self.view, scaleX: 1, scaleY: 1)
@@ -108,7 +108,7 @@ class PlacesListVC: UIViewController {
     }
     
     
-    func configureDataSource() {
+    private func configureDataSource() {
         dataSource = UICollectionViewDiffableDataSource<Section, Place>(collectionView: collectionView, cellProvider: { (collectionView, indexPath, place) -> UICollectionViewCell? in
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: PlaceCell.reuseID, for: indexPath) as! PlaceCell
             cell.set(place: place)
@@ -117,7 +117,7 @@ class PlacesListVC: UIViewController {
     }
     
     
-    func updateData(on places: [Place]) {
+    private func updateData(on places: [Place]) {
         var snapshot = NSDiffableDataSourceSnapshot<Section, Place>()
         snapshot.appendSections([.main])
         snapshot.appendItems(places)

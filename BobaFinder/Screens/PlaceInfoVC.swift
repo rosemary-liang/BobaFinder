@@ -37,7 +37,7 @@ class PlaceInfoVC: UIViewController, TipsDelegate {
     }
     
     
-    func configureViewController() {
+    private func configureViewController() {
         view.backgroundColor = .systemBackground
         let padding: CGFloat = 20
         
@@ -89,7 +89,7 @@ class PlaceInfoVC: UIViewController, TipsDelegate {
     }
     
     
-    func configureUIElements(with place: Place) {
+    private func configureUIElements(with place: Place) {
         self.add(childVC: BFPlaceInfoHeadVC(place: place), to: self.headerView)
         
         let tipsVC = BFTipsVC(place: place)
@@ -98,7 +98,7 @@ class PlaceInfoVC: UIViewController, TipsDelegate {
     }
 
 
-    func add(childVC: UIViewController, to containerView: UIView) {
+    private func add(childVC: UIViewController, to containerView: UIView) {
         addChild(childVC)
         containerView.addSubview(childVC.view)
         childVC.view.frame = containerView.bounds
@@ -106,9 +106,8 @@ class PlaceInfoVC: UIViewController, TipsDelegate {
     }
     
     
-    func configureActionButton() {
+    private func configureActionButton() {
         actionButton.addTarget(self, action: #selector(actionButtonTapped), for: .touchUpInside)
-        
     }
     
     

@@ -44,7 +44,7 @@ class FavoritesListVC: UIViewController {
     }
     
     
-    func getFavorites() {
+    private func getFavorites() {
         PersistenceManager.retrieveFavorites { [weak self] result in
             guard let self else { return }
             switch result {

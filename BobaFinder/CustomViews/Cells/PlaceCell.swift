@@ -41,13 +41,13 @@ class PlaceCell: UICollectionViewCell {
         }
     }
     
-    func addSubviews() {
+    private func addSubviews() {
         addSubview(placeImageView)
         addSubview(placeNameLabel)
         addSubview(distanceLabel)
     }
     
-    func layoutUI() {
+    private func layoutUI() {
         let padding: CGFloat = 8
         
         NSLayoutConstraint.activate([

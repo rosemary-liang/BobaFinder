@@ -36,7 +36,7 @@ class TipCell: UICollectionViewCell {
     }
     
     
-    func formatDate(dateString: String) -> String {
+    private func formatDate(dateString: String) -> String {
         let date = dateString
           
         let formatter1 = DateFormatter()
@@ -55,7 +55,7 @@ class TipCell: UICollectionViewCell {
     }
     
     
-    func addSubviews() {
+    private func addSubviews() {
         addSubview(tipLabel)
         addSubview(timestampLabel)
     }

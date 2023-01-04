@@ -26,7 +26,7 @@ class FavoriteCell: UITableViewCell {
     }
     
     
-    func addSubviews() {
+    private func addSubviews() {
         addSubview(placeImageView)
         addSubview(placeNameLabel)
     }

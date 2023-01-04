@@ -54,7 +54,7 @@ class SearchVC: UIViewController {
     }
     
     
-    func addSubviews() {
+    private func addSubviews() {
         view.addSubview(logoImageView)
         view.addSubview(titleLabel)
         view.addSubview(zipcodeTextField)
@@ -62,7 +62,7 @@ class SearchVC: UIViewController {
     }
     
     
-    func configureUIElements() {
+    private func configureUIElements() {
         logoImageView.translatesAutoresizingMaskIntoConstraints = false
         logoImageView.image = UIImage(named: "logo-image")
         
@@ -76,7 +76,7 @@ class SearchVC: UIViewController {
     }
     
     
-    func layoutUI() {
+    private func layoutUI() {
         NSLayoutConstraint.activate([
             logoImageView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 80),
             logoImageView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
@@ -101,7 +101,7 @@ class SearchVC: UIViewController {
     }
     
     
-    func createDismissKeyboardTapGesture() {
+    private func createDismissKeyboardTapGesture() {
         let tap = UITapGestureRecognizer(target: self.view, action: #selector(UIView.endEditing(_:)))
         view.addGestureRecognizer(tap)
     }

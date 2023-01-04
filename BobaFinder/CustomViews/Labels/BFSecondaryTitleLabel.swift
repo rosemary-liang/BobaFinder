@@ -27,7 +27,7 @@ class BFSecondaryTitleLabel: UILabel {
     }
     
     
-    func configure() {
+    private func configure() {
         translatesAutoresizingMaskIntoConstraints   = false
         textColor                                   = .secondaryLabel
         adjustsFontSizeToFitWidth                   = true
