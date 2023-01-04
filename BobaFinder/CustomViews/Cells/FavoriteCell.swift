@@ -54,7 +54,8 @@ class FavoriteCell: UITableViewCell {
         placeNameLabel.text = favorite.name
         
         Task {
-            placeImageView.getPhotoURLAndSetImage(fsqId: favorite.fsqID)
+//            placeImageView.getPhotoURLAndSetImage(fsqId: favorite.fsqID)
+            placeImageView.getPhotoURLAndSetImage(name: favorite.name, fsqId: favorite.fsqID)
         }
     }
     

@@ -37,7 +37,8 @@ class BFPlaceInfoHeadVC: UIViewController {
     
     func setPhoto() {
         Task {
-            placeImageView.getPhotoURLAndSetImage(fsqId: place.fsqID)
+            placeImageView.getPhotoURLAndSetImage(name: place.name, fsqId: place.fsqID)
+//            placeImageView.getPhotoURLAndSetImage(fsqId: place.fsqID)
         }
     }
 

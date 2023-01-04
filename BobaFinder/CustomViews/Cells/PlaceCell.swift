@@ -36,7 +36,8 @@ class PlaceCell: UICollectionViewCell {
         
         
         Task {
-            placeImageView.getPhotoURLAndSetImage(fsqId: place.fsqID)
+            placeImageView.getPhotoURLAndSetImage(name: place.name, fsqId: place.fsqID)
+//            placeImageView.getPhotoURLAndSetImage(fsqId: place.fsqID)
         }
     }
     

@@ -31,12 +31,17 @@ class BFImageView: UIImageView {
         translatesAutoresizingMaskIntoConstraints = false
     }
     
-    func getPhotoURLAndSetImage(fsqId: String) {
+    func getPhotoURLAndSetImage(name: String, fsqId: String) {
         Task {
             let photos = try await NetworkManager.shared.getPhotoURLs(for: fsqId)
-            guard let photo = photos.first else { return }
+//            print(name, photos.first)
+            guard let photo = photos.first else {
+                print(name, "photos failed for this one")
+                image = placeholderImage
+                return }
             let photoURL = photo.rootPrefix + "original" + photo.suffix
             self.photoURL = photoURL
+//            print(name, self.photoURL ?? "no url")
             image = await NetworkManager.shared.downloadImage(from: self.photoURL!) ?? placeholderImage
         }
     }
