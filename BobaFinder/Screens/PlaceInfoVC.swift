@@ -7,11 +7,7 @@
 
 import UIKit
 
-//protocol PlaceInfoVCDelegate: AnyObject {
-//    func didTapAddToFavorites(for place: Place)
-//}
-
-class PlaceInfoVC: UIViewController {
+class PlaceInfoVC: UIViewController, TipsDelegate {
     
     let headerView      = UIView()
     let tipsScrollView  = UIScrollView()
@@ -28,6 +24,16 @@ class PlaceInfoVC: UIViewController {
         configureViewController()
         configureUIElements(with: place)
         configureActionButton()
+    }
+    
+    
+    func tipsIsEmpty(tips: [Tip]) {
+        if tips.isEmpty {
+            let parentVC = tipsScrollView.findViewController()
+            let message = "No tips added for this boba place."
+            
+            parentVC?.showEmptyStateView(with: message, in: tipsScrollView, scaleX: 0.75, scaleY: 0.75)
+        }
     }
     
     
@@ -85,7 +91,10 @@ class PlaceInfoVC: UIViewController {
     
     func configureUIElements(with place: Place) {
         self.add(childVC: BFPlaceInfoHeadVC(place: place), to: self.headerView)
-        self.add(childVC: BFTipsVC(place: place), to: self.tipsView)
+        
+        let tipsVC = BFTipsVC(place: place)
+        tipsVC.delegate = self
+        self.add(childVC: tipsVC, to: self.tipsView)
     }
 
 

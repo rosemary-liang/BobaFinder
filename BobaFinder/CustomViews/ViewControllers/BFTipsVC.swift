@@ -7,6 +7,10 @@
 
 import UIKit
 
+protocol TipsDelegate {
+    func tipsIsEmpty(tips: [Tip])
+}
+
 class BFTipsVC: UIViewController {
     
     enum Section {
@@ -16,6 +20,7 @@ class BFTipsVC: UIViewController {
     var place: Place!
     var tips: [Tip] = []
     var collectionView: UICollectionView!
+    var delegate: TipsDelegate?
    
     
     var dataSource: UICollectionViewDiffableDataSource<Section, Tip>!
@@ -98,7 +103,7 @@ class BFTipsVC: UIViewController {
             do {
                 tips = try await NetworkManager.shared.getPlaceTips(for: place.fsqID)
                 updateData()
-                updateUI()
+                delegate?.tipsIsEmpty(tips: tips)
                 dismissLoadingView()
             } catch {
                 if let bfError = error as? BFError {
@@ -108,14 +113,6 @@ class BFTipsVC: UIViewController {
                 }
                 dismissLoadingView()
             }
-        }
-    }
-    
-    
-    func updateUI() {
-        if tips.isEmpty {
-            let message = "No tips added for this boba place."
-            self.showEmptyStateView(with: message, in: self.view, scaleX: 0.75, scaleY: 0.75)
         }
     }
 }
