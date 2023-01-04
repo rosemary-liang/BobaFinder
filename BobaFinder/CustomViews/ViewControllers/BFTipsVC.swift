@@ -115,7 +115,7 @@ class BFTipsVC: UIViewController {
     func updateUI() {
         if tips.isEmpty {
             let message = "No tips added for this boba place."
-            showEmptyStateView(with: message, in: self.view, scaleX: 0.75, scaleY: 0.75)
+            self.showEmptyStateView(with: message, in: self.view, scaleX: 0.75, scaleY: 0.75)
         }
     }
 }

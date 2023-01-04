@@ -37,15 +37,7 @@ class BFImageView: UIImageView {
             guard let photo = photos.first else { return }
             let photoURL = photo.rootPrefix + "original" + photo.suffix
             self.photoURL = photoURL
-            
-            guard let _ = self.photoURL else {
-                image = placeholderImage
-                return
-            }
-            
-            Task {
-                image = await NetworkManager.shared.downloadImage(from: photoURL) ?? placeholderImage
-            }
+            image = await NetworkManager.shared.downloadImage(from: self.photoURL!) ?? placeholderImage
         }
     }
 }

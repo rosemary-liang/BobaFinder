@@ -44,7 +44,6 @@ class NetworkManager {
     
     
     func getPhotoURLs(for fsqId: String) async throws -> [Photo] {
-      
         let request = NSMutableURLRequest(url: NSURL(string: baseURL + "/\(fsqId)/photos?sort=POPULAR")! as URL,
                                                 cachePolicy: .useProtocolCachePolicy,
                                             timeoutInterval: 10.0)
@@ -80,6 +79,7 @@ class NetworkManager {
             guard let image = UIImage(data: data) else { return nil }
             cache.setObject(image, forKey: cacheKey)
             return image
+            
         } catch {
             return nil
         }
@@ -87,18 +87,16 @@ class NetworkManager {
     
     
     func getPlaceTips(for fsqId: String) async throws -> [Tip] {
-        let headers = [
-          "accept": "application/json",
-          "Authorization": " fsq3/vG10P9E7CJrfEW2r0kHgYFSzOyw0fl0ni5mKhnrx1Y="
-        ]
-
-        let request = NSMutableURLRequest(url: NSURL(string: "https://api.foursquare.com/v3/places/\(fsqId)/tips?sort=POPULAR")! as URL,
+        let request = NSMutableURLRequest(url: NSURL(string: baseURL +
+                                                    "/\(fsqId)/tips?sort=POPULAR")! as URL,
                                                 cachePolicy: .useProtocolCachePolicy,
                                             timeoutInterval: 10.0)
+        
         request.httpMethod = "GET"
         request.allHTTPHeaderFields = headers
         
         let (data, response) = try await URLSession.shared.data(for: request as URLRequest)
+        
         guard let response = response as? HTTPURLResponse, response.statusCode == 200 else {
             throw BFError.invalidResponse
         }

@@ -13,7 +13,7 @@ class PlaceCell: UICollectionViewCell {
     
     var placeImageView = BFImageView(frame: .zero)
     var photos: [Photo] = []
-    let nameLabel = BFTitleLabel(textAlignment: .center, fontSize: 16)
+    let placeNameLabel = BFTitleLabel(textAlignment: .center, fontSize: 16)
     let distanceLabel = BFBodyLabel(textAlignment: .center)
     
     
@@ -30,7 +30,7 @@ class PlaceCell: UICollectionViewCell {
     
    
     func set(place: Place) {
-        nameLabel.text = place.name
+        placeNameLabel.text = place.name
         let distanceInMiles: Double = Double(place.distance) / 1_609.344
         distanceLabel.text = "\(String(format: "%.1f", distanceInMiles)) miles"
         
@@ -42,7 +42,7 @@ class PlaceCell: UICollectionViewCell {
     
     func addSubviews() {
         addSubview(placeImageView)
-        addSubview(nameLabel)
+        addSubview(placeNameLabel)
         addSubview(distanceLabel)
     }
     
@@ -55,12 +55,12 @@ class PlaceCell: UICollectionViewCell {
             placeImageView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -padding),
             placeImageView.heightAnchor.constraint(equalTo: placeImageView.widthAnchor),
             
-            nameLabel.topAnchor.constraint(equalTo: placeImageView.bottomAnchor, constant: 12),
-            nameLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: padding),
-            nameLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -padding),
-            nameLabel.heightAnchor.constraint(equalToConstant: 20),
+            placeNameLabel.topAnchor.constraint(equalTo: placeImageView.bottomAnchor, constant: 12),
+            placeNameLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: padding),
+            placeNameLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -padding),
+            placeNameLabel.heightAnchor.constraint(equalToConstant: 20),
             
-            distanceLabel.topAnchor.constraint(equalTo: nameLabel.bottomAnchor, constant: 2),
+            distanceLabel.topAnchor.constraint(equalTo: placeNameLabel.bottomAnchor, constant: 2),
             distanceLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: padding),
             distanceLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -padding),
             distanceLabel.heightAnchor.constraint(equalToConstant: 10)
