@@ -11,12 +11,13 @@ class FavoriteCell: UITableViewCell {
 
     static let reuseID = "FavoriteCell"
     let placeImageView = BFImageView(frame: .zero)
-    let placeNameLabel = BFTitleLabel(textAlignment: .left, fontSize: 26)
+    let placeNameLabel = BFTitleLabel(textAlignment: .left, fontSize: 24)
     
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
-        configure()
+        addSubviews()
+        layoutUI()
     }
     
     
@@ -24,10 +25,14 @@ class FavoriteCell: UITableViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
-    private func configure() {
+    
+    private func addSubviews() {
         addSubview(placeImageView)
         addSubview(placeNameLabel)
-        
+    }
+    
+    
+    private func layoutUI() {
         accessoryType                = .disclosureIndicator // tappable to present new content
         let padding: CGFloat         = 12
         
@@ -48,24 +53,8 @@ class FavoriteCell: UITableViewCell {
     func set(favorite: Place) {
         placeNameLabel.text = favorite.name
         
-        #warning("dupe function")
-        NetworkManager.shared.getPhotoURLs(for: favorite.fsqID) { [weak self] result in
-            guard let self else { return }
-            switch result {
-            case .success(let photos):
-
-                guard let photo = photos.first else { return }
-                let photoURL = photo.rootPrefix + "original" + photo.suffix
-
-                NetworkManager.shared.downloadImage(from: photoURL) { image in
-                    DispatchQueue.main.async {
-                        self.placeImageView.image = image
-                    }
-                }
-
-            case .failure(_):
-                break
-            }
+        Task {
+            placeImageView.getPhotoURLAndSetImage(name: favorite.name, fsqId: favorite.fsqID)
         }
     }
     

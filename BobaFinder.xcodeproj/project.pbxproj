@@ -17,6 +17,7 @@
 		C949496E295CDBC6004BCE4C /* BFSecondaryTitleLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C949496D295CDBC6004BCE4C /* BFSecondaryTitleLabel.swift */; };
 		C9494972295E5A1A004BCE4C /* PersistenceManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9494971295E5A1A004BCE4C /* PersistenceManager.swift */; };
 		C9494974295F5B19004BCE4C /* FavoriteCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9494973295F5B19004BCE4C /* FavoriteCell.swift */; };
+		C9494976295F94D2004BCE4C /* BFTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9494975295F94D2004BCE4C /* BFTabBarController.swift */; };
 		C976893D29561F7300F7F14F /* SearchVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = C976893C29561F7300F7F14F /* SearchVC.swift */; };
 		C97689432956213E00F7F14F /* FavoritesListVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = C97689422956213E00F7F14F /* FavoritesListVC.swift */; };
 		C97689462956283000F7F14F /* BFButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = C97689452956283000F7F14F /* BFButton.swift */; };
@@ -51,6 +52,7 @@
 		C949496D295CDBC6004BCE4C /* BFSecondaryTitleLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BFSecondaryTitleLabel.swift; sourceTree = "<group>"; };
 		C9494971295E5A1A004BCE4C /* PersistenceManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersistenceManager.swift; sourceTree = "<group>"; };
 		C9494973295F5B19004BCE4C /* FavoriteCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteCell.swift; sourceTree = "<group>"; };
+		C9494975295F94D2004BCE4C /* BFTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BFTabBarController.swift; sourceTree = "<group>"; };
 		C976893C29561F7300F7F14F /* SearchVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchVC.swift; sourceTree = "<group>"; };
 		C97689422956213E00F7F14F /* FavoritesListVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesListVC.swift; sourceTree = "<group>"; };
 		C97689452956283000F7F14F /* BFButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BFButton.swift; sourceTree = "<group>"; };
@@ -90,6 +92,7 @@
 		C9768944295627EB00F7F14F /* CustomViews */ = {
 			isa = PBXGroup;
 			children = (
+				C9494975295F94D2004BCE4C /* BFTabBarController.swift */,
 				C97689452956283000F7F14F /* BFButton.swift */,
 				C976894729562AD600F7F14F /* BFTextField.swift */,
 				C976894B29563C1D00F7F14F /* Labels */,
@@ -299,6 +302,7 @@
 				C976896C295B6FA900F7F14F /* String+Ext.swift in Sources */,
 				C9768975295BB08700F7F14F /* Photo.swift in Sources */,
 				C97689602956B10D00F7F14F /* NetworkManager.swift in Sources */,
+				C9494976295F94D2004BCE4C /* BFTabBarController.swift in Sources */,
 				C976894F2956533000F7F14F /* PlacesListVC.swift in Sources */,
 				C976895229566AAA00F7F14F /* BFBodyLabel.swift in Sources */,
 				C949495C295BF72B004BCE4C /* BFEmptyStateView.swift in Sources */,
@@ -464,7 +468,7 @@
 				INFOPLIST_FILE = BobaFinder/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				IPHONEOS_DEPLOYMENT_TARGET = 16.2;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -491,7 +495,7 @@
 				INFOPLIST_FILE = BobaFinder/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				IPHONEOS_DEPLOYMENT_TARGET = 16.2;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",

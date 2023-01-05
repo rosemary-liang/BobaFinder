@@ -61,7 +61,7 @@ class PlacesListVC: UIViewController {
     }
     
     
-    func createTwoColumnFlowLayout() -> UICollectionViewFlowLayout {
+    private func createTwoColumnFlowLayout() -> UICollectionViewFlowLayout {
         let width                         = view.bounds.width
         let padding: CGFloat              = 12
         let minimumItemSpacing: CGFloat   = 10
@@ -78,39 +78,37 @@ class PlacesListVC: UIViewController {
     }
     
     
-    func getPlaces() {
+    private func getPlaces() {
         showLoadingView()
-        NetworkManager.shared.getPlaces(for: zipcode) { [weak self] result in
-            guard let self else { return }
-            self.dismissLoadingView()
-            
-            switch result {
-            case .success(let places):
-                
+        
+        Task {
+            do {
+                let places = try await NetworkManager.shared.getPlaces(for: zipcode)
                 self.places = places
-                self.updateData(on: self.places)
-                self.updateUI(with: self.places)
-               
-            case .failure(let error):
-                DispatchQueue.main.async {
-                    self.presentBFAlert(title: "Bad stuff happened", message: error.rawValue, buttonTitle: "Ok")
+                updateData(on: self.places)
+                updateUI(with: self.places)
+                dismissLoadingView()
+            } catch {
+                if let bfError = error as? BFError {
+                    presentBFAlert(title: "Bad stuff happened", message: bfError.rawValue, buttonTitle: "Ok")
+                } else {
+                    presentDefaultError()
                 }
+                dismissLoadingView()
             }
         }
     }
     
 
-    func updateUI(with places: [Place]) {
+    private func updateUI(with places: [Place]) {
         if self.places.isEmpty {
             let message = "No boba places found. Please try another zipcode."
-            DispatchQueue.main.async {
-                self.showEmptyStateView(with: message, in: self.view, scaleX: 1, scaleY: 1)
-            }
+            self.showEmptyStateView(with: message, in: self.view, scaleX: 1, scaleY: 1)
         }
     }
     
     
-    func configureDataSource() {
+    private func configureDataSource() {
         dataSource = UICollectionViewDiffableDataSource<Section, Place>(collectionView: collectionView, cellProvider: { (collectionView, indexPath, place) -> UICollectionViewCell? in
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: PlaceCell.reuseID, for: indexPath) as! PlaceCell
             cell.set(place: place)
@@ -119,14 +117,11 @@ class PlacesListVC: UIViewController {
     }
     
     
-    func updateData(on places: [Place]) {
+    private func updateData(on places: [Place]) {
         var snapshot = NSDiffableDataSourceSnapshot<Section, Place>()
         snapshot.appendSections([.main])
         snapshot.appendItems(places)
-        
-        DispatchQueue.main.async {
-            self.dataSource.apply(snapshot, animatingDifferences:  true)
-        }
+        self.dataSource.apply(snapshot, animatingDifferences:  true)
     }
 }
 
@@ -139,8 +134,6 @@ extension PlacesListVC: UICollectionViewDelegate {
         let destVC          = PlaceInfoVC()
         destVC.place        = place
         navigationController?.pushViewController(destVC, animated: true)
-//        let navController   = UINavigationController(rootViewController: destVC)
-//        present(navController, animated: true)
     }
 }
 

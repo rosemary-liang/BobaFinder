@@ -17,13 +17,15 @@ class TipCell: UICollectionViewCell {
 
     override init(frame: CGRect) {
         super.init(frame: frame)
-        configure()
+        addSubviews()
+        layoutUI()
     }
     
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
+    
     
     func set(tip: Tip) {
         tipLabel.text = tip.text
@@ -33,7 +35,8 @@ class TipCell: UICollectionViewCell {
         timestampLabel.text = formatDate(dateString: dateString)
     }
     
-    func formatDate(dateString: String) -> String {
+    
+    private func formatDate(dateString: String) -> String {
         let date = dateString
           
         let formatter1 = DateFormatter()
@@ -48,14 +51,18 @@ class TipCell: UICollectionViewCell {
             let newDateString = formatter2.string(from: date2)
             return newDateString
         }
-        
         return ""
     }
     
-    private func configure() {
+    
+    private func addSubviews() {
         addSubview(tipLabel)
         addSubview(timestampLabel)
-        
+    }
+    
+    
+    private func layoutUI() {
+
         let padding: CGFloat = 15
         
         NSLayoutConstraint.activate([

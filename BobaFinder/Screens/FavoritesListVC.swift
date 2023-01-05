@@ -44,7 +44,7 @@ class FavoritesListVC: UIViewController {
     }
     
     
-    func getFavorites() {
+    private func getFavorites() {
         PersistenceManager.retrieveFavorites { [weak self] result in
             guard let self else { return }
             switch result {
@@ -70,6 +70,7 @@ class FavoritesListVC: UIViewController {
         }
     }
 }
+
 
 extension FavoritesListVC: UITableViewDataSource, UITableViewDelegate {
     
@@ -108,6 +109,8 @@ extension FavoritesListVC: UITableViewDataSource, UITableViewDelegate {
                 self.presentBFAlert(title: "Unable to remove", message: error.rawValue, buttonTitle: "Ok")
             }
         }
+        
+        getFavorites()
     }
     
 }

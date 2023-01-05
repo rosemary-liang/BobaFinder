@@ -14,10 +14,9 @@ class BFTipLabel: UILabel {
         configure()
     }
     
-    init(textAlignment: NSTextAlignment) {
-        super.init(frame: .zero)
+    convenience init(textAlignment: NSTextAlignment) {
+        self.init(frame: .zero)
         self.textAlignment = textAlignment
-        configure()
     }
     
     
@@ -27,13 +26,13 @@ class BFTipLabel: UILabel {
     
     
     private func configure() {
-        textColor                           = .secondaryLabel
-        font                                = UIFont.preferredFont(forTextStyle: .subheadline)
-        adjustsFontForContentSizeCategory   = true
-        adjustsFontSizeToFitWidth           = true
-        minimumScaleFactor                  = 0.75
-        lineBreakMode                       = .byWordWrapping
-        translatesAutoresizingMaskIntoConstraints = false
+        translatesAutoresizingMaskIntoConstraints   = false
+        textColor                                   = .secondaryLabel
+        font                                        = UIFont.preferredFont(forTextStyle: .subheadline)
+        adjustsFontForContentSizeCategory           = true
+        adjustsFontSizeToFitWidth                   = true
+        minimumScaleFactor                          = 0.75
+        lineBreakMode                               = .byWordWrapping
     }
     
     

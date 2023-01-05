@@ -11,6 +11,7 @@ class BFImageView: UIImageView {
     
     let placeholderImage = UIImage(named: "no-image-available")
    
+    var photoURL: String? = nil
 
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -22,6 +23,7 @@ class BFImageView: UIImageView {
         fatalError("init(coder:) has not been implemented")
     }
     
+    
     private func configure() {
         layer.cornerRadius  = 10
         clipsToBounds       = true
@@ -29,4 +31,17 @@ class BFImageView: UIImageView {
         translatesAutoresizingMaskIntoConstraints = false
     }
     
+    func getPhotoURLAndSetImage(name: String, fsqId: String) {
+
+        Task {
+            let photos = try await NetworkManager.shared.getPhotoURLs(for: fsqId)
+            guard let photo = photos.first else {
+                image = placeholderImage
+                return }
+            
+            self.photoURL = photo.rootPrefix + "original" + photo.suffix
+            self.photoURL = photoURL
+            image = await NetworkManager.shared.downloadImage(from: self.photoURL!) ?? placeholderImage
+        }
+    }
 }

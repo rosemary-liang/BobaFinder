@@ -7,30 +7,28 @@
 
 import UIKit
 
+
 class BFTipsVC: UIViewController {
     
     enum Section {
         case main
     }
     
-    // how to pass place and tips to this?
     var place: Place!
     var tips: [Tip] = []
     var collectionView: UICollectionView!
-   
-    
     var dataSource: UICollectionViewDiffableDataSource<Section, Tip>!
+    
     
     init(place: Place ) {
         super.init(nibName: nil, bundle: nil)
         self.place = place
-//        self.tips = tips
     }
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
         getPlaceTips()
-        configureViewController()
         configureCollectionView()
         configureDataSource()
 
@@ -41,35 +39,58 @@ class BFTipsVC: UIViewController {
         fatalError("init(coder:) has not been implemented")
     }
     
-    private func configureViewController() {
-       
-
+    
+    func getPlaceTips() {
+        showLoadingView()
+        
+        Task {
+            do {
+                tips = try await NetworkManager.shared.getPlaceTips(for: place.fsqID)
+                updateData()
+                updateUI(with: self.tips)
+                dismissLoadingView()
+                
+            } catch {
+                if let bfError = error as? BFError {
+                    presentBFAlert(title: "Something bad happened", message: bfError.rawValue, buttonTitle: "Ok")
+                } else {
+                    presentDefaultError()
+                }
+                dismissLoadingView()
+            }
+        }
     }
     
+    
+    func updateUI(with tips: [Tip]) {
+        if tips.isEmpty {
+            let message = "No tips added for this boba place."
+            showEmptyStateView(with: message, in: self.view, scaleX: 0.75, scaleY: 0.75, translateY: 225.0)
+        }
+    }
+    
+    
     private func configureCollectionView() {
-//        let collectionFrame = CGRect(x: 0, y: 60, width: view.frame.width, height: 200)
         collectionView = UICollectionView(frame: view.bounds, collectionViewLayout: createSingleColumnFlowLayout())
         view.addSubview(collectionView)
         collectionView.register(TipCell.self, forCellWithReuseIdentifier: TipCell.reuseId)
-
     }
     
     
-    func createSingleColumnFlowLayout() -> UICollectionViewFlowLayout {
-        let padding: CGFloat              = 20
-//        let minimumItemSpacing: CGFloat   = 12
+    private func createSingleColumnFlowLayout() -> UICollectionViewFlowLayout {
+        let padding: CGFloat              = 15
         let itemWidth                     = view.bounds.width - (padding * 2)
         
         let flowLayout = UICollectionViewFlowLayout()
         flowLayout.minimumLineSpacing = 20
         flowLayout.sectionInset = UIEdgeInsets(top: padding, left: padding, bottom: padding, right: padding)
         flowLayout.itemSize = CGSize(width: itemWidth, height: 140)
-//        flowLayout.scrollDirection = .vertical
-        
+
         return flowLayout
     }
     
-    func configureDataSource() {
+    
+    private func configureDataSource() {
         dataSource = UICollectionViewDiffableDataSource<Section, Tip>(collectionView: collectionView, cellProvider: { collectionView, indexPath, tip in
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: TipCell.reuseId, for: indexPath) as! TipCell
             cell.set(tip: tip)
@@ -80,7 +101,8 @@ class BFTipsVC: UIViewController {
         })
     }
     
-    func updateData() {
+    
+    private func updateData() {
         var snapshot = NSDiffableDataSourceSnapshot<Section, Tip>()
         snapshot.appendSections([.main])
         snapshot.appendItems(tips)
@@ -89,38 +111,4 @@ class BFTipsVC: UIViewController {
             self.dataSource.apply(snapshot, animatingDifferences: true)
         }
     }
-    
-    func getPlaceTips() {
-        showLoadingView()
-        NetworkManager.shared.getPlaceTips(for: place.fsqID) { [weak self] result in
-            guard let self else { return }
-
-            switch result {
-            case.success(let tips):
-                self.tips = tips
-                self.updateData()
-                self.updateUI(with: self.tips)
-                self.dismissLoadingView()
-
-            case .failure(_):
-                DispatchQueue.main.async {
-//                    self.presentBFAlert(title: "Something bad happened", message: error.rawValue, buttonTitle: "Ok")
-                    self.dismissLoadingView()
-                }
-                
-            }
-        }
-    }
-    
-    func updateUI(with tips: [Tip]) {
-        if self.tips.isEmpty {
-            let message = "No tips added for this boba place."
-            DispatchQueue.main.async {
-                self.showEmptyStateView(with: message, in: self.view, scaleX: 0.75, scaleY: 0.75)
-                
-            }
-        }
-    }
-    
-    
 }

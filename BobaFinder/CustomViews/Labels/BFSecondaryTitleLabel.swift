@@ -20,20 +20,19 @@ class BFSecondaryTitleLabel: UILabel {
     }
     
     
-    init(textAlignment: NSTextAlignment, fontSize: CGFloat) {
-        super.init(frame: .zero)
+    convenience init(textAlignment: NSTextAlignment, fontSize: CGFloat) {
+        self.init(frame: .zero)
         self.textAlignment = textAlignment
         self.font = UIFont.systemFont(ofSize: fontSize, weight: .medium)
-        configure()
     }
     
     
-    func configure() {
-        textColor                   = .secondaryLabel
-        adjustsFontSizeToFitWidth   = true
-        minimumScaleFactor          = 0.90
-        lineBreakMode               = .byWordWrapping
-        translatesAutoresizingMaskIntoConstraints = false
+    private func configure() {
+        translatesAutoresizingMaskIntoConstraints   = false
+        textColor                                   = .secondaryLabel
+        adjustsFontSizeToFitWidth                   = true
+        minimumScaleFactor                          = 0.90
+        lineBreakMode                               = .byWordWrapping
     }
     
 }

@@ -9,12 +9,14 @@ import UIKit
 
 class BFEmptyStateView: UIView {
     
-    let messageLabel = BFTitleLabel(textAlignment: .center, fontSize: 28)
+    let messageLabel = BFTitleLabel(textAlignment: .center, fontSize: 26)
     let logoImageView = UIImageView()
 
     override init(frame: CGRect) {
         super.init(frame: frame)
-        configure()
+        addSubviews()
+        configureUIElements()
+        layoutUI()
     }
     
     
@@ -22,30 +24,34 @@ class BFEmptyStateView: UIView {
         fatalError("init(coder:) has not been implemented")
     }
     
-    init(message: String) {
-        super.init(frame: .zero)
+    
+    convenience init(message: String) {
+        self.init(frame: .zero)
         messageLabel.text = message
-        configure()
-        
     }
     
     
-    private func configure() {
+    private func addSubviews() {
         addSubview(messageLabel)
         addSubview(logoImageView)
-        
+    }
+    
+    
+    private func configureUIElements() {
         messageLabel.numberOfLines  = 3
         messageLabel.textColor      = .secondaryLabel
         logoImageView.image         = UIImage(named: "empty-state-image")
         logoImageView.alpha         = 0.80
         logoImageView.translatesAutoresizingMaskIntoConstraints = false
-        
+    }
+    
+    
+    private func layoutUI() {
         NSLayoutConstraint.activate([
-            logoImageView.centerYAnchor.constraint(equalTo: self.centerYAnchor, constant: -100),
-            logoImageView.widthAnchor.constraint(equalToConstant: 200),
-            logoImageView.heightAnchor.constraint(equalToConstant: 200),
+            logoImageView.centerYAnchor.constraint(equalTo: self.centerYAnchor, constant: -90),
+            logoImageView.widthAnchor.constraint(equalToConstant: 190),
+            logoImageView.heightAnchor.constraint(equalToConstant: 190),
             logoImageView.centerXAnchor.constraint(equalTo: self.centerXAnchor),
-            
             
             messageLabel.topAnchor.constraint(equalTo: logoImageView.bottomAnchor, constant: -10),
             messageLabel.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 50),

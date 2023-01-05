@@ -11,6 +11,7 @@ class BFAlertContainerView: UIView {
 
     override init(frame: CGRect) {
         super.init(frame: frame)
+        configure()
     }
     
     required init?(coder: NSCoder) {
@@ -18,11 +19,12 @@ class BFAlertContainerView: UIView {
     }
     
     private func configure() {
-        backgroundColor    = .systemBackground
-        layer.cornerRadius = 14
-        layer.borderWidth  = 1
-        layer.borderColor  = UIColor.white.cgColor
         translatesAutoresizingMaskIntoConstraints = false
+        backgroundColor                           = .systemBackground
+        layer.cornerRadius                        = 14
+        layer.borderWidth                         = 1
+        layer.borderColor                         = UIColor.white.cgColor
+
     }
 }
 

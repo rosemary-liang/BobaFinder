@@ -36,31 +36,12 @@ class BFPlaceInfoHeadVC: UIViewController {
     }
     
     func setPhoto() {
-        #warning("dupe function from PlaceCell.. try to refactor later")
-        NetworkManager.shared.getPhotoURLs(for: place.fsqID) { [weak self] result in
-            guard let self else { return }
-            switch result {
-            case .success(let photos):
-
-                guard let photo = photos.first else { return }
-                let photoURL = photo.rootPrefix + "original" + photo.suffix
-
-                NetworkManager.shared.downloadImage(from: photoURL) { image in
-                    DispatchQueue.main.async {
-                        self.placeImageView.image = image
-                    }
-                }
-
-            case .failure(let error):
-                DispatchQueue.main.async {
-                    self.presentBFAlert(title: "Something went wrong", message: error.rawValue, buttonTitle: "Ok")
-                }
-            }
-        }
+        Task {
+            placeImageView.getPhotoURLAndSetImage(name: place.name, fsqId: place.fsqID)        }
     }
+
     
-    
-    func addSubviews() {
+    private func addSubviews() {
         view.addSubview(placeImageView)
         view.addSubview(placeNameLabel)
         view.addSubview(distanceLabel)
@@ -68,45 +49,45 @@ class BFPlaceInfoHeadVC: UIViewController {
     }
     
     
-    func configureUIElements() {
+    private func configureUIElements() {
         setPhoto()
         
         placeNameLabel.text         = place.name
         
-        let distanceInMiles: Double = Double(place.distance) / 1_609.344
-        distanceLabel.text = "\(String(format: "%.1f", distanceInMiles)) miles away"
+        let distanceInMiles         = Double(place.distance) / 1_609.344
+        distanceLabel.text          = "\(String(format: "%.1f", distanceInMiles)) miles away"
         
         locationLabel.text          = "\(place.location.address)\n\(place.location.locality), \(place.location.region)"
         locationLabel.numberOfLines = 3
     }
     
     
-    func layoutUI() {
+    private func layoutUI() {
         let padding: CGFloat        = 20
         let imagePadding: CGFloat   = 16
         placeImageView.translatesAutoresizingMaskIntoConstraints = false
         view.translatesAutoresizingMaskIntoConstraints = false
         
         NSLayoutConstraint.activate([
-            placeNameLabel.topAnchor.constraint(equalTo: view.topAnchor, constant: padding),
-            placeNameLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: padding), //this?
-            placeNameLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -padding),
+            placeNameLabel.topAnchor.constraint(equalTo: view.topAnchor, constant: 10),
+            placeNameLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            placeNameLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor),
             placeNameLabel.heightAnchor.constraint(equalToConstant: 45),
             
             placeImageView.topAnchor.constraint(equalTo: placeNameLabel.bottomAnchor, constant: padding),
-            placeImageView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: padding),
+            placeImageView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             placeImageView.widthAnchor.constraint(equalToConstant: 140),
             placeImageView.heightAnchor.constraint(equalToConstant: 140),
             
 
             locationLabel.topAnchor.constraint(equalTo: placeNameLabel.bottomAnchor, constant: padding + 10),
             locationLabel.leadingAnchor.constraint(equalTo: placeImageView.trailingAnchor, constant: imagePadding),
-            locationLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -5),
+            locationLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor),
             locationLabel.heightAnchor.constraint(equalToConstant: 60),
             
             distanceLabel.topAnchor.constraint(equalTo: locationLabel.bottomAnchor, constant: -padding),
             distanceLabel.leadingAnchor.constraint(equalTo: placeImageView.trailingAnchor, constant: imagePadding),
-            distanceLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -5),
+            distanceLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor),
             distanceLabel.bottomAnchor.constraint(equalTo: placeImageView.bottomAnchor),
         ])
     }
