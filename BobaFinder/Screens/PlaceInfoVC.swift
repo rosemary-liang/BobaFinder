@@ -7,15 +7,10 @@
 
 import UIKit
 
-class PlaceInfoVC: UIViewController
-//, TipsDelegate
-{
-    
-//    let mainScrollView  = UIView(frame: .zero)
+class PlaceInfoVC: UIViewController {
 
     let headerView      = UIView()
     let tipsScrollView  = UIScrollView(frame: .zero)
-    let emptyTipsView   = UIView()
     let tipsView        = UIView()
     let actionButton    = BFButton(backgroundColor: .systemIndigo, title: "Add to Favorites")
     let tipsTitleLabel  = BFTitleLabel(textAlignment: .left, fontSize: 28)
@@ -53,19 +48,7 @@ class PlaceInfoVC: UIViewController
         configureUIElements(with: place)
         configureActionButton()
     }
-    
-    
-//    func tipsIsEmpty(tips: [Tip]) {
-//        if tips.isEmpty {
-//            print("is empty")
-////            let parentVC = tipsView.findViewController()
-//            let message = "No tips added for this boba place."
-//
-//            showEmptyStateView(with: message, in: emptyTipsView, scaleX: 0.75, scaleY: 0.75)
-//            print("SHOW EMPTY STATE emptyTipsView.frame", emptyTipsView.frame)
-//            print("SHOW EMPTY STATE emptyTipsView.bounds", emptyTipsView.bounds)
-//        }
-//    }
+
     
     func configureViewController() {
         let padding: CGFloat = 20
@@ -77,7 +60,6 @@ class PlaceInfoVC: UIViewController
         mainContainerView.addSubview(actionButton)
         mainContainerView.addSubview(tipsTitleLabel)
         mainContainerView.addSubview(tipsView)
-        mainContainerView.addSubview(emptyTipsView)
         
         tipsTitleLabel.text                                         = "Tips"
         headerView.backgroundColor                                  = .systemBackground
@@ -86,7 +68,7 @@ class PlaceInfoVC: UIViewController
         headerView.translatesAutoresizingMaskIntoConstraints        = false
         tipsTitleLabel.translatesAutoresizingMaskIntoConstraints    = false
         tipsView.translatesAutoresizingMaskIntoConstraints          = false
-//        emptyTipsView.translatesAutoresizingMaskIntoConstraints     = false
+
         
         
         NSLayoutConstraint.activate([
@@ -109,85 +91,13 @@ class PlaceInfoVC: UIViewController
             tipsView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             tipsView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
             tipsView.bottomAnchor.constraint(equalTo: mainContainerView.bottomAnchor),
-            
-//            emptyTipsView.topAnchor.constraint(equalTo: tipsTitleLabel.bottomAnchor),
-//            emptyTipsView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-//            emptyTipsView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-//            emptyTipsView.bottomAnchor.constraint(equalTo: mainContainerView.bottomAnchor)
-            
-            
         ])
-        
-//
-//        print("view.frame", view.frame)
-//        print("view.bounds", view.bounds)
-//
-//        print("tipsView.frame", tipsView.frame)
-//        print("tipsView.bounds", tipsView.bounds)
-//
-//        print("emptyTipsView.frame", emptyTipsView.frame)
-//        print("emptyTipsView.bounds", emptyTipsView.bounds)
     }
-    
-    
-//    private func configureViewController() {
-//        view.backgroundColor = .systemBackground
-//        let padding: CGFloat = 20
-//
-//        view.addSubview(headerView)
-//        view.addSubview(actionButton)
-//        view.addSubview(tipsTitleLabel)
-//        view.addSubview(tipsScrollView)
-//        tipsScrollView.addSubview(tipsView)
-////        view.addSubview(tipsView)
-//
-//        tipsTitleLabel.text                                         = "Tips"
-//        headerView.backgroundColor                                  = .systemBackground
-////        tipsScrollView.contentSize                                  = CGSize(width: tipsView.bounds.width, height: tipsView.bounds.height + 100)
-//        headerView.translatesAutoresizingMaskIntoConstraints        = false
-//        tipsScrollView.translatesAutoresizingMaskIntoConstraints    = false
-//        tipsView.translatesAutoresizingMaskIntoConstraints          = false
-//
-//        NSLayoutConstraint.activate([
-//            headerView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: -70),
-//            headerView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-//            headerView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-//            headerView.heightAnchor.constraint(equalToConstant: 200),
-//
-//            actionButton.topAnchor.constraint(equalTo: headerView.bottomAnchor, constant: padding + 30),
-//            actionButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: padding),
-//            actionButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -padding),
-//            actionButton.heightAnchor.constraint(equalToConstant: 50),
-//
-//            tipsTitleLabel.topAnchor.constraint(equalTo: actionButton.bottomAnchor, constant: padding + 10),
-//            tipsTitleLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: padding),
-//            tipsTitleLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -padding),
-//            tipsTitleLabel.heightAnchor.constraint(equalToConstant: 35),
-//
-//            tipsScrollView.topAnchor.constraint(equalTo: tipsTitleLabel.bottomAnchor),
-//            tipsScrollView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-//            tipsScrollView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-//            tipsScrollView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
-//
-//            tipsView.topAnchor.constraint(equalTo: tipsScrollView.topAnchor),
-//            tipsView.leadingAnchor.constraint(equalTo: tipsScrollView.leadingAnchor),
-//            tipsView.trailingAnchor.constraint(equalTo: tipsScrollView.trailingAnchor),
-//            tipsView.bottomAnchor.constraint(equalTo: tipsScrollView.bottomAnchor)
-//
-////            tipsView.topAnchor.constraint(equalTo: tipsTitleLabel.bottomAnchor),
-////            tipsView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-////            tipsView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-////            tipsView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -padding - 30)
-//        ])
-//    }
-    
+
     
     private func configureUIElements(with place: Place) {
         self.add(childVC: BFPlaceInfoHeadVC(place: place), to: self.headerView)
-        
-        let tipsVC = BFTipsVC(place: place)
-//        tipsVC.delegate = self
-        self.add(childVC: tipsVC, to: self.tipsView)
+        self.add(childVC: BFTipsVC(place: place), to: self.tipsView)
     }
 
 

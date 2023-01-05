@@ -57,14 +57,11 @@ extension UIViewController {
     }
     
     
-    func showEmptyStateView(with message: String,
-                            in view: UIView,
-                            scaleX: Double,
-                            scaleY: Double,
-                            translateY: Double? = nil) {
+    func showEmptyStateView(with message: String, in view: UIView, scaleX: Double, scaleY: Double, translateY: Double? = nil) {
         let emptyStateView = BFEmptyStateView(message: message)
         emptyStateView.frame = view.bounds
         view.addSubview(emptyStateView)
+        
         emptyStateView.transform = CGAffineTransform(scaleX: scaleX, y: scaleY)
             .translatedBy(x: 0, y: translateY ?? 0)
     }
