@@ -45,14 +45,13 @@ class PlaceInfoVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         configureViewController()
+        addSubviews()
+        layoutUI()
         configureUIElements(with: place)
         configureActionButton()
     }
-
     
-    func configureViewController() {
-        let padding: CGFloat = 20
-        
+    private func addSubviews() {
         view.addSubview(mainScrollView)
         mainScrollView.addSubview(mainContainerView)
         
@@ -60,7 +59,10 @@ class PlaceInfoVC: UIViewController {
         mainContainerView.addSubview(actionButton)
         mainContainerView.addSubview(tipsTitleLabel)
         mainContainerView.addSubview(tipsView)
-        
+    }
+
+    
+    private func configureViewController() {
         tipsTitleLabel.text                                         = "Tips"
         headerView.backgroundColor                                  = .systemBackground
         
@@ -68,8 +70,11 @@ class PlaceInfoVC: UIViewController {
         headerView.translatesAutoresizingMaskIntoConstraints        = false
         tipsTitleLabel.translatesAutoresizingMaskIntoConstraints    = false
         tipsView.translatesAutoresizingMaskIntoConstraints          = false
-
-        
+    }
+    
+    
+    private func layoutUI() {
+        let padding: CGFloat = 20
         
         NSLayoutConstraint.activate([
             headerView.topAnchor.constraint(equalTo: mainScrollView.topAnchor, constant: -60),
