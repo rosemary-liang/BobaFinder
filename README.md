@@ -60,10 +60,10 @@ Names, relationships, & purposes of all componenets and relevant data models
 
 ### Screens
 - **SearchVC** is the Search ViewController that contains an image view, a textField, and a UIButton so that a user can input a zipcode and press the UIButton or "enter" to search
-  - When the search commences, input validation is performed, and if it passes, the `pushPlacesListVC` objc function and pushes the PlacesListVC onto the stack and passes the zipcode to the PlacesListVC. 
+  - Input validation is performed, and if it passes, the PlacesListVC is pushed onto the stack and passes the zipcode to the PlacesListVC. 
 
-- **PlacesListVC** shows a UICollectionView of all nearby boba places using the zipcode provided from the SearchVC TextFieldInput
-  - PlacesListVC calls `getPlaces()`, which consists of an asynchronous network call from the `NetworkManager` that returns an array of Places (`[Place]`)
+- **PlacesListVC** shows a collection view of all nearby boba places using the zipcode provided from the SearchVC
+  - PlacesListVC calls `getPlaces()`, which is a network call from the `NetworkManager` that returns an array of Places (`[Place]`)
   - The data source is configured to dequeue resusable `PlaceCell`s and set the cell's place variable with the appropriate `place`.
       - **PlaceCell** is a collection view cell consisting of an image view (BFImageView) and labels
   - A UISearchController allows the user to search for specific places within the existing `places` array. 
@@ -79,16 +79,14 @@ Names, relationships, & purposes of all componenets and relevant data models
 
  - **FavoritesListVC** is a table view of all of the users favorites stored in `UserDefaults` using the `PersistenceManager`. Both the corresponding `UITableViewDataSource` and `UITableViewDelegate` are included as extensions to the `FavoritesListVC`.
       - `FavoritesListVC` calls `getFavorites()`, which consists of an call to `PersistenceManager` `retrieveFavorites()` function and returns an array of Favorites (`[Place]`)
-          - `Place` data model is a struct that was generated using quicktype.io based on the sample response received back from a Foursquare Places API call to the Place Search endpoint.
-
       - The data source is configured to dequeue resusable `FavoriteCell`s and set the cell's place variable with the appropriate `favorite`.
-          - **FavoriteCell** is a table view cell consisting of an image view (`BFImageView`) and a label
-              - **BFImageView** method of `getPhotoURLAndSetImage()` is called to set the image for the cell with the corresponding place. Either the network call's response or placeholder image is used.
-      - The table view's delegate and data source is set to self. When a table view item is selected, the related `PlaceInfoVC` is pushed onto the stack, and the `place` variable is passed to the PlaceInfoVC.
-      - When a user swipes left on a table view item, the user can delete the row and remove the item from the favorites array. The `PersistenceManger` `updateWith()` function with case `remove` is called to remove it from both the local favorites array in the `FavoritesListVC` and in the `UserDefaults` favorites. Once the update is completed, `getFavorites()` is called again to refresh the `FavoritesListVC`.
+      - **FavoriteCell** is a table view cell consisting of an image view (`BFImageView`) and a label
+          - **BFImageView** method of `getPhotoURLAndSetImage()` is called to set the image for the cell with the corresponding place. Either the network call's response or placeholder image is used.
+      - When a table view item is selected, the related `PlaceInfoVC` is pushed onto the stack, and the `place` variable is passed to the PlaceInfoVC.
+      - When a user swipes left on a table view item, the user can delete the row and remove the item from the favorites array. The `PersistenceManger` `updateWith()` function with case `remove` is called to handle this deletion. 
             
 ### Data Models
-- All data models are a struct that was generated using quicktype.io based on the sample response received back from a Foursquare Places API call
+- All data models are structs generated using quicktype.io based on the sample response received from a Foursquare Places API call
 - `Place` data model is from the Place Search endpoint
 - `Tip` data model is from the Get Place Tips endpoint
 - `Photo` data model is from the Get Place Photos endpoint
