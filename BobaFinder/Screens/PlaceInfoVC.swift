@@ -7,12 +7,15 @@
 
 import UIKit
 
-class PlaceInfoVC: UIViewController, TipsDelegate {
+class PlaceInfoVC: UIViewController
+//, TipsDelegate
+{
     
 //    let mainScrollView  = UIView(frame: .zero)
 
     let headerView      = UIView()
     let tipsScrollView  = UIScrollView(frame: .zero)
+    let emptyTipsView   = UIView()
     let tipsView        = UIView()
     let actionButton    = BFButton(backgroundColor: .systemIndigo, title: "Add to Favorites")
     let tipsTitleLabel  = BFTitleLabel(textAlignment: .left, fontSize: 28)
@@ -21,7 +24,9 @@ class PlaceInfoVC: UIViewController, TipsDelegate {
     
     var place: Place!
     
+    
     lazy var contentViewSize = CGSize(width: self.view.frame.width, height: self.view.frame.height)
+    
     
     lazy var mainScrollView: UIScrollView = {
         let view                            = UIScrollView(frame: .zero)
@@ -32,6 +37,7 @@ class PlaceInfoVC: UIViewController, TipsDelegate {
         view.bounces                        = true
         return view
     }()
+    
     
     lazy var mainContainerView: UIView = {
         let view = UIView()
@@ -49,16 +55,17 @@ class PlaceInfoVC: UIViewController, TipsDelegate {
     }
     
     
-    
-    func tipsIsEmpty(tips: [Tip]) {
-        if tips.isEmpty {
-            print("is empty")
-            let parentVC = tipsView.findViewController()
-            let message = "No tips added for this boba place."
-            
-            parentVC?.showEmptyStateView(with: message, in: tipsScrollView, scaleX: 0.75, scaleY: 0.75)
-        }
-    }
+//    func tipsIsEmpty(tips: [Tip]) {
+//        if tips.isEmpty {
+//            print("is empty")
+////            let parentVC = tipsView.findViewController()
+//            let message = "No tips added for this boba place."
+//
+//            showEmptyStateView(with: message, in: emptyTipsView, scaleX: 0.75, scaleY: 0.75)
+//            print("SHOW EMPTY STATE emptyTipsView.frame", emptyTipsView.frame)
+//            print("SHOW EMPTY STATE emptyTipsView.bounds", emptyTipsView.bounds)
+//        }
+//    }
     
     func configureViewController() {
         let padding: CGFloat = 20
@@ -70,6 +77,7 @@ class PlaceInfoVC: UIViewController, TipsDelegate {
         mainContainerView.addSubview(actionButton)
         mainContainerView.addSubview(tipsTitleLabel)
         mainContainerView.addSubview(tipsView)
+        mainContainerView.addSubview(emptyTipsView)
         
         tipsTitleLabel.text                                         = "Tips"
         headerView.backgroundColor                                  = .systemBackground
@@ -78,6 +86,7 @@ class PlaceInfoVC: UIViewController, TipsDelegate {
         headerView.translatesAutoresizingMaskIntoConstraints        = false
         tipsTitleLabel.translatesAutoresizingMaskIntoConstraints    = false
         tipsView.translatesAutoresizingMaskIntoConstraints          = false
+//        emptyTipsView.translatesAutoresizingMaskIntoConstraints     = false
         
         
         NSLayoutConstraint.activate([
@@ -99,8 +108,25 @@ class PlaceInfoVC: UIViewController, TipsDelegate {
             tipsView.topAnchor.constraint(equalTo: tipsTitleLabel.bottomAnchor),
             tipsView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             tipsView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            tipsView.bottomAnchor.constraint(equalTo: mainContainerView.bottomAnchor)
+            tipsView.bottomAnchor.constraint(equalTo: mainContainerView.bottomAnchor),
+            
+//            emptyTipsView.topAnchor.constraint(equalTo: tipsTitleLabel.bottomAnchor),
+//            emptyTipsView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+//            emptyTipsView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+//            emptyTipsView.bottomAnchor.constraint(equalTo: mainContainerView.bottomAnchor)
+            
+            
         ])
+        
+//
+//        print("view.frame", view.frame)
+//        print("view.bounds", view.bounds)
+//
+//        print("tipsView.frame", tipsView.frame)
+//        print("tipsView.bounds", tipsView.bounds)
+//
+//        print("emptyTipsView.frame", emptyTipsView.frame)
+//        print("emptyTipsView.bounds", emptyTipsView.bounds)
     }
     
     
@@ -160,7 +186,7 @@ class PlaceInfoVC: UIViewController, TipsDelegate {
         self.add(childVC: BFPlaceInfoHeadVC(place: place), to: self.headerView)
         
         let tipsVC = BFTipsVC(place: place)
-        tipsVC.delegate = self
+//        tipsVC.delegate = self
         self.add(childVC: tipsVC, to: self.tipsView)
     }
 
