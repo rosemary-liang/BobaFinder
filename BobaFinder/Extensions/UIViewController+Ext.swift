@@ -65,7 +65,4 @@ extension UIViewController {
         emptyStateView.transform = CGAffineTransform(scaleX: scaleX, y: scaleY)
             .translatedBy(x: 0, y: translateY ?? 0)
     }
-    
 }
-
-

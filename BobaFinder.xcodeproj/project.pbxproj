@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		C9213398296611C3008FFA67 /* UIView+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9213397296611C3008FFA67 /* UIView+Ext.swift */; };
 		C949495C295BF72B004BCE4C /* BFEmptyStateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C949495B295BF72B004BCE4C /* BFEmptyStateView.swift */; };
 		C949495E295CB6E8004BCE4C /* PlaceInfoVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = C949495D295CB6E8004BCE4C /* PlaceInfoVC.swift */; };
 		C9494962295CBD82004BCE4C /* Tip.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9494961295CBD82004BCE4C /* Tip.swift */; };
@@ -43,7 +42,6 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		C9213397296611C3008FFA67 /* UIView+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Ext.swift"; sourceTree = "<group>"; };
 		C949495B295BF72B004BCE4C /* BFEmptyStateView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BFEmptyStateView.swift; sourceTree = "<group>"; };
 		C949495D295CB6E8004BCE4C /* PlaceInfoVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceInfoVC.swift; sourceTree = "<group>"; };
 		C9494961295CBD82004BCE4C /* Tip.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tip.swift; sourceTree = "<group>"; };
@@ -151,7 +149,6 @@
 			isa = PBXGroup;
 			children = (
 				C976895C2956721800F7F14F /* UIViewController+Ext.swift */,
-				C9213397296611C3008FFA67 /* UIView+Ext.swift */,
 				C976896B295B6FA900F7F14F /* String+Ext.swift */,
 			);
 			path = Extensions;
@@ -311,7 +308,6 @@
 				C949495C295BF72B004BCE4C /* BFEmptyStateView.swift in Sources */,
 				C976893D29561F7300F7F14F /* SearchVC.swift in Sources */,
 				C949496A295CC43A004BCE4C /* BFTipsVC.swift in Sources */,
-				C9213398296611C3008FFA67 /* UIView+Ext.swift in Sources */,
 				C97689462956283000F7F14F /* BFButton.swift in Sources */,
 				C97689652956B7A700F7F14F /* Place.swift in Sources */,
 				C949496C295CDAED004BCE4C /* BFPlaceInfoHeadVC.swift in Sources */,
