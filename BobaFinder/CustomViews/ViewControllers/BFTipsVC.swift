@@ -70,12 +70,6 @@ class BFTipsVC: UIViewController {
         if tips.isEmpty {
             let message = "No tips added for this boba place."
             showEmptyStateView(with: message, in: self.view, scaleX: 0.75, scaleY: 0.75, translateY: 225.0)
-//            emptyStateLabel.text = message
-//            view.addSubview(emptyStateLabel)
-//            DispatchQueue.main.async {
-//                self.showEmptyStateView(with: message, in: self.view, scaleX: 0.75, scaleY: 0.75)
-//
-//            }
         }
     }
     

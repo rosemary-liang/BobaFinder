@@ -9,7 +9,7 @@ import UIKit
 
 class BFEmptyStateView: UIView {
     
-    let messageLabel = BFTitleLabel(textAlignment: .center, fontSize: 28)
+    let messageLabel = BFTitleLabel(textAlignment: .center, fontSize: 26)
     let logoImageView = UIImageView()
 
     override init(frame: CGRect) {
@@ -48,9 +48,9 @@ class BFEmptyStateView: UIView {
     
     private func layoutUI() {
         NSLayoutConstraint.activate([
-            logoImageView.centerYAnchor.constraint(equalTo: self.centerYAnchor, constant: -100),
-            logoImageView.widthAnchor.constraint(equalToConstant: 200),
-            logoImageView.heightAnchor.constraint(equalToConstant: 200),
+            logoImageView.centerYAnchor.constraint(equalTo: self.centerYAnchor, constant: -90),
+            logoImageView.widthAnchor.constraint(equalToConstant: 190),
+            logoImageView.heightAnchor.constraint(equalToConstant: 190),
             logoImageView.centerXAnchor.constraint(equalTo: self.centerXAnchor),
             
             messageLabel.topAnchor.constraint(equalTo: logoImageView.bottomAnchor, constant: -10),
