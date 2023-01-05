@@ -10,7 +10,7 @@ import UIKit
 class PlaceInfoVC: UIViewController {
 
     let headerView      = UIView()
-    let tipsScrollView  = UIScrollView(frame: .zero)
+//    let tipsScrollView  = UIScrollView(frame: .zero)
     let tipsView        = UIView()
     let actionButton    = BFButton(backgroundColor: .systemIndigo, title: "Add to Favorites")
     let tipsTitleLabel  = BFTitleLabel(textAlignment: .left, fontSize: 28)
@@ -53,10 +53,11 @@ class PlaceInfoVC: UIViewController {
     
     private func addSubviews() {
         view.addSubview(mainScrollView)
+        // button cannot be clicked if in nested UIView, so added to scrollView instead
+        mainScrollView.addSubview(actionButton)
         mainScrollView.addSubview(mainContainerView)
         
         mainContainerView.addSubview(headerView)
-        mainContainerView.addSubview(actionButton)
         mainContainerView.addSubview(tipsTitleLabel)
         mainContainerView.addSubview(tipsView)
     }
