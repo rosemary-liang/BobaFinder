@@ -79,7 +79,7 @@ class BFTipsVC: UIViewController {
     
     
     private func createSingleColumnFlowLayout() -> UICollectionViewFlowLayout {
-        let padding: CGFloat              = 20
+        let padding: CGFloat              = 15
 //        let minimumItemSpacing: CGFloat   = 12
         let itemWidth                     = view.bounds.width - (padding * 2)
         

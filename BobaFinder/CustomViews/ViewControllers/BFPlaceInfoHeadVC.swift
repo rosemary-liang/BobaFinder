@@ -69,25 +69,25 @@ class BFPlaceInfoHeadVC: UIViewController {
         view.translatesAutoresizingMaskIntoConstraints = false
         
         NSLayoutConstraint.activate([
-            placeNameLabel.topAnchor.constraint(equalTo: view.topAnchor, constant: padding),
-            placeNameLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: padding),
-            placeNameLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -padding),
+            placeNameLabel.topAnchor.constraint(equalTo: view.topAnchor, constant: 10),
+            placeNameLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            placeNameLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor),
             placeNameLabel.heightAnchor.constraint(equalToConstant: 45),
             
             placeImageView.topAnchor.constraint(equalTo: placeNameLabel.bottomAnchor, constant: padding),
-            placeImageView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: padding),
+            placeImageView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             placeImageView.widthAnchor.constraint(equalToConstant: 140),
             placeImageView.heightAnchor.constraint(equalToConstant: 140),
             
 
             locationLabel.topAnchor.constraint(equalTo: placeNameLabel.bottomAnchor, constant: padding + 10),
             locationLabel.leadingAnchor.constraint(equalTo: placeImageView.trailingAnchor, constant: imagePadding),
-            locationLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -5),
+            locationLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor),
             locationLabel.heightAnchor.constraint(equalToConstant: 60),
             
             distanceLabel.topAnchor.constraint(equalTo: locationLabel.bottomAnchor, constant: -padding),
             distanceLabel.leadingAnchor.constraint(equalTo: placeImageView.trailingAnchor, constant: imagePadding),
-            distanceLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -5),
+            distanceLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor),
             distanceLabel.bottomAnchor.constraint(equalTo: placeImageView.bottomAnchor),
         ])
     }
