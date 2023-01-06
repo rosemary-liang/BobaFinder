@@ -60,7 +60,7 @@ An iOS mobile application for boba lovers who want to find nearby boba places.
 ## Architectural Overview 
 Names, relationships, & purposes of all componenets and relevant data models
 
-### Screens
+### 4 Screens
 - **SearchVC** is the Search ViewController that contains an image view, a textField, and a UIButton so that a user can input a zipcode and press the UIButton or "enter" to search
   - Input validation is performed, and if it passes, the PlacesListVC is pushed onto the stack and passes the zipcode to the PlacesListVC. 
 
