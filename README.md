@@ -24,6 +24,8 @@ An iOS mobile application for boba lovers who want to find nearby boba places.
 ## Stretch Features
 
 - Users can view the app in landscape mode
+- Users can view boba places in a map view
+- Users can click a button to get navigation directions to a boba place
 
 
 ## Preview
