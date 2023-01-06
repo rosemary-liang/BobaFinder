@@ -135,3 +135,15 @@ Names, relationships, & purposes of all componenets and relevant data models
 - **String+Ext** is an extension containing method `isValidFiveDigitZipcode` to help perform regex zipcode input validation on the `SearchVC`. If it does not return true, a custom alert will be presented to the user.
 
 
+## UI Components Used
+
+- Collection view
+- Table view
+- Search bar
+- Tab bar
+- Label
+- Button
+- Image
+- Activity indicator (for loading view)
+- Custom alert
+
