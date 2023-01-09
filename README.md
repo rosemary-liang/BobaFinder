@@ -58,81 +58,38 @@ An iOS mobile application for boba lovers who want to find nearby boba places.
 
 
 ## Architectural Overview 
-Names, relationships, & purposes of all componenets and relevant data models
+Names, relationships, & purposes of all components and relevant data models
 
-### 4 Screens
-- **SearchVC** is the Search ViewController that contains an image view, a textField, and a UIButton so that a user can input a zipcode and press the UIButton or "enter" to search
-  - Input validation is performed, and if it passes, the PlacesListVC is pushed onto the stack and passes the zipcode to the PlacesListVC. 
+### Screens & Diagrams
+![image](https://user-images.githubusercontent.com/95596680/211235614-890bba45-13a0-49b4-9182-2f0ed9e54752.png)
+![image](https://user-images.githubusercontent.com/95596680/211236119-751c72cf-66e6-42c4-ad24-967a50a2cfab.png)
+![image](https://user-images.githubusercontent.com/95596680/211236251-692dfbbe-a457-4687-a80c-cb83678f8443.png)
+![image](https://user-images.githubusercontent.com/95596680/211236274-bd23ce59-243c-473c-ad30-97b576521f19.png)
+![image](https://user-images.githubusercontent.com/95596680/211236290-651cb783-910a-4187-acb4-1bbf172b83f0.png)
+![image](https://user-images.githubusercontent.com/95596680/211235842-5b9182d2-7cb6-4e45-a3f0-94cd1cbb78b9.png)
 
-- **PlacesListVC** shows a collection view of all nearby boba places using the zipcode provided from the SearchVC
-  - PlacesListVC calls `getPlaces()`, which is a network call from the `NetworkManager` that returns an array of Places (`[Place]`)
-  - The data source is configured to dequeue resusable `PlaceCell`s and set the cell's place variable with the appropriate `place`.
-      - **PlaceCell** is a collection view cell consisting of an image view (BFImageView) and labels
-  - A UISearchController allows the user to search for specific places within the existing `places` array. 
-  - When a collection view item is selected, the related `PlaceInfoVC` is pushed onto the stack, and the `place` variable is passed to the `PlaceInfoVC`.
-
-- **PlaceInfoVC** controls the view showing the details of a specific place that was selected for viewing either from the `PlacesListVC` or the `FavoritesListVC`.
-  - It consists of a parent scroll view and its corresponding scroll container view. Within the scroll container view is a header view (`BFPlaceInfoHeadVC`), a label, a button, and a tips view (`BFTipsVC`).
-      - **BFPlaceInfoHeadVC** is the header view and contains an image view and several labels.
-      - **BFTipsVC** is a collection view of place tips that calls getPlaceTips(), which consists of a network call from the `NetworkManager` that returns an array of Tips (`[Tip]`)
-          - The data source is configured to dequeue resusable `TipCell`s and set the cell's tip variable with the appropriate `tip`.
-              - `TipCell` is a collection view cell consisting of labels
-      - **Add To Favorites Button** is a button that allows the user to add a place to their favorites. Favorites is handled by the enum `PersistenceManager`.
-
- - **FavoritesListVC** is a table view of all of the users favorites stored in `UserDefaults` using the `PersistenceManager`. Both the corresponding `UITableViewDataSource` and `UITableViewDelegate` are included as extensions to the `FavoritesListVC`.
-      - `FavoritesListVC` calls `getFavorites()`, which consists of an call to `PersistenceManager` `retrieveFavorites()` function and returns an array of Favorites (`[Place]`)
-      - The data source is configured to dequeue resusable `FavoriteCell`s and set the cell's place variable with the appropriate `favorite`.
-      - **FavoriteCell** is a table view cell consisting of an image view (`BFImageView`) and a label
-          - **BFImageView** method of `getPhotoURLAndSetImage()` is called to set the image for the cell with the corresponding place. Either the network call's response or placeholder image is used.
-      - When a table view item is selected, the related `PlaceInfoVC` is pushed onto the stack, and the `place` variable is passed to the PlaceInfoVC.
-      - When a user swipes left on a table view item, the user can delete the row and remove the item from the favorites array. The `PersistenceManger` `updateWith()` function with case `remove` is called to handle this deletion. 
             
 ### Data Models
-- All data models are structs generated using quicktype.io based on the sample response received from a Foursquare Places API call
-- `Place` data model is from the Place Search endpoint
-- `Tip` data model is from the Get Place Tips endpoint
-- `Photo` data model is from the Get Place Photos endpoint
-        
+- All data models are structs generated using quicktype.io based on sample response received from Foursquare Places API call
         
 ### Other Components
 - **NetworkManager** class contains methods for network calls to the Foursquare Places API
     - static variable `shared` creates a single instance of the NetworkManager
     - cache was created to hold images so they don't need to be redownloaded
-    - getPlaces() returns an array of places (`[Place]`)
-    - getPhotoURLs() returns an array of photoURLs (`[Photo]`)
-    - downloadImage() returns either `nil` or a `UIImage` created by the photoURL
-    - getPlaceTips() returns an array of tips (`[Tip]`)
-
-- **PersistenceManager** contains access to updating UserDefaults to store user favorites and contains the following methods:
-    - `save` - to encode and save favorites array, then set it to userdefaults
-    - `retrieveFavorites` - to retrieve and decode current userdefaults favorites array
-    - `updateWith` - to run `retieveFavorites`, check if it is case add or case remove.
-        - If `case add`: check if current place is already in favorites and append to favorites if it is not. 
-        - If `case remove`: remove all favorites where fsqId matches
-        - Run `save` to save the current state of the favorites array
-
-- **BFImageView** is a UIImageView containing an image that either shows a placeholder image or a resulting image from a network call using a place's fsqId and photoURL.
-    - It contains a method `getPhotoURLAndSetImage()` that:
-        - gets photo URLs by calling the `NetworkManager` `getPhotoURLs()` from the Get Place Photos endpoint and returns an array of photo URLs (`[Photo]`) sorted by popularity in descending order.
-        - takes the first photo url and calls the `NetworkManager` `downloadImage()` by creating an image from the URL and returning it to the `BFImageView` to be displayed.
-        - if this method is unsuccessful,  the placeholder image will be displayed instead.
-
 
 - **UIViewController+Ext** is an extension that contains methods including:
     - `presentBFAlert()` to present a custom alert
     - `presentDefaultError()` to present a default error
     - `showLoadingView()` to show a loading activity indicator during a network call
     - `dismissLoadingView()` to dismiss loading indicator when network call has completed
-    - `showEmptyStateview()` to show an empty state when needed
-        - **BFEmptyStateView** - is a view consisting of an image and a message so the user knows that they are viewing an empty state. It is called as a method extension of UIViewController.
+    - `showEmptyStateview()` to show an empty state (BFEmptyStateView, an extension of UIViewController) when needed
 
-- **BFAlertVC** - Controls custom alerts that are triggered when various errors arise, including those related to network calls and data validation.
+- **BFAlertVC** - Controls custom alerts that are triggered when user tries to favorite a place, or when various errors arise, including those related to network calls and data validation.
     - Alerts are presented by calling presentBFAlert() on a UIView on the main thread.
     - Alerts consist of a container view (`BFAlertContainerView`), labels, and a button to dismiss the alert
 
 - **BFTabBarController** is a `UITabBarController` that allows the user to navigate between the `PlacesListVC` and the `FavoritesListVC`. It is hidden on the SearchVC for aesthetics, but visible on all other screens.
 
-- **String+Ext** is an extension containing method `isValidFiveDigitZipcode` to help perform regex zipcode input validation on the `SearchVC`. If it does not return true, a custom alert will be presented to the user.
 
 
 ## UI Components Used
@@ -147,3 +104,6 @@ Names, relationships, & purposes of all componenets and relevant data models
 - Activity indicator (for loading view)
 - Custom alert
 
+
+## Miscellaneous
+- App was locked in portrait mode as the app's existing constraints did not convert well to landscape mode and after spending a couple hours trying to convert a few screens, it wasn't working too well and I had already reached 50 hours of coding at this point.
