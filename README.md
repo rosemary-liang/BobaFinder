@@ -30,7 +30,7 @@ An iOS mobile application for boba lovers who want to find nearby boba places.
 
 ## Preview
 
-**SearchVC with alerts**\
+**SearchVC with input validation alerts**\
 ![2023-01-05_14-48-54 (1)](https://user-images.githubusercontent.com/95596680/210895750-6820af18-09f0-4861-acd7-3a73db706516.gif)
 
 **PlacesListVC with Search Feature**\
