@@ -57,8 +57,4 @@ class FavoriteCell: UITableViewCell {
             placeImageView.getPhotoURLAndSetImage(name: favorite.name, fsqId: favorite.fsqID)
         }
     }
-    
-    
- 
-    
 }
