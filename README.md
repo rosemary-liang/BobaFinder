@@ -107,4 +107,4 @@ Names, relationships, & purposes of all components and relevant data models
 
 ## Miscellaneous
 - App was locked in portrait mode as the app's existing constraints did not convert well to landscape mode and after spending a couple hours trying to convert a few screens, it wasn't working too well and I had already reached 50 hours of coding at this point.
-- All Swift file header comments say "Created by Eric Liang on xx/xx/xx." because the computer I use to code was originally set up under my husband's name and his iCloud account.
+- All Swift file header comments say "Created by Eric Liang on xx/xx/xx" because the computer I use to code was originally set up under my husband's name and his iCloud account.
