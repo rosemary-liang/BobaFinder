@@ -31,6 +31,7 @@ class BFImageView: UIImageView {
         translatesAutoresizingMaskIntoConstraints = false
     }
     
+    
     func getPhotoURLAndSetImage(name: String, fsqId: String) {
 
         Task {
