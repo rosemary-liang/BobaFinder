@@ -52,6 +52,7 @@ class PlaceInfoVC: UIViewController {
         view.addSubview(mainScrollView)
         
         mainScrollView.addSubview(mainContainerView)
+        
         mainScrollView.addSubview(headerView)
         mainScrollView.addSubview(actionButton)
         mainScrollView.addSubview(tipsTitleLabel)
