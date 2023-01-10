@@ -2,7 +2,7 @@
 //  BFTabBarController.swift
 //  BobaFinder
 //
-//  Created by Eric Liang on 12/30/22.
+//  Created by Rosemary Liang on 12/30/22.
 //
 
 import UIKit

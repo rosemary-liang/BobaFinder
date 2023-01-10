@@ -2,7 +2,7 @@
 //  TipCell.swift
 //  BobaFinder
 //
-//  Created by Eric Liang on 12/28/22.
+//  Created by Rosemary Liang on 12/28/22.
 //
 
 import UIKit

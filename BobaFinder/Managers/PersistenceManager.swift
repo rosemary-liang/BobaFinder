@@ -2,7 +2,7 @@
 //  PersistenceManager.swift
 //  BobaFinder
 //
-//  Created by Eric Liang on 12/29/22.
+//  Created by Rosemary Liang on 12/29/22.
 //
 
 import Foundation

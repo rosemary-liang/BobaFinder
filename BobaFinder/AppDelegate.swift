@@ -2,7 +2,7 @@
 //  AppDelegate.swift
 //  BobaFinder
 //
-//  Created by Eric Liang on 12/22/22.
+//  Created by Rosemary Liang on 12/22/22.
 //
 
 import UIKit

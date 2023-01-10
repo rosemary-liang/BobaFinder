@@ -2,7 +2,7 @@
 //  String+Ext.swift
 //  BobaFinder
 //
-//  Created by Eric Liang on 12/27/22.
+//  Created by Rosemary Liang on 12/27/22.
 //
 
 import UIKit
