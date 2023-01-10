@@ -16,9 +16,7 @@ class PlaceInfoVC: UIViewController {
     
     var place: Place!
     
-    
     lazy var contentViewSize = CGSize(width: self.view.frame.width, height: self.view.frame.height)
-    
     
     lazy var mainScrollView: UIScrollView = {
         let view                            = UIScrollView(frame: .zero)
@@ -30,14 +28,12 @@ class PlaceInfoVC: UIViewController {
         return view
     }()
     
-    
     lazy var mainContainerView: UIView = {
         let view = UIView()
         view.backgroundColor = .systemMint
         view.frame.size = contentViewSize
         return view
     }()
-
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -58,7 +54,6 @@ class PlaceInfoVC: UIViewController {
         mainScrollView.addSubview(tipsTitleLabel)
         mainScrollView.addSubview(tipsView)
     }
-
     
     private func configureViewController() {
         tipsTitleLabel.text                                         = "Tips"
@@ -69,7 +64,6 @@ class PlaceInfoVC: UIViewController {
         tipsTitleLabel.translatesAutoresizingMaskIntoConstraints    = false
         tipsView.translatesAutoresizingMaskIntoConstraints          = false
     }
-    
     
     private func layoutUI() {
         let padding: CGFloat = 20
@@ -93,16 +87,14 @@ class PlaceInfoVC: UIViewController {
             tipsView.topAnchor.constraint(equalTo: tipsTitleLabel.bottomAnchor),
             tipsView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             tipsView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            tipsView.bottomAnchor.constraint(equalTo: mainContainerView.bottomAnchor),
+            tipsView.bottomAnchor.constraint(equalTo: mainContainerView.bottomAnchor)
         ])
     }
-
     
     private func configureUIElements(with place: Place) {
         self.add(childVC: BFPlaceInfoHeadVC(place: place), to: self.headerView)
         self.add(childVC: BFTipsVC(place: place), to: self.tipsView)
     }
-
 
     private func add(childVC: UIViewController, to containerView: UIView) {
         addChild(childVC)
@@ -111,11 +103,9 @@ class PlaceInfoVC: UIViewController {
         childVC.didMove(toParent: self)
     }
     
-    
     private func configureActionButton() {
         actionButton.addTarget(self, action: #selector(actionButtonTapped), for: .touchUpInside)
     }
-    
     
     @objc func actionButtonTapped() {
         let favorite = place!

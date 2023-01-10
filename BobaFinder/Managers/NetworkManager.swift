@@ -19,7 +19,6 @@ class NetworkManager {
       "Authorization": "fsq3/vG10P9E7CJrfEW2r0kHgYFSzOyw0fl0ni5mKhnrx1Y="
     ]
     
-    
     func getPlaces(for zipcode: String) async throws -> [Place] {
         let request = NSMutableURLRequest(url: NSURL(string: baseURL + "/search?categories=13033&near=\(zipcode)")! as URL,
                                                 cachePolicy: .useProtocolCachePolicy,
@@ -41,7 +40,6 @@ class NetworkManager {
             throw BFError.invalidData
         }
     }
-    
     
     func getPhotoURLs(for fsqId: String) async throws -> [Photo] {
         let request = NSMutableURLRequest(url: NSURL(string: baseURL + "/\(fsqId)/photos?sort=POPULAR")! as URL,
@@ -65,7 +63,6 @@ class NetworkManager {
         }
     }
     
-    
     func downloadImage(from urlString: String) async -> UIImage? {
         let cacheKey = NSString(string: urlString)
         if let image = cache.object(forKey: cacheKey) {
@@ -86,7 +83,6 @@ class NetworkManager {
             return nil
         }
     }
-    
     
     func getPlaceTips(for fsqId: String) async throws -> [Tip] {
         let request = NSMutableURLRequest(url: NSURL(string: baseURL +

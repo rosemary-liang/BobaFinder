@@ -20,7 +20,6 @@ class PlacesListVC: UIViewController {
     
     var collectionView: UICollectionView!
     var dataSource: UICollectionViewDiffableDataSource<Section, Place>!
-
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -32,18 +31,15 @@ class PlacesListVC: UIViewController {
         configureDataSource()
     }
     
-    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         tabBarController?.tabBar.isHidden = false
     }
     
-    
     private func configureViewController() {
         view.backgroundColor = .systemCyan
         navigationController?.navigationBar.prefersLargeTitles = true
     }
-    
     
     private func configureCollectionView() {
         collectionView = UICollectionView(frame: view.bounds, collectionViewLayout: createTwoColumnFlowLayout())
@@ -60,7 +56,6 @@ class PlacesListVC: UIViewController {
         navigationItem.searchController                         = searchController
     }
     
-    
     private func createTwoColumnFlowLayout() -> UICollectionViewFlowLayout {
         let width                         = view.bounds.width
         let padding: CGFloat              = 12
@@ -76,7 +71,6 @@ class PlacesListVC: UIViewController {
         
         return flowLayout
     }
-    
     
     private func getPlaces() {
         showLoadingView()
@@ -98,7 +92,6 @@ class PlacesListVC: UIViewController {
             }
         }
     }
-    
 
     private func updateUI(with places: [Place]) {
         if self.places.isEmpty {
@@ -107,24 +100,24 @@ class PlacesListVC: UIViewController {
         }
     }
     
-    
     private func configureDataSource() {
-        dataSource = UICollectionViewDiffableDataSource<Section, Place>(collectionView: collectionView, cellProvider: { (collectionView, indexPath, place) -> UICollectionViewCell? in
+        dataSource = UICollectionViewDiffableDataSource<Section, Place>(collectionView: collectionView,
+                                                                        cellProvider: { (collectionView, indexPath, place) -> UICollectionViewCell? in
+            // swiftlint:disable force_cast
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: PlaceCell.reuseID, for: indexPath) as! PlaceCell
+            // swiftlint:enable force_cast
             cell.set(place: place)
             return cell
         })
     }
     
-    
     private func updateData(on places: [Place]) {
         var snapshot = NSDiffableDataSourceSnapshot<Section, Place>()
         snapshot.appendSections([.main])
         snapshot.appendItems(places)
-        self.dataSource.apply(snapshot, animatingDifferences:  true)
+        self.dataSource.apply(snapshot, animatingDifferences: true)
     }
 }
-
 
 extension PlacesListVC: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
@@ -136,7 +129,6 @@ extension PlacesListVC: UICollectionViewDelegate {
         navigationController?.pushViewController(destVC, animated: true)
     }
 }
-
 
 extension PlacesListVC: UISearchResultsUpdating {
     func updateSearchResults(for searchController: UISearchController) {

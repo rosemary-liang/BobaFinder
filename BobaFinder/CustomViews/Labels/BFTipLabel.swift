@@ -19,11 +19,9 @@ class BFTipLabel: UILabel {
         self.textAlignment = textAlignment
     }
     
-    
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
     
     private func configure() {
         translatesAutoresizingMaskIntoConstraints   = false
@@ -34,10 +32,5 @@ class BFTipLabel: UILabel {
         minimumScaleFactor                          = 0.75
         lineBreakMode                               = .byWordWrapping
     }
-    
-    
-   
-    
-    
 
 }

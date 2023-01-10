@@ -7,7 +7,7 @@
 
 import UIKit
 
-fileprivate var containerView: UIView!
+private var containerView: UIView!
 
 extension UIViewController {
     
@@ -18,14 +18,14 @@ extension UIViewController {
         self.present(alertVC, animated: true)
     }
     
-    
     func presentDefaultError() {
-        let alertVC = BFAlertVC(title: "Something went wrong", message: "We were unable to complete your task at this time. Please try again.", buttonTitle: "Ok")
+        let alertVC = BFAlertVC(title: "Something went wrong",
+                                message: "We were unable to complete your task at this time. Please try again.",
+                                buttonTitle: "Ok")
         alertVC.modalPresentationStyle = .overFullScreen
         alertVC.modalTransitionStyle = .crossDissolve
         self.present(alertVC, animated: true)
     }
-    
     
     func showLoadingView() {
         containerView = UIView(frame: view.bounds)
@@ -48,14 +48,12 @@ extension UIViewController {
         activityIndicator.startAnimating()
     }
     
-    
     func dismissLoadingView() {
         DispatchQueue.main.async {
             containerView.removeFromSuperview()
             containerView = nil
         }
     }
-    
     
     func showEmptyStateView(with message: String, in view: UIView, scaleX: Double, scaleY: Double, translateY: Double? = nil) {
         let emptyStateView = BFEmptyStateView(message: message)

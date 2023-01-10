@@ -15,18 +15,15 @@ class BFPlaceInfoHeadVC: UIViewController {
     let locationLabel = BFSecondaryTitleLabel(textAlignment: .left, fontSize: 18)
     
     var place: Place!
-   
     
     init(place: Place) {
         super.init(nibName: nil, bundle: nil)
         self.place = place
     }
     
-    
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -39,7 +36,6 @@ class BFPlaceInfoHeadVC: UIViewController {
         Task {
             placeImageView.getPhotoURLAndSetImage(name: place.name, fsqId: place.fsqID)        }
     }
-
     
     private func addSubviews() {
         view.addSubview(placeImageView)
@@ -47,7 +43,6 @@ class BFPlaceInfoHeadVC: UIViewController {
         view.addSubview(distanceLabel)
         view.addSubview(locationLabel)
     }
-    
     
     private func configureUIElements() {
         setPhoto()
@@ -60,7 +55,6 @@ class BFPlaceInfoHeadVC: UIViewController {
         locationLabel.text          = "\(place.location.address)\n\(place.location.locality), \(place.location.region)"
         locationLabel.numberOfLines = 3
     }
-    
     
     private func layoutUI() {
         let padding: CGFloat        = 20
@@ -78,7 +72,6 @@ class BFPlaceInfoHeadVC: UIViewController {
             placeImageView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             placeImageView.widthAnchor.constraint(equalToConstant: 140),
             placeImageView.heightAnchor.constraint(equalToConstant: 140),
-            
 
             locationLabel.topAnchor.constraint(equalTo: placeNameLabel.bottomAnchor, constant: padding + 10),
             locationLabel.leadingAnchor.constraint(equalTo: placeImageView.trailingAnchor, constant: imagePadding),
@@ -88,8 +81,7 @@ class BFPlaceInfoHeadVC: UIViewController {
             distanceLabel.topAnchor.constraint(equalTo: locationLabel.bottomAnchor, constant: -padding),
             distanceLabel.leadingAnchor.constraint(equalTo: placeImageView.trailingAnchor, constant: imagePadding),
             distanceLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            distanceLabel.bottomAnchor.constraint(equalTo: placeImageView.bottomAnchor),
+            distanceLabel.bottomAnchor.constraint(equalTo: placeImageView.bottomAnchor)
         ])
     }
 }
-

@@ -11,18 +11,16 @@ class BFImageView: UIImageView {
     
     let placeholderImage = UIImage(named: "no-image-available")
    
-    var photoURL: String? = nil
+    var photoURL: String?
 
     override init(frame: CGRect) {
         super.init(frame: frame)
         configure()
     }
     
-    
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
     
     private func configure() {
         layer.cornerRadius  = 10
@@ -30,7 +28,6 @@ class BFImageView: UIImageView {
         image               = placeholderImage
         translatesAutoresizingMaskIntoConstraints = false
     }
-    
     
     func getPhotoURLAndSetImage(name: String, fsqId: String) {
 

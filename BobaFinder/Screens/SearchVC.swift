@@ -18,7 +18,6 @@ class SearchVC: UIViewController {
     
     let padding: CGFloat = 50
     
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .systemBackground
@@ -28,12 +27,10 @@ class SearchVC: UIViewController {
         createDismissKeyboardTapGesture()
     }
     
-    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.tabBarController?.tabBar.isHidden = true
     }
-    
     
     @objc func pushPlacesListVC() {
         guard isZipcodeEntered  else {
@@ -42,10 +39,11 @@ class SearchVC: UIViewController {
         }
         
         guard zipcodeTextField.text!.isValidFiveDigitZipcode else {
-            presentBFAlert(title: "Invalid zipcode", message: "Please enter a valid 5-digit zipcode so we can search for nearby boba places.", buttonTitle: "Ok")
+            presentBFAlert(title: "Invalid zipcode",
+                           message: "Please enter a valid 5-digit zipcode so we can search for nearby boba places.",
+                           buttonTitle: "Ok")
             return
         }
-    
         
         let placesListVC    = PlacesListVC()
         placesListVC.zipcode        = zipcodeTextField.text
@@ -53,14 +51,12 @@ class SearchVC: UIViewController {
         navigationController?.pushViewController(placesListVC, animated: true)
     }
     
-    
     private func addSubviews() {
         view.addSubview(logoImageView)
         view.addSubview(titleLabel)
         view.addSubview(zipcodeTextField)
         view.addSubview(actionButton)
     }
-    
     
     private func configureUIElements() {
         logoImageView.translatesAutoresizingMaskIntoConstraints = false
@@ -74,7 +70,6 @@ class SearchVC: UIViewController {
         
         actionButton.addTarget(self, action: #selector(pushPlacesListVC), for: .touchUpInside)
     }
-    
     
     private func layoutUI() {
         NSLayoutConstraint.activate([
@@ -100,13 +95,11 @@ class SearchVC: UIViewController {
         ])
     }
     
-    
     private func createDismissKeyboardTapGesture() {
         let tap = UITapGestureRecognizer(target: self.view, action: #selector(UIView.endEditing(_:)))
         view.addGestureRecognizer(tap)
     }
 }
-
 
 extension SearchVC: UITextFieldDelegate {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {

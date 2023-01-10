@@ -13,24 +13,20 @@ class FavoriteCell: UITableViewCell {
     let placeImageView = BFImageView(frame: .zero)
     let placeNameLabel = BFTitleLabel(textAlignment: .left, fontSize: 24)
     
-    
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         addSubviews()
         layoutUI()
     }
     
-    
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
     
     private func addSubviews() {
         addSubview(placeImageView)
         addSubview(placeNameLabel)
     }
-    
     
     private func layoutUI() {
         accessoryType                = .disclosureIndicator // tappable to present new content
@@ -48,7 +44,6 @@ class FavoriteCell: UITableViewCell {
             placeNameLabel.heightAnchor.constraint(equalToConstant: 50)
         ])
     }
-    
     
     func set(favorite: Place) {
         placeNameLabel.text = favorite.name

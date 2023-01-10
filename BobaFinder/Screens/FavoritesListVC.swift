@@ -11,7 +11,6 @@ class FavoritesListVC: UIViewController {
     
     let tableView = UITableView()
     var favorites: [Place] = []
-    
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -25,13 +24,11 @@ class FavoritesListVC: UIViewController {
         getFavorites()
     }
     
-    
     private func configureViewController() {
         view.backgroundColor    = .systemBackground
         title                   = "Favorites"
         navigationController?.navigationBar.prefersLargeTitles = true
     }
-    
     
     private func configureTableView() {
         view.addSubview(tableView)
@@ -42,7 +39,6 @@ class FavoritesListVC: UIViewController {
         
         tableView.register(FavoriteCell.self, forCellReuseIdentifier: FavoriteCell.reuseID)
     }
-    
     
     private func getFavorites() {
         PersistenceManager.retrieveFavorites { [weak self] result in
@@ -61,7 +57,6 @@ class FavoritesListVC: UIViewController {
                     }
                 }
                 
-                
             case .failure(let error):
                 DispatchQueue.main.async {
                     self.presentBFAlert(title: "Something went wrong", message: error.rawValue, buttonTitle: "Ok")
@@ -71,21 +66,20 @@ class FavoritesListVC: UIViewController {
     }
 }
 
-
 extension FavoritesListVC: UITableViewDataSource, UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return favorites.count
     }
     
-    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        // swiftlint:disable force_cast
         let cell = tableView.dequeueReusableCell(withIdentifier: FavoriteCell.reuseID) as! FavoriteCell
+        // swiftlint:enable force_cast
         let favorite = favorites[indexPath.row]
         cell.set(favorite: favorite)
         return cell
     }
-    
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let favorite = favorites[indexPath.row]

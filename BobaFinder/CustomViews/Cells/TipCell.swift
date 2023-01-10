@@ -13,7 +13,6 @@ class TipCell: UICollectionViewCell {
 
     let tipLabel = BFTipLabel(textAlignment: .center)
     let timestampLabel = BFBodyLabel(textAlignment: .left)
-    
 
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -21,11 +20,9 @@ class TipCell: UICollectionViewCell {
         layoutUI()
     }
     
-    
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
     
     func set(tip: Tip) {
         tipLabel.text = tip.text
@@ -34,7 +31,6 @@ class TipCell: UICollectionViewCell {
         let dateString = String(tip.createdAt)
         timestampLabel.text = formatDate(dateString: dateString)
     }
-    
     
     private func formatDate(dateString: String) -> String {
         let date = dateString
@@ -54,12 +50,10 @@ class TipCell: UICollectionViewCell {
         return ""
     }
     
-    
     private func addSubviews() {
         addSubview(tipLabel)
         addSubview(timestampLabel)
     }
-    
     
     private func layoutUI() {
 

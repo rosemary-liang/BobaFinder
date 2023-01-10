@@ -21,7 +21,6 @@ enum PersistenceManager {
         static let favorites = "favorites"
     }
     
-    
     static func updateWith(favorite: Place, actionType: PersistenceActionType, completed: @escaping (BFError?) -> Void) {
         retrieveFavorites { result  in
             switch result {
@@ -45,7 +44,6 @@ enum PersistenceManager {
         }
     }
     
-    
     static func retrieveFavorites(completed: @escaping (Result<[Place], BFError>) -> Void) {
         guard let favoritesData = defaults.object(forKey: Keys.favorites) as? Data else {
             completed(.success([])) // empty array because no favorites yet
@@ -60,7 +58,6 @@ enum PersistenceManager {
             completed(.failure(.unableToComplete))
         }
     }
-    
     
     static func save(favorites: [Place]) -> BFError? {
         do {

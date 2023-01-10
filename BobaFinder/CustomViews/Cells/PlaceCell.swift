@@ -16,24 +16,20 @@ class PlaceCell: UICollectionViewCell {
     let placeNameLabel = BFTitleLabel(textAlignment: .center, fontSize: 16)
     let distanceLabel = BFBodyLabel(textAlignment: .center)
     
-    
     override init(frame: CGRect) {
         super.init(frame: frame)
         addSubviews()
         layoutUI()
     }
     
-    
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
    
     func set(place: Place) {
         placeNameLabel.text = place.name
         let distanceInMiles: Double = Double(place.distance) / 1_609.344
         distanceLabel.text = "\(String(format: "%.1f", distanceInMiles)) miles"
-        
         
         Task {
             placeImageView.getPhotoURLAndSetImage(name: place.name, fsqId: place.fsqID)
