@@ -2,7 +2,7 @@
 //  BFAlertVC.swift
 //  BobaFinder
 //
-//  Created by Eric Liang on 12/23/22.
+//  Created by Rosemary Liang on 12/23/22.
 //
 
 import UIKit
@@ -16,7 +16,7 @@ class BFAlertVC: UIViewController {
 
     var alertTitle: String?
     var message: String?
-    var buttonTitle:String?
+    var buttonTitle: String?
     
     private let padding: CGFloat = 20
     
@@ -27,11 +27,9 @@ class BFAlertVC: UIViewController {
         self.buttonTitle = buttonTitle
     }
     
-    
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -41,14 +39,12 @@ class BFAlertVC: UIViewController {
         layoutUI()
     }
     
-    
     private func addSubviews() {
         view.addSubview(containerView)
         view.addSubview(titleLabel)
         view.addSubview(actionButton)
         view.addSubview(messageLabel)
     }
-    
     
     private func configureUIElements() {
         titleLabel.text = alertTitle ?? "Something went wrong"
@@ -57,7 +53,6 @@ class BFAlertVC: UIViewController {
         messageLabel.text = message ?? "Unable to complete request"
         messageLabel.numberOfLines = 4
     }
-    
     
     private func layoutUI() {
         NSLayoutConstraint.activate([
@@ -82,7 +77,6 @@ class BFAlertVC: UIViewController {
             messageLabel.bottomAnchor.constraint(equalTo: actionButton.topAnchor, constant: -padding)
         ])
     }
-    
     
     @objc func dismissVC() {
         dismiss(animated: true)

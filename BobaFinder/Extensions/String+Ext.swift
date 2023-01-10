@@ -2,7 +2,7 @@
 //  String+Ext.swift
 //  BobaFinder
 //
-//  Created by Eric Liang on 12/27/22.
+//  Created by Rosemary Liang on 12/27/22.
 //
 
 import UIKit
@@ -10,7 +10,7 @@ import UIKit
 extension String {
     
     var isValidFiveDigitZipcode: Bool {
-        let zipcodeFormat = "\\b\\d{5}(?:[ -]\\d{4})?\\b"
+        let zipcodeFormat    = "\\b\\d{5}(?:[ -]\\d{4})?\\b"
         let zipcodePredicate = NSPredicate(format: "SELF MATCHES %@", zipcodeFormat)
         return zipcodePredicate.evaluate(with: self)
     }

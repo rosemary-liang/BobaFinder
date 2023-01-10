@@ -2,7 +2,7 @@
 //  PersistenceManager.swift
 //  BobaFinder
 //
-//  Created by Eric Liang on 12/29/22.
+//  Created by Rosemary Liang on 12/29/22.
 //
 
 import Foundation
@@ -20,7 +20,6 @@ enum PersistenceManager {
     enum Keys {
         static let favorites = "favorites"
     }
-    
     
     static func updateWith(favorite: Place, actionType: PersistenceActionType, completed: @escaping (BFError?) -> Void) {
         retrieveFavorites { result  in
@@ -45,7 +44,6 @@ enum PersistenceManager {
         }
     }
     
-    
     static func retrieveFavorites(completed: @escaping (Result<[Place], BFError>) -> Void) {
         guard let favoritesData = defaults.object(forKey: Keys.favorites) as? Data else {
             completed(.success([])) // empty array because no favorites yet
@@ -54,17 +52,16 @@ enum PersistenceManager {
         
         do {
             let decoder = JSONDecoder()
-            let places = try decoder.decode([Place].self, from: favoritesData)
+            let places  = try decoder.decode([Place].self, from: favoritesData)
             completed(.success(places))
         } catch {
             completed(.failure(.unableToComplete))
         }
     }
     
-    
     static func save(favorites: [Place]) -> BFError? {
         do {
-            let encoder = JSONEncoder()
+            let encoder          = JSONEncoder()
             let encodedFavorites = try encoder.encode(favorites)
             defaults.set(encodedFavorites, forKey: Keys.favorites)
             return nil

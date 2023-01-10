@@ -2,7 +2,7 @@
 //  BFBodyLabel.swift
 //  BobaFinder
 //
-//  Created by Eric Liang on 12/23/22.
+//  Created by Rosemary Liang on 12/23/22.
 //
 
 import UIKit
@@ -14,17 +14,14 @@ class BFBodyLabel: UILabel {
         configure()
     }
     
-    
     convenience init(textAlignment: NSTextAlignment) {
         self.init(frame: .zero)
         self.textAlignment = textAlignment
     }
     
-    
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
     
     private func configure() {
         translatesAutoresizingMaskIntoConstraints   = false

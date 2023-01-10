@@ -2,11 +2,10 @@
 //  BFTipsVC.swift
 //  BobaFinder
 //
-//  Created by Eric Liang on 12/28/22.
+//  Created by Rosemary Liang on 12/28/22.
 //
 
 import UIKit
-
 
 class BFTipsVC: UIViewController {
     
@@ -19,12 +18,10 @@ class BFTipsVC: UIViewController {
     var collectionView: UICollectionView!
     var dataSource: UICollectionViewDiffableDataSource<Section, Tip>!
     
-    
     init(place: Place ) {
         super.init(nibName: nil, bundle: nil)
         self.place = place
     }
-    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -34,11 +31,9 @@ class BFTipsVC: UIViewController {
 
     }
     
-    
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
     
     func getPlaceTips() {
         showLoadingView()
@@ -61,7 +56,6 @@ class BFTipsVC: UIViewController {
         }
     }
     
-    
     func updateUI(with tips: [Tip]) {
         if tips.isEmpty {
             let message = "No tips added for this boba place."
@@ -69,17 +63,15 @@ class BFTipsVC: UIViewController {
         }
     }
     
-    
     private func configureCollectionView() {
         collectionView = UICollectionView(frame: view.bounds, collectionViewLayout: createSingleColumnFlowLayout())
         view.addSubview(collectionView)
         collectionView.register(TipCell.self, forCellWithReuseIdentifier: TipCell.reuseId)
     }
     
-    
     private func createSingleColumnFlowLayout() -> UICollectionViewFlowLayout {
-        let padding: CGFloat              = 15
-        let itemWidth                     = view.bounds.width - (padding * 2)
+        let padding: CGFloat = 15
+        let itemWidth        = view.bounds.width - (padding * 2)
         
         let flowLayout = UICollectionViewFlowLayout()
         flowLayout.minimumLineSpacing = 20
@@ -89,10 +81,12 @@ class BFTipsVC: UIViewController {
         return flowLayout
     }
     
-    
     private func configureDataSource() {
-        dataSource = UICollectionViewDiffableDataSource<Section, Tip>(collectionView: collectionView, cellProvider: { collectionView, indexPath, tip in
+        dataSource = UICollectionViewDiffableDataSource<Section, Tip>(collectionView: collectionView,
+                                                                      cellProvider: { collectionView, indexPath, tip in
+            // swiftlint:disable force_cast
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: TipCell.reuseId, for: indexPath) as! TipCell
+            // swiftlint:enable force_cast
             cell.set(tip: tip)
             cell.backgroundColor = .systemGray5
             cell.layer.cornerRadius = 10
@@ -100,7 +94,6 @@ class BFTipsVC: UIViewController {
             return cell
         })
     }
-    
     
     private func updateData() {
         var snapshot = NSDiffableDataSourceSnapshot<Section, Tip>()

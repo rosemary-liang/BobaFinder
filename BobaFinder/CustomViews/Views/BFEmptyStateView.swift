@@ -2,7 +2,7 @@
 //  BFEmptyStateView.swift
 //  BobaFinder
 //
-//  Created by Eric Liang on 12/27/22.
+//  Created by Rosemary Liang on 12/27/22.
 //
 
 import UIKit
@@ -19,23 +19,19 @@ class BFEmptyStateView: UIView {
         layoutUI()
     }
     
-    
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
     
     convenience init(message: String) {
         self.init(frame: .zero)
         messageLabel.text = message
     }
     
-    
     private func addSubviews() {
         addSubview(messageLabel)
         addSubview(logoImageView)
     }
-    
     
     private func configureUIElements() {
         messageLabel.numberOfLines  = 3
@@ -44,7 +40,6 @@ class BFEmptyStateView: UIView {
         logoImageView.alpha         = 0.80
         logoImageView.translatesAutoresizingMaskIntoConstraints = false
     }
-    
     
     private func layoutUI() {
         NSLayoutConstraint.activate([

@@ -2,22 +2,21 @@
 //  SearchVC.swift
 //  BobaFinder
 //
-//  Created by Eric Liang on 12/23/22.
+//  Created by Rosemary Liang on 12/23/22.
 //
 
 import UIKit
 
 class SearchVC: UIViewController {
     
-    let logoImageView       = UIImageView()
-    let titleLabel          = BFTitleLabel(textAlignment: .center, fontSize: 50)
-    let zipcodeTextField    = BFTextField()
-    let actionButton        = BFButton(backgroundColor: .systemIndigo, title: "Find Boba")
+    let logoImageView     = UIImageView()
+    let titleLabel        = BFTitleLabel(textAlignment: .center, fontSize: 50)
+    let zipcodeTextField  = BFTextField()
+    let actionButton      = BFButton(backgroundColor: .systemIndigo, title: "Find Boba")
     
     var isZipcodeEntered: Bool { return !zipcodeTextField.text!.isEmpty }
     
     let padding: CGFloat = 50
-    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -28,12 +27,10 @@ class SearchVC: UIViewController {
         createDismissKeyboardTapGesture()
     }
     
-    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.tabBarController?.tabBar.isHidden = true
     }
-    
     
     @objc func pushPlacesListVC() {
         guard isZipcodeEntered  else {
@@ -42,17 +39,17 @@ class SearchVC: UIViewController {
         }
         
         guard zipcodeTextField.text!.isValidFiveDigitZipcode else {
-            presentBFAlert(title: "Invalid zipcode", message: "Please enter a valid 5-digit zipcode so we can search for nearby boba places.", buttonTitle: "Ok")
+            presentBFAlert(title: "Invalid zipcode",
+                           message: "Please enter a valid 5-digit zipcode so we can search for nearby boba places.",
+                           buttonTitle: "Ok")
             return
         }
-    
         
-        let placesListVC    = PlacesListVC()
-        placesListVC.zipcode        = zipcodeTextField.text
-        placesListVC.title        = "Boba near \(zipcodeTextField.text ?? "")"
+        let placesListVC      = PlacesListVC()
+        placesListVC.zipcode  = zipcodeTextField.text
+        placesListVC.title    = "Boba near \(zipcodeTextField.text ?? "")"
         navigationController?.pushViewController(placesListVC, animated: true)
     }
-    
     
     private func addSubviews() {
         view.addSubview(logoImageView)
@@ -61,20 +58,18 @@ class SearchVC: UIViewController {
         view.addSubview(actionButton)
     }
     
-    
     private func configureUIElements() {
         logoImageView.translatesAutoresizingMaskIntoConstraints = false
         logoImageView.image = UIImage(named: "logo-image")
         
         titleLabel.text = "boba finder"
         
-        zipcodeTextField.tintColor      = .systemTeal
-        zipcodeTextField.alpha          = 0.80
-        zipcodeTextField.delegate       = self
+        zipcodeTextField.tintColor  = .systemTeal
+        zipcodeTextField.alpha      = 0.80
+        zipcodeTextField.delegate   = self
         
         actionButton.addTarget(self, action: #selector(pushPlacesListVC), for: .touchUpInside)
     }
-    
     
     private func layoutUI() {
         NSLayoutConstraint.activate([
@@ -100,13 +95,11 @@ class SearchVC: UIViewController {
         ])
     }
     
-    
     private func createDismissKeyboardTapGesture() {
         let tap = UITapGestureRecognizer(target: self.view, action: #selector(UIView.endEditing(_:)))
         view.addGestureRecognizer(tap)
     }
 }
-
 
 extension SearchVC: UITextFieldDelegate {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {

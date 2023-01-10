@@ -2,7 +2,7 @@
 //  Place.swift
 //  BobaFinder
 //
-//  Created by Eric Liang on 12/23/22.
+//  Created by Rosemary Liang on 12/23/22.
 //
 import UIKit
 
@@ -139,10 +139,6 @@ class JSONNull: Codable, Hashable {
     public static func == (lhs: JSONNull, rhs: JSONNull) -> Bool {
         return true
     }
-
-//    public var hashValue: Int {
-//        return 0
-//    }
     
     public func hash(into hasher: inout Hasher) {
             hasher.combine(0)
@@ -153,7 +149,8 @@ class JSONNull: Codable, Hashable {
     public required init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
         if !container.decodeNil() {
-            throw DecodingError.typeMismatch(JSONNull.self, DecodingError.Context(codingPath: decoder.codingPath, debugDescription: "Wrong type for JSONNull"))
+            throw DecodingError.typeMismatch(JSONNull.self,
+                                             DecodingError.Context(codingPath: decoder.codingPath, debugDescription: "Wrong type for JSONNull"))
         }
     }
 
@@ -377,8 +374,3 @@ class JSONAny: Codable {
         }
     }
 }
-
-
-
-
-
