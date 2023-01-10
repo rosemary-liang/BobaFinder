@@ -18,6 +18,7 @@
 		C9494972295E5A1A004BCE4C /* PersistenceManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9494971295E5A1A004BCE4C /* PersistenceManager.swift */; };
 		C9494974295F5B19004BCE4C /* FavoriteCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9494973295F5B19004BCE4C /* FavoriteCell.swift */; };
 		C9494976295F94D2004BCE4C /* BFTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9494975295F94D2004BCE4C /* BFTabBarController.swift */; };
+		C956F453296CEFF800270BC7 /* .swiftlint.yml in Resources */ = {isa = PBXBuildFile; fileRef = C956F452296CEFF800270BC7 /* .swiftlint.yml */; };
 		C976893D29561F7300F7F14F /* SearchVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = C976893C29561F7300F7F14F /* SearchVC.swift */; };
 		C97689432956213E00F7F14F /* FavoritesListVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = C97689422956213E00F7F14F /* FavoritesListVC.swift */; };
 		C97689462956283000F7F14F /* BFButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = C97689452956283000F7F14F /* BFButton.swift */; };
@@ -53,6 +54,7 @@
 		C9494971295E5A1A004BCE4C /* PersistenceManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersistenceManager.swift; sourceTree = "<group>"; };
 		C9494973295F5B19004BCE4C /* FavoriteCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteCell.swift; sourceTree = "<group>"; };
 		C9494975295F94D2004BCE4C /* BFTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BFTabBarController.swift; sourceTree = "<group>"; };
+		C956F452296CEFF800270BC7 /* .swiftlint.yml */ = {isa = PBXFileReference; lastKnownFileType = text.yaml; path = .swiftlint.yml; sourceTree = "<group>"; };
 		C976893C29561F7300F7F14F /* SearchVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchVC.swift; sourceTree = "<group>"; };
 		C97689422956213E00F7F14F /* FavoritesListVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesListVC.swift; sourceTree = "<group>"; };
 		C97689452956283000F7F14F /* BFButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BFButton.swift; sourceTree = "<group>"; };
@@ -221,6 +223,7 @@
 				C9D318DA2955388F0053DF1C /* Info.plist */,
 				C9D318CC2955388E0053DF1C /* AppDelegate.swift */,
 				C9D318CE2955388E0053DF1C /* SceneDelegate.swift */,
+				C956F452296CEFF800270BC7 /* .swiftlint.yml */,
 			);
 			path = BobaFinder;
 			sourceTree = "<group>";
@@ -235,6 +238,7 @@
 				C9D318C52955388E0053DF1C /* Sources */,
 				C9D318C62955388E0053DF1C /* Frameworks */,
 				C9D318C72955388E0053DF1C /* Resources */,
+				C956F451296CEFBD00270BC7 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -283,12 +287,33 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C956F453296CEFF800270BC7 /* .swiftlint.yml in Resources */,
 				C9D318D92955388F0053DF1C /* LaunchScreen.storyboard in Resources */,
 				C9D318D62955388F0053DF1C /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		C956F451296CEFBD00270BC7 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\nif which swiftlint >/dev/null; then\n  swiftlint\nelse\n  echo \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi\n";
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		C9D318C52955388E0053DF1C /* Sources */ = {
