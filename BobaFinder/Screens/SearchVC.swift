@@ -2,7 +2,7 @@
 //  SearchVC.swift
 //  BobaFinder
 //
-//  Created by Eric Liang on 12/23/22.
+//  Created by Rosemary Liang on 12/23/22.
 //
 
 import UIKit
