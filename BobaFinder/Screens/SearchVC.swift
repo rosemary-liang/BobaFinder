@@ -9,10 +9,10 @@ import UIKit
 
 class SearchVC: UIViewController {
     
-    let logoImageView       = UIImageView()
-    let titleLabel          = BFTitleLabel(textAlignment: .center, fontSize: 50)
-    let zipcodeTextField    = BFTextField()
-    let actionButton        = BFButton(backgroundColor: .systemIndigo, title: "Find Boba")
+    let logoImageView     = UIImageView()
+    let titleLabel        = BFTitleLabel(textAlignment: .center, fontSize: 50)
+    let zipcodeTextField  = BFTextField()
+    let actionButton      = BFButton(backgroundColor: .systemIndigo, title: "Find Boba")
     
     var isZipcodeEntered: Bool { return !zipcodeTextField.text!.isEmpty }
     
@@ -45,9 +45,9 @@ class SearchVC: UIViewController {
             return
         }
         
-        let placesListVC    = PlacesListVC()
-        placesListVC.zipcode        = zipcodeTextField.text
-        placesListVC.title        = "Boba near \(zipcodeTextField.text ?? "")"
+        let placesListVC      = PlacesListVC()
+        placesListVC.zipcode  = zipcodeTextField.text
+        placesListVC.title    = "Boba near \(zipcodeTextField.text ?? "")"
         navigationController?.pushViewController(placesListVC, animated: true)
     }
     
@@ -64,9 +64,9 @@ class SearchVC: UIViewController {
         
         titleLabel.text = "boba finder"
         
-        zipcodeTextField.tintColor      = .systemTeal
-        zipcodeTextField.alpha          = 0.80
-        zipcodeTextField.delegate       = self
+        zipcodeTextField.tintColor  = .systemTeal
+        zipcodeTextField.alpha      = 0.80
+        zipcodeTextField.delegate   = self
         
         actionButton.addTarget(self, action: #selector(pushPlacesListVC), for: .touchUpInside)
     }

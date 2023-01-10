@@ -23,18 +23,18 @@ class NetworkManager {
         let request = NSMutableURLRequest(url: NSURL(string: baseURL + "/search?categories=13033&near=\(zipcode)")! as URL,
                                                 cachePolicy: .useProtocolCachePolicy,
                                             timeoutInterval: 10.0)
-        request.httpMethod = "GET"
+        request.httpMethod          = "GET"
         request.allHTTPHeaderFields = headers
 
-        let (data, response) = try await URLSession.shared.data(for: request as URLRequest)
+        let (data, response)        = try await URLSession.shared.data(for: request as URLRequest)
         
         guard let response = response as? HTTPURLResponse, response.statusCode == 200 else {
             throw BFError.invalidResponse
         }
         
         do {
-            let root = try decoder.decode(Root.self, from: data)
-            let places = root.results
+            let root    = try decoder.decode(Root.self, from: data)
+            let places  = root.results
             return places
         } catch {
             throw BFError.invalidData
@@ -45,12 +45,12 @@ class NetworkManager {
         let request = NSMutableURLRequest(url: NSURL(string: baseURL + "/\(fsqId)/photos?sort=POPULAR")! as URL,
                                                 cachePolicy: .useProtocolCachePolicy,
                                             timeoutInterval: 10.0)
-        request.httpMethod = "GET"
+        request.httpMethod          = "GET"
         request.allHTTPHeaderFields = headers
 
-        let (data, response) = try await URLSession.shared.data(for: request as URLRequest)
+        let (data, response)        = try await URLSession.shared.data(for: request as URLRequest)
         
-        guard let response = response as? HTTPURLResponse, response.statusCode == 200 else {
+        guard let response          = response as? HTTPURLResponse, response.statusCode == 200 else {
             // Some valid fsqId's return invalid getPhotoURLs response instead of empty array.
             // Manually return empty [Photo] array.
             return []
@@ -74,7 +74,7 @@ class NetworkManager {
         }
         
         do {
-            let (data, _) = try await URLSession.shared.data(from: url)
+            let (data, _)   = try await URLSession.shared.data(from: url)
             guard let image = UIImage(data: data) else { return nil }
             cache.setObject(image, forKey: cacheKey)
             return image
@@ -90,12 +90,12 @@ class NetworkManager {
                                                 cachePolicy: .useProtocolCachePolicy,
                                             timeoutInterval: 10.0)
         
-        request.httpMethod = "GET"
+        request.httpMethod          = "GET"
         request.allHTTPHeaderFields = headers
         
-        let (data, response) = try await URLSession.shared.data(for: request as URLRequest)
+        let (data, response)        = try await URLSession.shared.data(for: request as URLRequest)
         
-        guard let response = response as? HTTPURLResponse, response.statusCode == 200 else {
+        guard let response          = response as? HTTPURLResponse, response.statusCode == 200 else {
             // Some valid Place fsqIds return invalid response instead of empty array.
             // Manually return empty [Tip] array rather than throw invalid response error.
             return []

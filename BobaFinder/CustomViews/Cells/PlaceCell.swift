@@ -9,12 +9,12 @@ import UIKit
 
 class PlaceCell: UICollectionViewCell {
     
-    static let reuseID = "PlaceCell"
+    static let reuseID  = "PlaceCell"
     
-    var placeImageView = BFImageView(frame: .zero)
+    var placeImageView  = BFImageView(frame: .zero)
     var photos: [Photo] = []
-    let placeNameLabel = BFTitleLabel(textAlignment: .center, fontSize: 16)
-    let distanceLabel = BFBodyLabel(textAlignment: .center)
+    let placeNameLabel  = BFTitleLabel(textAlignment: .center, fontSize: 16)
+    let distanceLabel   = BFBodyLabel(textAlignment: .center)
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -27,9 +27,9 @@ class PlaceCell: UICollectionViewCell {
     }
    
     func set(place: Place) {
-        placeNameLabel.text = place.name
+        placeNameLabel.text         = place.name
         let distanceInMiles: Double = Double(place.distance) / 1_609.344
-        distanceLabel.text = "\(String(format: "%.1f", distanceInMiles)) miles"
+        distanceLabel.text          = "\(String(format: "%.1f", distanceInMiles)) miles"
         
         Task {
             placeImageView.getPhotoURLAndSetImage(name: place.name, fsqId: place.fsqID)

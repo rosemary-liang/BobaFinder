@@ -9,10 +9,10 @@ import UIKit
 
 class TipCell: UICollectionViewCell {
     
-    static let reuseId = "TipCell"
+    static let reuseId  = "TipCell"
 
-    let tipLabel = BFTipLabel(textAlignment: .center)
-    let timestampLabel = BFBodyLabel(textAlignment: .left)
+    let tipLabel        = BFTipLabel(textAlignment: .center)
+    let timestampLabel  = BFBodyLabel(textAlignment: .left)
 
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -35,16 +35,16 @@ class TipCell: UICollectionViewCell {
     private func formatDate(dateString: String) -> String {
         let date = dateString
           
-        let formatter1 = DateFormatter()
+        let formatter1        = DateFormatter()
         formatter1.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSZZZZZ"
-        formatter1.locale = Locale(identifier: "en_US_POSIX")
+        formatter1.locale     = Locale(identifier: "en_US_POSIX")
           
         if let date2 = formatter1.date(from: date) {
-            let formatter2 = DateFormatter()
-            formatter2.dateFormat = "MMM yyyy"
-            formatter2.locale = Locale(identifier: "en_US_POSIX")
+            let formatter2          = DateFormatter()
+            formatter2.dateFormat   = "MMM yyyy"
+            formatter2.locale       = Locale(identifier: "en_US_POSIX")
             
-            let newDateString = formatter2.string(from: date2)
+            let newDateString       = formatter2.string(from: date2)
             return newDateString
         }
         return ""

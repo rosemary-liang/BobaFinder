@@ -29,8 +29,8 @@ class FavoriteCell: UITableViewCell {
     }
     
     private func layoutUI() {
-        accessoryType                = .disclosureIndicator // tappable to present new content
-        let padding: CGFloat         = 12
+        accessoryType        = .disclosureIndicator // tappable to present new content
+        let padding: CGFloat = 12
         
         NSLayoutConstraint.activate([
             placeImageView.centerYAnchor.constraint(equalTo: centerYAnchor),

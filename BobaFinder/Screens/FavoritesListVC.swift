@@ -9,14 +9,13 @@ import UIKit
 
 class FavoritesListVC: UIViewController {
     
-    let tableView = UITableView()
+    let tableView          = UITableView()
     var favorites: [Place] = []
 
     override func viewDidLoad() {
         super.viewDidLoad()
         configureViewController()
         configureTableView()
-
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -32,9 +31,9 @@ class FavoritesListVC: UIViewController {
     
     private func configureTableView() {
         view.addSubview(tableView)
-        tableView.frame = view.bounds
-        tableView.rowHeight = 90
-        tableView.delegate = self
+        tableView.frame      = view.bounds
+        tableView.rowHeight  = 90
+        tableView.delegate   = self
         tableView.dataSource = self
         
         tableView.register(FavoriteCell.self, forCellReuseIdentifier: FavoriteCell.reuseID)
@@ -83,7 +82,7 @@ extension FavoritesListVC: UITableViewDataSource, UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let favorite = favorites[indexPath.row]
-        let destVC = PlaceInfoVC()
+        let destVC   = PlaceInfoVC()
         destVC.place = favorite
         
         navigationController?.pushViewController(destVC, animated: true)

@@ -21,7 +21,7 @@ class BFSecondaryTitleLabel: UILabel {
     convenience init(textAlignment: NSTextAlignment, fontSize: CGFloat) {
         self.init(frame: .zero)
         self.textAlignment = textAlignment
-        self.font = UIFont.systemFont(ofSize: fontSize, weight: .medium)
+        self.font          = UIFont.systemFont(ofSize: fontSize, weight: .medium)
     }
     
     private func configure() {

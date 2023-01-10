@@ -20,21 +20,21 @@ class BFTextField: UITextField {
     
     private func configure() {
         translatesAutoresizingMaskIntoConstraints = false
-        layer.borderWidth   = 2
-        layer.borderColor   = UIColor.systemGray4.cgColor
-        layer.cornerRadius  = 8
+        layer.borderWidth         = 2
+        layer.borderColor         = UIColor.systemGray4.cgColor
+        layer.cornerRadius        = 8
         
-        textColor = .label
-        tintColor = .label
-        textAlignment = .center
-        font    = .preferredFont(forTextStyle: .title2)
+        textColor                 = .label
+        tintColor                 = .label
+        textAlignment             = .center
+        font                      = .preferredFont(forTextStyle: .title2)
         adjustsFontSizeToFitWidth = true
-        minimumFontSize = 12
+        minimumFontSize           = 12
         
-        backgroundColor = .tertiarySystemBackground
-        autocorrectionType = .no
-        returnKeyType = .go
-        clearButtonMode = .whileEditing
-        placeholder = "Enter a zipcode"
+        backgroundColor           = .tertiarySystemBackground
+        autocorrectionType        = .no
+        returnKeyType             = .go
+        clearButtonMode           = .whileEditing
+        placeholder               = "Enter a zipcode"
     }
 }

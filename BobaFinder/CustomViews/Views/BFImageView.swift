@@ -39,7 +39,7 @@ class BFImageView: UIImageView {
             
             self.photoURL = photo.rootPrefix + "original" + photo.suffix
             self.photoURL = photoURL
-            image = await NetworkManager.shared.downloadImage(from: self.photoURL!) ?? placeholderImage
+            image         = await NetworkManager.shared.downloadImage(from: self.photoURL!) ?? placeholderImage
         }
     }
 }

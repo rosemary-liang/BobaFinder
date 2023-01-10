@@ -29,9 +29,9 @@ class PlaceInfoVC: UIViewController {
     }()
     
     lazy var mainContainerView: UIView = {
-        let view = UIView()
-        view.backgroundColor = .systemMint
-        view.frame.size = contentViewSize
+        let view                = UIView()
+        view.backgroundColor    = .systemMint
+        view.frame.size         = contentViewSize
         return view
     }()
     

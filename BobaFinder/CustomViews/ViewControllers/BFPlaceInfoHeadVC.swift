@@ -11,8 +11,8 @@ class BFPlaceInfoHeadVC: UIViewController {
     
     let placeImageView = BFImageView(frame: .zero)
     let placeNameLabel = BFTitleLabel(textAlignment: .left, fontSize: 35)
-    let distanceLabel = BFBodyLabel(textAlignment: .left)
-    let locationLabel = BFSecondaryTitleLabel(textAlignment: .left, fontSize: 18)
+    let distanceLabel  = BFBodyLabel(textAlignment: .left)
+    let locationLabel  = BFSecondaryTitleLabel(textAlignment: .left, fontSize: 18)
     
     var place: Place!
     
@@ -34,7 +34,8 @@ class BFPlaceInfoHeadVC: UIViewController {
     
     func setPhoto() {
         Task {
-            placeImageView.getPhotoURLAndSetImage(name: place.name, fsqId: place.fsqID)        }
+            placeImageView.getPhotoURLAndSetImage(name: place.name, fsqId: place.fsqID)
+        }
     }
     
     private func addSubviews() {
