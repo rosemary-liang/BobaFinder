@@ -106,4 +106,6 @@ Names, relationships, & purposes of all components and relevant data models
 
 
 ## Miscellaneous
-- App was locked in portrait mode as the app's existing constraints did not convert well to landscape mode. I spent a couple hours trying to convert a few screens, but it wasn't working too well and I had already reached 50 hours of coding at this point so I decided to wrap up the project at this point.
+- This app was created as part of a weeklong takehome project after learning Swift for 1 month.
+- All UI was created programmatically instead of using Storyboard as specified by takehome instructions.
+- App was locked in portrait mode as the app's existing constraints did not convert well to landscape mode. I spent a couple hours trying to convert a few screens, but it wasn't working too well and I had already reached 50 hours of coding so I decided to wrap up the project at this point.
